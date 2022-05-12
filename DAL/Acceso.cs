@@ -10,41 +10,30 @@ namespace DAL
 {
     public class Acceso : Conexion
     {
-        SqlConnection connection = new SqlConnection();
+        private Conexion con;
+        private DataTable tabla;
 
-        private void Conectar()
+        public Acceso()
         {
-            connection.ConnectionString = conexion;
-            connection.Open();
-        }
-        private void Desconectar()
-        {
-            connection.Close();
+            con = new Conexion();
+            tabla = new DataTable();
+
         }
 
-        public DataTable executeNonQuery(string query)
+        public DataTable leer(string consulta)
         {
-            SqlDataReader dr;
-            DataTable dt = new DataTable();
-            Conectar();
-            SqlTransaction TR;
-            SqlCommand Comando = new SqlCommand(query, connection);
-            TR = connection.BeginTransaction();
+            SqlCommand cmd = new SqlCommand(consulta, con.conectar());
+            SqlDataReader lector = cmd.ExecuteReader();
+            tabla.Load(lector);
+            con.desconectar();
+            return tabla;
+        }
 
-            try
-            {
-                Comando.Transaction = TR;
-                dr = Comando.ExecuteReader();
-                dt.Load(dr);
-                TR.Commit();
-            }
-            catch (Exception)
-            {
-                TR.Rollback();
-            }
-
-            Desconectar();
-            return dt;
+        public void ejecutar(string query)
+        {
+            SqlCommand cmd = new SqlCommand(query, con.conectar());
+            cmd.ExecuteNonQuery();
+            con.desconectar();
         }
     }
 }

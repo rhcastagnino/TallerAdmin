@@ -9,21 +9,31 @@ namespace DAL
 {
     public class Conexion
     {
-        private readonly string _server;
-        private readonly string _base;
-        public string conexion { get; set; }
-        public Conexion()
-        {
-            _server = ConfigurationManager.AppSettings["server"];
-            _base = ConfigurationManager.AppSettings["base"];
+        private static Conexion instacia = null;
+        private SqlConnection conexion = new SqlConnection("Data Source=(local);Initial Catalog=TallerAdminDB;Integrated Security=True");
 
-            SqlConnectionStringBuilder sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
+        public static Conexion getInstancia()
+        {
+            if (instacia == null)
             {
-                DataSource = _server,
-                InitialCatalog = _base,
-                IntegratedSecurity = true,
-            };
-            conexion = sqlConnectionStringBuilder.ConnectionString;
+                instacia = new Conexion();
+            }
+            return instacia;
         }
+
+        public SqlConnection conectar()
+        {
+            if (conexion.State == System.Data.ConnectionState.Closed)
+            {
+                conexion.Open();
+            }
+            return conexion;
+        }
+
+        public void desconectar()
+        {
+            conexion.Close();
+        }
+
     }
 }
