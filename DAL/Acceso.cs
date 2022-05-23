@@ -23,10 +23,12 @@ namespace DAL
         public DataTable leer(string consulta)
         {
             SqlCommand cmd = new SqlCommand(consulta, con.conectar());
-            SqlDataReader lector = cmd.ExecuteReader();
-            tabla.Load(lector);
-            con.desconectar();
-            return tabla;
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            return dt;
+
         }
 
         public void ejecutar(string query)

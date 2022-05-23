@@ -15,26 +15,5 @@ namespace BE
         public int contador { get; set; }
         public string email { get; set; }
 
-        private static Usuario _instance = null;
-        private static object _protect = new object();
-
-        private Usuario()
-        {
-        }
-
-        public static Usuario GetInstance()
-        {
-            // Utilizo el lock para proteger el hilo de mi instancia.
-            lock (_protect)
-            {
-                if (_instance == null)
-                {
-                    _instance = new Usuario();
-                }
-            }
-
-            return _instance;
-        }
-
     }
 }
