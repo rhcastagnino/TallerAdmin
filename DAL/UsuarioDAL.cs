@@ -22,9 +22,10 @@ namespace DAL
         {
             try
             {
-               
-                string query = "exec alta_usuario  '"+usuario.nombre+"','"+usuario.apellido+"','"+usuario.email+"', '"+usuario.password+"'";
-                acceso.ejecutar(query);
+
+                string sp = "alta_usuario"; //  '"+usuario.nombre+"','"+usuario.apellido+"','"+usuario.email+"', '"+usuario.password+"'";
+                //acceso.ejecutar(query);
+                acceso.AltaUsuario(usuario, sp);
             }
             catch (Exception ex) 
             {

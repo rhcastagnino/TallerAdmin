@@ -24,6 +24,18 @@ namespace UI
 
         private void btnlogin_Click(object sender, EventArgs e)
         {
+            MessageBox.Show($"Ingreso correctamente al usuario");
+        }
+
+        private void btnAltaUsuario_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            AltaUsuario formAltaUsuario = new AltaUsuario();
+            formAltaUsuario.Show();
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
 
         }
     }

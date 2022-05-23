@@ -20,9 +20,9 @@ namespace DAL
 
         }
 
-        public DataTable leer(string consulta)
+        public DataTable leer(string sp)
         {
-            SqlCommand cmd = new SqlCommand(consulta, con.conectar());
+            SqlCommand cmd = new SqlCommand(sp, con.conectar());
             cmd.CommandType = CommandType.StoredProcedure;
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
@@ -35,6 +35,21 @@ namespace DAL
         {
             SqlCommand cmd = new SqlCommand(query, con.conectar());
             cmd.ExecuteNonQuery();
+            con.desconectar();
+        }
+
+        public void AltaUsuario(BE.Usuario usuario, string sp)
+        {
+            SqlCommand cmd = new SqlCommand(sp,con.conectar());
+            //cmd.Connection = con.conectar();
+            //cmd.CommandText = sp;
+            cmd.CommandType=CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@nombre",usuario.nombre);
+            cmd.Parameters.AddWithValue("@apellido",usuario.apellido);
+            cmd.Parameters.AddWithValue("@email", usuario.email);
+            cmd.Parameters.AddWithValue("@pass",usuario.password);
+            cmd.ExecuteNonQuery();
+            cmd.Parameters.Clear();
             con.desconectar();
         }
     }

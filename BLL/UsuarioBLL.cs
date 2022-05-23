@@ -12,5 +12,20 @@ namespace BLL
         public BE.Usuario Usuario;
         public DAL.UsuarioDAL UsuarioDAL;
 
+        public UsuarioBLL()
+        {
+            Usuario = new BE.Usuario();
+            UsuarioDAL = new DAL.UsuarioDAL();
+        }
+
+        public void altaUsario(BE.Usuario usuario)
+        {
+            UsuarioDAL.altaUsaurio(usuario);
+        }
+
+        public void getUsuario(string email)
+        {
+            UsuarioDAL.getUsaurio(email);
+        }
     }
 }

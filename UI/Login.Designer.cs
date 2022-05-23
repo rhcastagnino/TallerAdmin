@@ -35,6 +35,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnAltaUsuario = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,7 +59,7 @@
             this.btnlogin.Name = "btnlogin";
             this.btnlogin.Size = new System.Drawing.Size(75, 23);
             this.btnlogin.TabIndex = 2;
-            this.btnlogin.Text = "Confirmar";
+            this.btnlogin.Text = "Ingresar";
             this.btnlogin.UseVisualStyleBackColor = true;
             this.btnlogin.Click += new System.EventHandler(this.btnlogin_Click);
             // 
@@ -67,9 +68,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(27, 45);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 15);
+            this.label1.Size = new System.Drawing.Size(39, 15);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Usuario:";
+            this.label1.Text = "Email:";
             // 
             // label2
             // 
@@ -105,15 +106,31 @@
             this.groupBox1.Text = "Ingreso al Sistema";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // btnAltaUsuario
+            // 
+            this.btnAltaUsuario.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAltaUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAltaUsuario.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.btnAltaUsuario.Location = new System.Drawing.Point(120, 235);
+            this.btnAltaUsuario.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAltaUsuario.Name = "btnAltaUsuario";
+            this.btnAltaUsuario.Size = new System.Drawing.Size(221, 23);
+            this.btnAltaUsuario.TabIndex = 7;
+            this.btnAltaUsuario.Text = "No tenes cuenta? Click Aca!";
+            this.btnAltaUsuario.UseVisualStyleBackColor = false;
+            this.btnAltaUsuario.Click += new System.EventHandler(this.btnAltaUsuario_Click);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(453, 241);
+            this.ClientSize = new System.Drawing.Size(453, 283);
+            this.Controls.Add(this.btnAltaUsuario);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label3);
             this.Name = "Login";
             this.Text = "Login";
+            this.Load += new System.EventHandler(this.Login_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -130,5 +147,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnAltaUsuario;
     }
 }
