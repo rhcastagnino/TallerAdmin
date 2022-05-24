@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtApellido = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtPass = new System.Windows.Forms.TextBox();
             this.btnAltaUsuario = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtNombre = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtApellido = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,6 +59,38 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ingrese Usuario";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(23, 148);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(54, 15);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Nombre:";
+            // 
+            // txtNombre
+            // 
+            this.txtNombre.Location = new System.Drawing.Point(88, 145);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(296, 23);
+            this.txtNombre.TabIndex = 2;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(23, 201);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(54, 15);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Apellido:";
+            // 
+            // txtApellido
+            // 
+            this.txtApellido.Location = new System.Drawing.Point(88, 198);
+            this.txtApellido.Name = "txtApellido";
+            this.txtApellido.Size = new System.Drawing.Size(296, 23);
+            this.txtApellido.TabIndex = 3;
             // 
             // label1
             // 
@@ -97,7 +129,7 @@
             this.btnAltaUsuario.Location = new System.Drawing.Point(178, 246);
             this.btnAltaUsuario.Name = "btnAltaUsuario";
             this.btnAltaUsuario.Size = new System.Drawing.Size(75, 23);
-            this.btnAltaUsuario.TabIndex = 2;
+            this.btnAltaUsuario.TabIndex = 4;
             this.btnAltaUsuario.Text = "Registrar";
             this.btnAltaUsuario.UseVisualStyleBackColor = true;
             this.btnAltaUsuario.Click += new System.EventHandler(this.btnAltaUsuario_Click);
@@ -112,38 +144,6 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Nuevo Usuario";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(23, 148);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 15);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Nombre:";
-            // 
-            // txtNombre
-            // 
-            this.txtNombre.Location = new System.Drawing.Point(88, 145);
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(296, 23);
-            this.txtNombre.TabIndex = 5;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(23, 201);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(54, 15);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Apellido:";
-            // 
-            // txtApellido
-            // 
-            this.txtApellido.Location = new System.Drawing.Point(88, 198);
-            this.txtApellido.Name = "txtApellido";
-            this.txtApellido.Size = new System.Drawing.Size(296, 23);
-            this.txtApellido.TabIndex = 6;
-            // 
             // AltaUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -152,9 +152,12 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox1);
             this.Name = "AltaUsuario";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AltaUsuario";
+            this.Load += new System.EventHandler(this.AltaUsuario_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AltaUsuario_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

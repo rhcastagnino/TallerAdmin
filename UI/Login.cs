@@ -38,5 +38,10 @@ namespace UI
         {
 
         }
+
+        private void Login_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            System.Environment.Exit(0);
+        }
     }
 }

@@ -42,7 +42,7 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error en la base al consultar el usuario {usuario.email}");
+                throw new Exception($"Error en la base al consultar el usuario {email}");
             }
         }
     }

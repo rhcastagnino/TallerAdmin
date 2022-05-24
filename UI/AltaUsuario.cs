@@ -30,7 +30,7 @@ namespace UI
 
                 BLL.UsuarioBLL usuarioBLL = new BLL.UsuarioBLL();
                 usuarioBLL.altaUsario(usuario);
-                MessageBox.Show($"Se registró correctamente al usuario {usuario.email}, por favor ingresar al sistema");
+                MessageBox.Show("Se registró correctamente al usuario, por favor ingresar al sistema");
 
                 this.Hide();
                 Login formLogin = new Login();
@@ -38,8 +38,19 @@ namespace UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error con el alta del usuario");
+                MessageBox.Show(ex.Message);
             }
+        }
+
+        private void AltaUsuario_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AltaUsuario_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Login formLogin = new Login();
+            formLogin.Show();
         }
     }
 }
