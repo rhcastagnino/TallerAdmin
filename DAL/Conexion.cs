@@ -10,9 +10,9 @@ namespace DAL
     public class Conexion
     {
         private static Conexion instacia = null;
-        private SqlConnection conexion = new SqlConnection("Data Source=(local);Initial Catalog=TallerAdminDB;Integrated Security=True");
+        private readonly SqlConnection conexion = new SqlConnection("Data Source=(local);Initial Catalog=TallerAdminDB;Integrated Security=True");
 
-        public static Conexion getInstancia()
+        public static Conexion GetInstancia()
         {
             if (instacia == null)
             {
@@ -21,7 +21,7 @@ namespace DAL
             return instacia;
         }
 
-        public SqlConnection conectar()
+        public SqlConnection Conectar()
         {
             if (conexion.State == System.Data.ConnectionState.Closed)
             {
@@ -30,7 +30,7 @@ namespace DAL
             return conexion;
         }
 
-        public void desconectar()
+        public void Desconectar()
         {
             conexion.Close();
         }

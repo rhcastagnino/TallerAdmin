@@ -24,7 +24,7 @@ namespace BLL
             encriptador = new Encriptador();
         }
 
-        private bool validarEmail(string email)
+        private bool ValidarEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
                 return false;
@@ -59,18 +59,18 @@ namespace BLL
         }
     
 
-        public void altaUsario(BE.Usuario usuario)
+        public void AltaUsario(BE.Usuario usuario)
         {
             try
             {
                 UsuarioBLL usuarioBLL = new UsuarioBLL();
-                Usuario = usuarioBLL.getUsuario(usuario.email);
+                Usuario = usuarioBLL.GetUsuario(usuario.email);
                 string mailEncriptado = encriptador.Encriptar(usuario.email);
                 if (Usuario.email == mailEncriptado)
                 {
                     throw new Exception($"El mail {usuario.email} ya se encuentra registrado");
                 }
-                if (validarEmail(usuario.email) == false)
+                if (ValidarEmail(usuario.email) == false)
                 {
                     throw new Exception("El email no puede estar vacío y debe respertar el formato");
                 }
@@ -84,7 +84,7 @@ namespace BLL
                 }
                 usuario.email = encriptador.Encriptar(usuario.email.ToLower());
                 usuario.password = encriptador.Hash(usuario.password);
-                UsuarioDAL.altaUsaurio(usuario);
+                UsuarioDAL.AltaUsaurio(usuario);
             }
             catch (Exception ex)
             {
@@ -92,12 +92,12 @@ namespace BLL
             }
         }
 
-        public BE.Usuario getUsuario(string email)
+        public BE.Usuario GetUsuario(string email)
         {
             try
             {
                 email = encriptador.Encriptar(email.ToLower());
-                Usuario = UsuarioDAL.getUsaurio(email);
+                Usuario = UsuarioDAL.GetUsaurio(email);
                 return Usuario;
             }
             catch (Exception ex)
@@ -111,26 +111,34 @@ namespace BLL
         {
             try
             {
-                if (validarEmail(email) == true)
+                if (ValidarEmail(email) == true)
                 {
                     UsuarioBLL usuarioBLL = new UsuarioBLL();
-                    Usuario = usuarioBLL.getUsuario(email);
+                    Usuario = usuarioBLL.GetUsuario(email);
                     if (encriptador.Encriptar(email) == Usuario.email)
                     {
                         if (encriptador.Hash(pass) == Usuario.password)
                         {
-                            if (Session.GetInstance == null)
+                            if (Usuario.contador <= 2)
                             {
-                                Session.IniciarSession(Usuario);
-                                if (Usuario.contador > 0)
+                                if (Session.GetInstance == null)
                                 {
-                                    usuarioBLL.restablecerContador(Usuario);
+                                    Session.IniciarSession(Usuario);
+                                    if (Usuario.contador > 0)
+                                    {
+                                        usuarioBLL.RestablecerContador(Usuario);
+                                    }
                                 }
                             }
+                            else
+                            {
+                                throw new Exception($"Su usuario {encriptador.Desencriptar(Usuario.email)} se encuentra Bloqueado. Contacte al admnistrador.");
+                            }
+
                         }
                         else
                         {
-                            usuarioBLL.incrementarContador(Usuario);
+                            usuarioBLL.IncrementarContador(Usuario);
                             throw new Exception("Contraseña incorrecta");
                         }
                     }
@@ -156,11 +164,11 @@ namespace BLL
             Session.CerrarSession();
         }
 
-        public void incrementarContador(BE.Usuario usuario)
+        public void IncrementarContador(BE.Usuario usuario)
         {
             try
             {
-                UsuarioDAL.incrementarContador(usuario);
+                UsuarioDAL.IncrementarContador(usuario);
             }
             catch (Exception ex) 
             { 
@@ -169,11 +177,11 @@ namespace BLL
 
         }
 
-        public void restablecerContador(BE.Usuario usuario)
+        public void RestablecerContador(BE.Usuario usuario)
         {
             try
             {
-                UsuarioDAL.restablecerContador(usuario);
+                UsuarioDAL.RestablecerContador(usuario);
             }
             catch (Exception ex)
             {

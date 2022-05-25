@@ -18,7 +18,7 @@ namespace DAL
             usuario = new BE.Usuario();
         }
 
-        public void altaUsaurio(BE.Usuario usuario) 
+        public void AltaUsaurio(BE.Usuario usuario) 
         {
             try
             {
@@ -33,12 +33,12 @@ namespace DAL
             }
         }
 
-        public BE.Usuario getUsaurio(string email)
+        public BE.Usuario GetUsaurio(string email)
         {
             try
             {     
                 string sp = "getUsuario";
-                usuario = acceso.getUsuario(email, sp);
+                usuario = acceso.GetUsuario(email, sp);
                 return usuario;
             }
             catch (Exception ex)
@@ -47,12 +47,12 @@ namespace DAL
             }
         }
 
-        public void incrementarContador(BE.Usuario usuario)
+        public void IncrementarContador(BE.Usuario usuario)
         {
             try
             {
                 string sp = "incrementarContador"; 
-                acceso.incrementarContador(usuario, sp);
+                acceso.IncrementarContador(usuario, sp);
             }
             catch (Exception ex)
             {
@@ -60,12 +60,12 @@ namespace DAL
             }
         }
 
-        public void restablecerContador(BE.Usuario usuario)
+        public void RestablecerContador(BE.Usuario usuario)
         {
             try
             {
                 string sp = "restablecerContador";
-                acceso.restablecerContador(usuario, sp);
+                acceso.RestablecerContador(usuario, sp);
             }
             catch (Exception ex)
             {

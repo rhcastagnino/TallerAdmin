@@ -22,15 +22,15 @@ namespace UI
         private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
-            cerrarPrincipal();
+            CerrarPrincipal();
         }
 
         private void Principal_FormClosed(object sender, FormClosedEventArgs e)
         {
-            cerrarPrincipal();
+            CerrarPrincipal();
         }
 
-        private void cerrarPrincipal()
+        private void CerrarPrincipal()
         {
             UsuarioBLL usuarioBLL = new UsuarioBLL();
             usuarioBLL.Logout();

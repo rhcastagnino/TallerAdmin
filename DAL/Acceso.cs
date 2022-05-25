@@ -23,7 +23,7 @@ namespace DAL
 
         public void AltaUsuario(BE.Usuario usuario, string sp)
         {
-            SqlCommand cmd = new SqlCommand(sp,con.conectar());
+            SqlCommand cmd = new SqlCommand(sp,con.Conectar());
             //cmd.Connection = con.conectar();
             //cmd.CommandText = sp;
             cmd.CommandType=CommandType.StoredProcedure;
@@ -33,12 +33,12 @@ namespace DAL
             cmd.Parameters.AddWithValue("@pass",usuario.password);
             cmd.ExecuteNonQuery();
             cmd.Parameters.Clear();
-            con.desconectar();
+            con.Desconectar();
         }
 
-        public BE.Usuario getUsuario(string email,string sp)
+        public BE.Usuario GetUsuario(string email,string sp)
         {
-            SqlCommand cmd = new SqlCommand(sp, con.conectar());
+            SqlCommand cmd = new SqlCommand(sp, con.Conectar());
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@email",email);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -56,24 +56,24 @@ namespace DAL
             return usr;
         }
 
-        public void incrementarContador(BE.Usuario usuario, string sp)
+        public void IncrementarContador(BE.Usuario usuario, string sp)
         {
-            SqlCommand cmd = new SqlCommand(sp, con.conectar());
+            SqlCommand cmd = new SqlCommand(sp, con.Conectar());
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@email", usuario.email);
             cmd.ExecuteNonQuery();
             cmd.Parameters.Clear();
-            con.desconectar();
+            con.Desconectar();
         }
 
-        public void restablecerContador(BE.Usuario usuario, string sp)
+        public void RestablecerContador(BE.Usuario usuario, string sp)
         {
-            SqlCommand cmd = new SqlCommand(sp, con.conectar());
+            SqlCommand cmd = new SqlCommand(sp, con.Conectar());
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@email", usuario.email);
             cmd.ExecuteNonQuery();
             cmd.Parameters.Clear();
-            con.desconectar();
+            con.Desconectar();
         }
     }
 }

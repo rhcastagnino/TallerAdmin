@@ -29,7 +29,7 @@ namespace UI
                 usuario.apellido = txtApellido.Text;
 
                 BLL.UsuarioBLL usuarioBLL = new BLL.UsuarioBLL();
-                usuarioBLL.altaUsario(usuario);
+                usuarioBLL.AltaUsario(usuario);
                 MessageBox.Show($"Se registró correctamente al usuario {usuario.apellido} {usuario.nombre}, por favor ingresar al sistema");
 
                 this.Hide();
