@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtusr = new System.Windows.Forms.TextBox();
-            this.txtpass = new System.Windows.Forms.TextBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.txtPass = new System.Windows.Forms.TextBox();
             this.btnlogin = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -39,19 +39,19 @@
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // txtusr
+            // txtEmail
             // 
-            this.txtusr.Location = new System.Drawing.Point(88, 42);
-            this.txtusr.Name = "txtusr";
-            this.txtusr.Size = new System.Drawing.Size(296, 23);
-            this.txtusr.TabIndex = 0;
+            this.txtEmail.Location = new System.Drawing.Point(88, 42);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(296, 23);
+            this.txtEmail.TabIndex = 0;
             // 
-            // txtpass
+            // txtPass
             // 
-            this.txtpass.Location = new System.Drawing.Point(88, 95);
-            this.txtpass.Name = "txtpass";
-            this.txtpass.Size = new System.Drawing.Size(296, 23);
-            this.txtpass.TabIndex = 1;
+            this.txtPass.Location = new System.Drawing.Point(88, 95);
+            this.txtPass.Name = "txtPass";
+            this.txtPass.Size = new System.Drawing.Size(296, 23);
+            this.txtPass.TabIndex = 1;
             // 
             // btnlogin
             // 
@@ -94,9 +94,9 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.txtusr);
+            this.groupBox1.Controls.Add(this.txtEmail);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtpass);
+            this.groupBox1.Controls.Add(this.txtPass);
             this.groupBox1.Controls.Add(this.btnlogin);
             this.groupBox1.Location = new System.Drawing.Point(12, 49);
             this.groupBox1.Name = "groupBox1";
@@ -131,10 +131,10 @@
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Login_FormClosed);
             this.Load += new System.EventHandler(this.Login_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Login_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -142,8 +142,8 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtusr;
-        private System.Windows.Forms.TextBox txtpass;
+        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.TextBox txtPass;
         private System.Windows.Forms.Button btnlogin;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

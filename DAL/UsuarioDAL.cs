@@ -29,16 +29,17 @@ namespace DAL
             }
             catch (Exception ex) 
             {
-                throw new Exception($"Error en la base al dar de alta el usuario {usuario.email}");
+                throw new Exception($"Error en la base al dar de alta el usuario {usuario.apellido} {usuario.nombre}");
             }
         }
 
-        public void getUsaurio(string email)
+        public BE.Usuario getUsaurio(string email)
         {
             try
-            {
-                string query = "exec get_usuario  '" + email + "'";
-                acceso.ejecutar(query);
+            {     
+                string sp = "get_usuario";
+                usuario = acceso.getUsuario(email, sp);
+                return usuario;
             }
             catch (Exception ex)
             {

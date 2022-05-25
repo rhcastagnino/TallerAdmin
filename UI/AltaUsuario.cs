@@ -30,7 +30,7 @@ namespace UI
 
                 BLL.UsuarioBLL usuarioBLL = new BLL.UsuarioBLL();
                 usuarioBLL.altaUsario(usuario);
-                MessageBox.Show("Se registró correctamente al usuario, por favor ingresar al sistema");
+                MessageBox.Show($"Se registró correctamente al usuario {usuario.apellido} {usuario.nombre}, por favor ingresar al sistema");
 
                 this.Hide();
                 Login formLogin = new Login();
@@ -44,7 +44,10 @@ namespace UI
 
         private void AltaUsuario_Load(object sender, EventArgs e)
         {
-
+            txtApellido.Clear();
+            txtNombre.Clear();
+            txtEmail.Clear();
+            txtPass.Clear();
         }
 
         private void AltaUsuario_FormClosed(object sender, FormClosedEventArgs e)
