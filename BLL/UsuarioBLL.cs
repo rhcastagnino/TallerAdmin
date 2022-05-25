@@ -127,7 +127,6 @@ namespace BLL
                                     usuarioBLL.restablecerContador(Usuario);
                                 }
                             }
-
                         }
                         else
                         {
@@ -150,6 +149,11 @@ namespace BLL
             {
                 throw new Exception(ex.Message); 
             }
+        }
+
+        public void Logout()
+        {
+            Session.CerrarSession();
         }
 
         public void incrementarContador(BE.Usuario usuario)

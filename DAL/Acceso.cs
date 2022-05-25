@@ -20,22 +20,6 @@ namespace DAL
 
         }
 
-        public DataTable leer(string sp)
-        {
-            SqlCommand cmd = new SqlCommand(sp, con.conectar());
-            cmd.CommandType = CommandType.StoredProcedure;
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(tabla);
-            return tabla;
-
-        }
-
-        public void ejecutar(string query)
-        {
-            SqlCommand cmd = new SqlCommand(query, con.conectar());
-            cmd.ExecuteNonQuery();
-            con.desconectar();
-        }
 
         public void AltaUsuario(BE.Usuario usuario, string sp)
         {

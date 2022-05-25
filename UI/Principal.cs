@@ -1,4 +1,5 @@
-﻿using Servicios;
+﻿using BLL;
+using Servicios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,7 +32,8 @@ namespace UI
 
         private void cerrarPrincipal()
         {
-            Session.CerrarSession();
+            UsuarioBLL usuarioBLL = new UsuarioBLL();
+            usuarioBLL.Logout();
             Login formLogin = new Login();
             formLogin.Show();
         }
