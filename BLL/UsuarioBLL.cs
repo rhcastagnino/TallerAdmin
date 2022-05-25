@@ -94,9 +94,17 @@ namespace BLL
 
         public BE.Usuario getUsuario(string email)
         {
-            email = encriptador.Encriptar(email.ToLower());
-            Usuario = UsuarioDAL.getUsaurio(email);
-            return Usuario;
+            try
+            {
+                email = encriptador.Encriptar(email.ToLower());
+                Usuario = UsuarioDAL.getUsaurio(email);
+                return Usuario;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
         }
 
         public void Login(string email, string pass)
@@ -111,14 +119,21 @@ namespace BLL
                     {
                         if (encriptador.Hash(pass) == Usuario.password)
                         {
-                            //ingresa al sistema
+                            if (Session.GetInstance == null)
+                            {
+                                Session.IniciarSession(Usuario);
+                                if (Usuario.contador > 0)
+                                {
+                                    usuarioBLL.restablecerContador(Usuario);
+                                }
+                            }
+
                         }
                         else
                         {
-                            //incrementar en 1 el contador del usuario
-                            throw new Exception($"Contraseña incorrecta");
+                            usuarioBLL.incrementarContador(Usuario);
+                            throw new Exception("Contraseña incorrecta");
                         }
-                        
                     }
                     else
                     {
@@ -135,6 +150,32 @@ namespace BLL
             {
                 throw new Exception(ex.Message); 
             }
+        }
+
+        public void incrementarContador(BE.Usuario usuario)
+        {
+            try
+            {
+                UsuarioDAL.incrementarContador(usuario);
+            }
+            catch (Exception ex) 
+            { 
+                throw new Exception (ex.Message);
+            }
+
+        }
+
+        public void restablecerContador(BE.Usuario usuario)
+        {
+            try
+            {
+                UsuarioDAL.restablecerContador(usuario);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
         }
     }
 }

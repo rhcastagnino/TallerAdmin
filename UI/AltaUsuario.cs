@@ -39,21 +39,27 @@ namespace UI
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                Limpiar();
             }
         }
 
         private void AltaUsuario_Load(object sender, EventArgs e)
         {
-            txtApellido.Clear();
-            txtNombre.Clear();
-            txtEmail.Clear();
-            txtPass.Clear();
+            Limpiar();
         }
 
         private void AltaUsuario_FormClosed(object sender, FormClosedEventArgs e)
         {
             Login formLogin = new Login();
             formLogin.Show();
+        }
+
+        private void Limpiar()
+        {
+            txtApellido.Clear();
+            txtNombre.Clear();
+            txtEmail.Clear();
+            txtPass.Clear();
         }
     }
 }

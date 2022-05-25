@@ -25,7 +25,6 @@ namespace DAL
             SqlCommand cmd = new SqlCommand(sp, con.conectar());
             cmd.CommandType = CommandType.StoredProcedure;
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            //DataTable dt = new DataTable();
             da.Fill(tabla);
             return tabla;
 
@@ -59,7 +58,6 @@ namespace DAL
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@email",email);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
-            //DataTable dt = new DataTable();
             da.Fill(tabla);
             BE.Usuario usr = new BE.Usuario();
             foreach (DataRow fila in tabla.Rows)
@@ -70,7 +68,28 @@ namespace DAL
                 usr.apellido = fila[2].ToString();
                 usr.contador = int.Parse(fila[4].ToString());
             }
+            cmd.Parameters.Clear();
             return usr;
+        }
+
+        public void incrementarContador(BE.Usuario usuario, string sp)
+        {
+            SqlCommand cmd = new SqlCommand(sp, con.conectar());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@email", usuario.email);
+            cmd.ExecuteNonQuery();
+            cmd.Parameters.Clear();
+            con.desconectar();
+        }
+
+        public void restablecerContador(BE.Usuario usuario, string sp)
+        {
+            SqlCommand cmd = new SqlCommand(sp, con.conectar());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@email", usuario.email);
+            cmd.ExecuteNonQuery();
+            cmd.Parameters.Clear();
+            con.desconectar();
         }
     }
 }

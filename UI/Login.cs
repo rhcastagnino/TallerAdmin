@@ -24,19 +24,26 @@ namespace UI
         {
 
         }
-
+        private void Login_Load(object sender, EventArgs e)
+        {
+            Limpiar();
+        }
         private void btnlogin_Click(object sender, EventArgs e)
         {
             try
             {
                 string email = txtEmail.Text;
                 string pass = txtPass.Text;
-                usuarioBLL.Login(email, pass);                
-                MessageBox.Show($"Ingreso correctamente al usuario {email}");
+                usuarioBLL.Login(email, pass);
+                this.Hide();
+                Principal formPrincipal = new Principal();
+                formPrincipal.Show();
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                Limpiar();
             }
         }
 
@@ -47,15 +54,16 @@ namespace UI
             formAltaUsuario.Show();
         }
 
-        private void Login_Load(object sender, EventArgs e)
-        {
-            txtPass.Clear();
-            txtEmail.Clear();
-        }
 
         private void Login_FormClosed(object sender, FormClosedEventArgs e)
         {
             System.Environment.Exit(0);
+        }
+
+        private void Limpiar()
+        {
+            txtPass.Clear();
+            txtEmail.Clear();
         }
     }
 }
