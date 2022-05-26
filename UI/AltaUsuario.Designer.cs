@@ -123,6 +123,7 @@
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(296, 23);
             this.txtPass.TabIndex = 1;
+            this.txtPass.UseSystemPasswordChar = true;
             // 
             // btnAltaUsuario
             // 
@@ -154,10 +155,10 @@
             this.Name = "AltaUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AltaUsuario";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AltaUsuario_FormClosed);
             this.Load += new System.EventHandler(this.AltaUsuario_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AltaUsuario_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

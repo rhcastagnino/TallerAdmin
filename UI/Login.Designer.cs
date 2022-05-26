@@ -52,6 +52,7 @@
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(296, 23);
             this.txtPass.TabIndex = 1;
+            this.txtPass.UseSystemPasswordChar = true;
             // 
             // btnlogin
             // 
@@ -116,7 +117,7 @@
             this.btnAltaUsuario.Name = "btnAltaUsuario";
             this.btnAltaUsuario.Size = new System.Drawing.Size(221, 23);
             this.btnAltaUsuario.TabIndex = 7;
-            this.btnAltaUsuario.Text = "No tenes cuenta? Click Aca!";
+            this.btnAltaUsuario.Text = "No tenes cuenta? Registrate";
             this.btnAltaUsuario.UseVisualStyleBackColor = false;
             this.btnAltaUsuario.Click += new System.EventHandler(this.btnAltaUsuario_Click);
             // 
