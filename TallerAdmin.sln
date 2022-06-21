@@ -25,9 +25,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Servicios", "Servicios\Servicios.csproj", "{61B2C7AE-F768-4703-A1B2-50B84154CCCA}"
 	ProjectSection(ProjectDependencies) = postProject
 		{FC5AEE3E-E7A7-4545-8553-2ADAB0AAB99F} = {FC5AEE3E-E7A7-4545-8553-2ADAB0AAB99F}
+		{5D079860-6FFB-406B-8D80-538633C1CE58} = {5D079860-6FFB-406B-8D80-538633C1CE58}
+		{A13BA5D9-5905-42C9-A957-7F25C4E23C84} = {A13BA5D9-5905-42C9-A957-7F25C4E23C84}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Interfaces\Interfaces.csproj", "{A13BA5D9-5905-42C9-A957-7F25C4E23C84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interfaces", "Interfaces\Interfaces.csproj", "{A13BA5D9-5905-42C9-A957-7F25C4E23C84}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

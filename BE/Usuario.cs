@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,14 +7,16 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    public class Usuario
+    public class Usuario 
     {
-        public int id { get; set; }
-        public string nombre { get; set; }
-        public string apellido { get; set; }
-        public string password { get; set; }
-        public int contador { get; set; }
-        public string email { get; set; }
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public string Password { get; set; }
+        public int Contador { get; set; }
+        public string Email { get; set; }
+        public IIdioma Idioma { get; set; }
+
 
     }
 }

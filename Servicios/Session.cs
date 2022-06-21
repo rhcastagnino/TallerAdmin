@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace Servicios
     {
         private static object _lock = new Object();
         private static Session _session;
+        static IList<IIdiomaObserver> _observers = new List<IIdiomaObserver>();
 
         public BE.Usuario Usuario { get; set; }
 
@@ -17,25 +19,19 @@ namespace Servicios
         {
             get
             {
-                try
+                if (_session != null)
                 {
-                    if (_session != null)
-                    {
-                        return _session;
-                    }
-                    else
-                    {
-                        return null;
-                    }
+                    return _session;
                 }
-                catch (Exception ex)
+                else
                 {
-                    throw new Exception("Sesión no iniciada");
+                    return null;
                 }
+
             }
         }
 
-        public static void IniciarSession(BE.Usuario usuario)
+        public static void IniciarSession(BE.Usuario usuario, IIdioma idioma)
         {
 
             lock (_lock)
@@ -44,6 +40,7 @@ namespace Servicios
                 {
                     _session = new Session();
                     _session.Usuario = usuario;
+                    _session.Usuario.Idioma = idioma;
                 }
                 else
                 {
@@ -59,12 +56,33 @@ namespace Servicios
                 if (_session != null)
                 {
                     _session = null;
+                    Notificar(Traductor.ObtenerIdiomaDefault());
                 }
                 else
                 {
                     throw new Exception("Sesión no iniciada");
                 }
             }
+        }
+
+        public static void SuscribirObservador(IIdiomaObserver o) // Para suscribirse a un idioma.
+        {
+            _observers.Add(o);
+        }
+        public static void DesuscribirObservador(IIdiomaObserver o) // Para desuscribirse de un idioma.
+        {
+            _observers.Remove(o);
+        }
+        private static void Notificar(IIdioma idioma) // Actualizo el idioma del usuario.
+        {
+            foreach (var o in _observers)
+            {
+                o.UpdateLanguage(idioma);
+            }
+        }
+        public static void CambiarIdioma(IIdioma idioma) // Cambio de idioma.
+        {
+            Notificar(idioma);
         }
 
         private Session()

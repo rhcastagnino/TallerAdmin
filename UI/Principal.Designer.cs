@@ -28,14 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.empleadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuEmpleado = new System.Windows.Forms.ToolStripMenuItem();
             this.registrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.altaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bajaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consultarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.omnibusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuOmnibus = new System.Windows.Forms.ToolStripMenuItem();
             this.registrarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.altaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.bajaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,7 +51,7 @@
             this.bajaToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.consultarToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.reparacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuReparacion = new System.Windows.Forms.ToolStripMenuItem();
             this.registrarToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.altaToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.bajaToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,24 +60,25 @@
             this.asignarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.solicitarRespuestoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.supervisarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.repuestoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuRepuesto = new System.Windows.Forms.ToolStripMenuItem();
             this.registrarToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.altaToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.bajaToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.consultarToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.stockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStock = new System.Windows.Forms.ToolStripMenuItem();
             this.ingresosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consultarToolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.inventarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.solicitudesRespuestosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuSolicitudes = new System.Windows.Forms.ToolStripMenuItem();
             this.solicitudesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.costoPorOmnibusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuReportes = new System.Windows.Forms.ToolStripMenuItem();
+            this.miRepoCostoxO = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.sesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuSession = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemCerrarSession = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
+            this.omnibusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,30 +86,31 @@
             // 
             this.menuStrip1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.empleadoToolStripMenuItem,
-            this.omnibusToolStripMenuItem,
+            this.menuEmpleado,
+            this.menuOmnibus,
             this.causaToolStripMenuItem,
-            this.reparacionToolStripMenuItem,
-            this.repuestoToolStripMenuItem,
-            this.stockToolStripMenuItem,
-            this.solicitudesRespuestosToolStripMenuItem,
-            this.reportesToolStripMenuItem,
+            this.menuReparacion,
+            this.menuRepuesto,
+            this.menuStock,
+            this.menuSolicitudes,
+            this.menuReportes,
             this.toolStripMenuItem1,
-            this.sesionToolStripMenuItem});
+            this.menuSession});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // empleadoToolStripMenuItem
+            // menuEmpleado
             // 
-            this.empleadoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuEmpleado.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.registrarToolStripMenuItem,
             this.consultarToolStripMenuItem});
-            this.empleadoToolStripMenuItem.Name = "empleadoToolStripMenuItem";
-            this.empleadoToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
-            this.empleadoToolStripMenuItem.Text = "Empleado";
+            this.menuEmpleado.Name = "menuEmpleado";
+            this.menuEmpleado.Size = new System.Drawing.Size(72, 20);
+            this.menuEmpleado.Tag = "P_MenuEmpleado";
+            this.menuEmpleado.Text = "Empleado";
             // 
             // registrarToolStripMenuItem
             // 
@@ -143,17 +146,19 @@
             this.consultarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.consultarToolStripMenuItem.Text = "Consultar";
             // 
-            // omnibusToolStripMenuItem
+            // menuOmnibus
             // 
-            this.omnibusToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuOmnibus.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.registrarToolStripMenuItem1,
             this.consultarToolStripMenuItem1,
             this.activosToolStripMenuItem,
             this.statusToolStripMenuItem,
-            this.evaluarToolStripMenuItem});
-            this.omnibusToolStripMenuItem.Name = "omnibusToolStripMenuItem";
-            this.omnibusToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
-            this.omnibusToolStripMenuItem.Text = "Omnibus";
+            this.evaluarToolStripMenuItem,
+            this.omnibusToolStripMenuItem});
+            this.menuOmnibus.Name = "menuOmnibus";
+            this.menuOmnibus.Size = new System.Drawing.Size(68, 20);
+            this.menuOmnibus.Tag = "P_MenuOmnibus";
+            this.menuOmnibus.Text = "Omnibus";
             // 
             // registrarToolStripMenuItem1
             // 
@@ -215,6 +220,7 @@
             this.causaToolStripMenuItem.Name = "causaToolStripMenuItem";
             this.causaToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
             this.causaToolStripMenuItem.Text = "Causa";
+            this.causaToolStripMenuItem.Visible = false;
             // 
             // registrarToolStripMenuItem2
             // 
@@ -250,17 +256,18 @@
             this.consultarToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
             this.consultarToolStripMenuItem2.Text = "Consultar";
             // 
-            // reparacionToolStripMenuItem
+            // menuReparacion
             // 
-            this.reparacionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuReparacion.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.registrarToolStripMenuItem3,
             this.consultarToolStripMenuItem3,
             this.asignarToolStripMenuItem,
             this.solicitarRespuestoToolStripMenuItem,
             this.supervisarToolStripMenuItem});
-            this.reparacionToolStripMenuItem.Name = "reparacionToolStripMenuItem";
-            this.reparacionToolStripMenuItem.Size = new System.Drawing.Size(78, 20);
-            this.reparacionToolStripMenuItem.Text = "Reparacion";
+            this.menuReparacion.Name = "menuReparacion";
+            this.menuReparacion.Size = new System.Drawing.Size(78, 20);
+            this.menuReparacion.Tag = "P_MenuReparacion";
+            this.menuReparacion.Text = "Reparacion";
             // 
             // registrarToolStripMenuItem3
             // 
@@ -314,14 +321,15 @@
             this.supervisarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.supervisarToolStripMenuItem.Text = "Supervisar";
             // 
-            // repuestoToolStripMenuItem
+            // menuRepuesto
             // 
-            this.repuestoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuRepuesto.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.registrarToolStripMenuItem4,
             this.consultarToolStripMenuItem4});
-            this.repuestoToolStripMenuItem.Name = "repuestoToolStripMenuItem";
-            this.repuestoToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
-            this.repuestoToolStripMenuItem.Text = "Repuesto";
+            this.menuRepuesto.Name = "menuRepuesto";
+            this.menuRepuesto.Size = new System.Drawing.Size(68, 20);
+            this.menuRepuesto.Tag = "P_MenuRepuesto";
+            this.menuRepuesto.Text = "Repuesto";
             // 
             // registrarToolStripMenuItem4
             // 
@@ -357,15 +365,16 @@
             this.consultarToolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
             this.consultarToolStripMenuItem4.Text = "Consultar";
             // 
-            // stockToolStripMenuItem
+            // menuStock
             // 
-            this.stockToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStock.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ingresosToolStripMenuItem,
             this.consultarToolStripMenuItem5,
             this.inventarioToolStripMenuItem});
-            this.stockToolStripMenuItem.Name = "stockToolStripMenuItem";
-            this.stockToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.stockToolStripMenuItem.Text = "Stock";
+            this.menuStock.Name = "menuStock";
+            this.menuStock.Size = new System.Drawing.Size(48, 20);
+            this.menuStock.Tag = "P_MenuStock";
+            this.menuStock.Text = "Stock";
             // 
             // ingresosToolStripMenuItem
             // 
@@ -385,13 +394,14 @@
             this.inventarioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.inventarioToolStripMenuItem.Text = "Inventario";
             // 
-            // solicitudesRespuestosToolStripMenuItem
+            // menuSolicitudes
             // 
-            this.solicitudesRespuestosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuSolicitudes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.solicitudesToolStripMenuItem});
-            this.solicitudesRespuestosToolStripMenuItem.Name = "solicitudesRespuestosToolStripMenuItem";
-            this.solicitudesRespuestosToolStripMenuItem.Size = new System.Drawing.Size(138, 20);
-            this.solicitudesRespuestosToolStripMenuItem.Text = "Solicitudes Respuestos";
+            this.menuSolicitudes.Name = "menuSolicitudes";
+            this.menuSolicitudes.Size = new System.Drawing.Size(133, 20);
+            this.menuSolicitudes.Tag = "P_MenuSolicitudes";
+            this.menuSolicitudes.Text = "Solicitudes Repuestos";
             // 
             // solicitudesToolStripMenuItem
             // 
@@ -399,19 +409,21 @@
             this.solicitudesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.solicitudesToolStripMenuItem.Text = "Solicitudes";
             // 
-            // reportesToolStripMenuItem
+            // menuReportes
             // 
-            this.reportesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.costoPorOmnibusToolStripMenuItem});
-            this.reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
-            this.reportesToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
-            this.reportesToolStripMenuItem.Text = "Reportes";
+            this.menuReportes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.miRepoCostoxO});
+            this.menuReportes.Name = "menuReportes";
+            this.menuReportes.Size = new System.Drawing.Size(65, 20);
+            this.menuReportes.Tag = "P_MenuReportes";
+            this.menuReportes.Text = "Reportes";
             // 
-            // costoPorOmnibusToolStripMenuItem
+            // miRepoCostoxO
             // 
-            this.costoPorOmnibusToolStripMenuItem.Name = "costoPorOmnibusToolStripMenuItem";
-            this.costoPorOmnibusToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.costoPorOmnibusToolStripMenuItem.Text = "Costo por Omnibus";
+            this.miRepoCostoxO.Name = "miRepoCostoxO";
+            this.miRepoCostoxO.Size = new System.Drawing.Size(180, 22);
+            this.miRepoCostoxO.Tag = "P_miRepoCostoxO";
+            this.miRepoCostoxO.Text = "Costo por Omnibus";
             // 
             // toolStripMenuItem1
             // 
@@ -419,20 +431,22 @@
             this.toolStripMenuItem1.Size = new System.Drawing.Size(97, 20);
             this.toolStripMenuItem1.Text = "                          ";
             // 
-            // sesionToolStripMenuItem
+            // menuSession
             // 
-            this.sesionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cerrarSesionToolStripMenuItem});
-            this.sesionToolStripMenuItem.Name = "sesionToolStripMenuItem";
-            this.sesionToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
-            this.sesionToolStripMenuItem.Text = "Sesion";
+            this.menuSession.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemCerrarSession});
+            this.menuSession.Name = "menuSession";
+            this.menuSession.Size = new System.Drawing.Size(53, 20);
+            this.menuSession.Tag = "P_MenuSession";
+            this.menuSession.Text = "Sesion";
             // 
-            // cerrarSesionToolStripMenuItem
+            // menuItemCerrarSession
             // 
-            this.cerrarSesionToolStripMenuItem.Name = "cerrarSesionToolStripMenuItem";
-            this.cerrarSesionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.cerrarSesionToolStripMenuItem.Text = "Cerrar Sesion";
-            this.cerrarSesionToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesionToolStripMenuItem_Click);
+            this.menuItemCerrarSession.Name = "menuItemCerrarSession";
+            this.menuItemCerrarSession.Size = new System.Drawing.Size(180, 22);
+            this.menuItemCerrarSession.Tag = "P_menuItemCerrarSession";
+            this.menuItemCerrarSession.Text = "Cerrar Sesion";
+            this.menuItemCerrarSession.Click += new System.EventHandler(this.cerrarSesionToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -445,6 +459,12 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "TallerAdmin";
             // 
+            // omnibusToolStripMenuItem
+            // 
+            this.omnibusToolStripMenuItem.Name = "omnibusToolStripMenuItem";
+            this.omnibusToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.omnibusToolStripMenuItem.Text = "Omnibus";
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -453,6 +473,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Principal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -468,16 +489,16 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem sesionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cerrarSesionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuSession;
+        private System.Windows.Forms.ToolStripMenuItem menuItemCerrarSession;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ToolStripMenuItem empleadoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuEmpleado;
         private System.Windows.Forms.ToolStripMenuItem registrarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem altaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bajaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modificarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem consultarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem omnibusToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuOmnibus;
         private System.Windows.Forms.ToolStripMenuItem registrarToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem altaToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem bajaToolStripMenuItem1;
@@ -492,7 +513,7 @@
         private System.Windows.Forms.ToolStripMenuItem bajaToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem modificarToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem consultarToolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem reparacionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuReparacion;
         private System.Windows.Forms.ToolStripMenuItem registrarToolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem altaToolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem bajaToolStripMenuItem3;
@@ -501,20 +522,21 @@
         private System.Windows.Forms.ToolStripMenuItem asignarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem solicitarRespuestoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem supervisarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem repuestoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuRepuesto;
         private System.Windows.Forms.ToolStripMenuItem registrarToolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem altaToolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem bajaToolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem modificarToolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem consultarToolStripMenuItem4;
-        private System.Windows.Forms.ToolStripMenuItem stockToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuStock;
         private System.Windows.Forms.ToolStripMenuItem ingresosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem consultarToolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem inventarioToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem solicitudesRespuestosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuSolicitudes;
         private System.Windows.Forms.ToolStripMenuItem solicitudesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem reportesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem costoPorOmnibusToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuReportes;
+        private System.Windows.Forms.ToolStripMenuItem miRepoCostoxO;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem omnibusToolStripMenuItem;
     }
 }

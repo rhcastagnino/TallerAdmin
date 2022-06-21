@@ -2,8 +2,8 @@
 
 namespace Interfaces
 {
-    public class IUsuario
+    public interface IUsuario
     {
-        public void Login(string email, string pass) { }
+        public void Login(string email, string pass, IIdioma idioma) { }
     }
 }

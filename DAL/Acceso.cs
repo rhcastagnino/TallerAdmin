@@ -27,10 +27,10 @@ namespace DAL
             //cmd.Connection = con.conectar();
             //cmd.CommandText = sp;
             cmd.CommandType=CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@nombre",usuario.nombre);
-            cmd.Parameters.AddWithValue("@apellido",usuario.apellido);
-            cmd.Parameters.AddWithValue("@email", usuario.email);
-            cmd.Parameters.AddWithValue("@pass",usuario.password);
+            cmd.Parameters.AddWithValue("@nombre",usuario.Nombre);
+            cmd.Parameters.AddWithValue("@apellido",usuario.Apellido);
+            cmd.Parameters.AddWithValue("@email", usuario.Email);
+            cmd.Parameters.AddWithValue("@pass",usuario.Password);
             cmd.ExecuteNonQuery();
             cmd.Parameters.Clear();
             con.Desconectar();
@@ -46,34 +46,41 @@ namespace DAL
             BE.Usuario usr = new BE.Usuario();
             foreach (DataRow fila in tabla.Rows)
             {
-                usr.email = fila[5].ToString();
-                usr.password = fila[3].ToString();
-                usr.nombre = fila[1].ToString();
-                usr.apellido = fila[2].ToString();
-                usr.contador = int.Parse(fila[4].ToString());
+                usr.Email = fila[5].ToString();
+                usr.Password = fila[3].ToString();
+                usr.Nombre = fila[1].ToString();
+                usr.Apellido = fila[2].ToString();
+                usr.Contador = int.Parse(fila[4].ToString());
             }
             cmd.Parameters.Clear();
             return usr;
         }
 
-        public void IncrementarContador(BE.Usuario usuario, string sp)
+        public void Contador(BE.Usuario usuario, string sp)
         {
             SqlCommand cmd = new SqlCommand(sp, con.Conectar());
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@email", usuario.email);
+            cmd.Parameters.AddWithValue("@email", usuario.Email);
             cmd.ExecuteNonQuery();
             cmd.Parameters.Clear();
             con.Desconectar();
         }
 
-        public void RestablecerContador(BE.Usuario usuario, string sp)
+        public DataTable Leer(string consulta)
         {
-            SqlCommand cmd = new SqlCommand(sp, con.Conectar());
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@email", usuario.email);
+            SqlCommand cmd = new SqlCommand(consulta, con.Conectar());
+            SqlDataReader lector = cmd.ExecuteReader();
+            tabla.Load(lector);
+            con.Desconectar();
+            return tabla;
+        }
+
+        public void Ejecutar(string query)
+        {
+            SqlCommand cmd = new SqlCommand(query, con.Conectar());
             cmd.ExecuteNonQuery();
-            cmd.Parameters.Clear();
             con.Desconectar();
         }
+
     }
 }

@@ -27,9 +27,9 @@ namespace DAL
                 //acceso.ejecutar(query);
                 acceso.AltaUsuario(usuario, sp);
             }
-            catch (Exception ex) 
+            catch 
             {
-                throw new Exception($"Error en la base al dar de alta el usuario {usuario.apellido} {usuario.nombre}");
+                throw new Exception($"Error en la base al dar de alta el usuario {usuario.Apellido} {usuario.Nombre}");
             }
         }
 
@@ -41,7 +41,7 @@ namespace DAL
                 usuario = acceso.GetUsuario(email, sp);
                 return usuario;
             }
-            catch (Exception ex)
+            catch 
             {
                 throw new Exception($"Error en la base al consultar el usuario {email}");
             }
@@ -52,11 +52,11 @@ namespace DAL
             try
             {
                 string sp = "incrementarContador"; 
-                acceso.IncrementarContador(usuario, sp);
+                acceso.Contador(usuario, sp);
             }
-            catch (Exception ex)
+            catch 
             {
-                throw new Exception($"Error en la base al incrementar intentos de inicio del usuario {usuario.apellido} {usuario.nombre}");
+                throw new Exception($"Error en la base al incrementar intentos de inicio del usuario {usuario.Apellido} {usuario.Nombre}");
             }
         }
 
@@ -65,11 +65,11 @@ namespace DAL
             try
             {
                 string sp = "restablecerContador";
-                acceso.RestablecerContador(usuario, sp);
+                acceso.Contador(usuario, sp);
             }
-            catch (Exception ex)
+            catch
             {
-                throw new Exception($"Error en la base al restablecer intentos de inicio del usuario {usuario.apellido} {usuario.nombre}");
+                throw new Exception($"Error en la base al restablecer intentos de inicio del usuario {usuario.Apellido} {usuario.Nombre}");
             }
         }
     }
