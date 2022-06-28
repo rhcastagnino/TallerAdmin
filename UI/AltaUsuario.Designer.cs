@@ -142,7 +142,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AltaUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AltaUsuario";
+            this.Text = "TallerAdmin";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AltaUsuario_FormClosed);
             this.Load += new System.EventHandler(this.AltaUsuario_Load);
             this.gb.ResumeLayout(false);

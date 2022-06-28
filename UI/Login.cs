@@ -90,30 +90,53 @@ namespace UI
         {
             var traducciones = Traductor.ObtenerTraducciones(idioma);
 
-            if (menuIdioma.Tag != null && traducciones.ContainsKey(menuIdioma.Tag.ToString()))
-                menuIdioma.Text = traducciones[menuIdioma.Tag.ToString()].Valor;
+            //if (menuIdioma.Tag != null && traducciones.ContainsKey(menuIdioma.Tag.ToString()))
+            //    menuIdioma.Text = traducciones[menuIdioma.Tag.ToString()].Valor;
 
-            if (label3.Tag != null && traducciones.ContainsKey(label3.Tag.ToString()))
-                label3.Text = traducciones[label3.Tag.ToString()].Valor;
+            //if (label3.Tag != null && traducciones.ContainsKey(label3.Tag.ToString()))
+            //    label3.Text = traducciones[label3.Tag.ToString()].Valor;
 
-            if (gbIngreso.Tag != null && traducciones.ContainsKey(gbIngreso.Tag.ToString()))
-                gbIngreso.Text = traducciones[gbIngreso.Tag.ToString()].Valor;
+            //if (gbIngreso.Tag != null && traducciones.ContainsKey(gbIngreso.Tag.ToString()))
+            //    gbIngreso.Text = traducciones[gbIngreso.Tag.ToString()].Valor;
 
-            if (lblEmail.Tag != null && traducciones.ContainsKey(lblEmail.Tag.ToString()))
-                lblEmail.Text = traducciones[lblEmail.Tag.ToString()].Valor;
+            //if (lblEmail.Tag != null && traducciones.ContainsKey(lblEmail.Tag.ToString()))
+            //    lblEmail.Text = traducciones[lblEmail.Tag.ToString()].Valor;
 
-            if (lblPassword.Tag != null && traducciones.ContainsKey(lblPassword.Tag.ToString()))
-                lblPassword.Text = traducciones[lblPassword.Tag.ToString()].Valor;
+            //if (lblPassword.Tag != null && traducciones.ContainsKey(lblPassword.Tag.ToString()))
+            //    lblPassword.Text = traducciones[lblPassword.Tag.ToString()].Valor;
 
-            if (btnlogin.Tag != null && traducciones.ContainsKey(btnlogin.Tag.ToString()))
-                btnlogin.Text = traducciones[btnlogin.Tag.ToString()].Valor;
-            
-            if (btnAltaUsuario.Tag != null && traducciones.ContainsKey(btnAltaUsuario.Tag.ToString()))
-                btnAltaUsuario.Text = traducciones[btnAltaUsuario.Tag.ToString()].Valor;
+            //if (btnlogin.Tag != null && traducciones.ContainsKey(btnlogin.Tag.ToString()))
+            //    btnlogin.Text = traducciones[btnlogin.Tag.ToString()].Valor;
 
+            //if (btnAltaUsuario.Tag != null && traducciones.ContainsKey(btnAltaUsuario.Tag.ToString()))
+            //    btnAltaUsuario.Text = traducciones[btnAltaUsuario.Tag.ToString()].Valor;
+
+            foreach (Control mnuitOpcion in this.Controls)
+            {
+                if (mnuitOpcion.Tag != null && traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
+                    mnuitOpcion.Text = traducciones[mnuitOpcion.Tag.ToString()].Valor;
+                else if (mnuitOpcion.Tag != null && !traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
+                    mnuitOpcion.Text = $"{mnuitOpcion.Tag}NO_TRADUCCION";
+            }
+
+            foreach (ToolStripMenuItem mnuitOpcion in this.menuStrip1.Items)
+            {
+                if (mnuitOpcion.Tag != null && traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
+                    mnuitOpcion.Text = traducciones[mnuitOpcion.Tag.ToString()].Valor;
+                else if (mnuitOpcion.Tag != null && !traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
+                    mnuitOpcion.Text = $"{mnuitOpcion.Tag}NO_TRADUCCION";
+            }
+
+            foreach (Control mnuitOpcion in this.gbIngreso.Controls)
+            {
+                if (mnuitOpcion.Tag != null && traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
+                    mnuitOpcion.Text = traducciones[mnuitOpcion.Tag.ToString()].Valor;
+                else if (mnuitOpcion.Tag != null && !traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
+                    mnuitOpcion.Text = $"{mnuitOpcion.Tag}NO_TRADUCCION";
+            }
         }
 
-        private void Limpiar()
+            private void Limpiar()
         {
             txtPass.Clear();
             txtEmail.Clear();

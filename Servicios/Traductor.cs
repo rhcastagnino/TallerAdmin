@@ -75,8 +75,73 @@ namespace Servicios
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error contra la base de datos de Traducciones");
             }
+        }
+
+        public static IList<IEtiqueta> ObtenerEtiquetas()
+        {
+            IList<IEtiqueta> _etiqueta = new List<IEtiqueta>();
+
+            Acceso Acceso = new Acceso();
+            DataTable dt = new DataTable();
+            string Consulta = "select * from Etiqueta";
+            dt = Acceso.Leer(Consulta);
+
+            foreach (DataRow fila in dt.Rows)
+            {
+                _etiqueta.Add(
+                new Etiqueta()
+                {
+                    Id = int.Parse(fila[0].ToString()),
+                    Clave = fila[1].ToString()
+                });
+            }
+            return _etiqueta;
+        }
+
+        //public static IList<ITraduccion> ObtenerReferencias(IIdioma idioma)
+        //{
+        //    IList<ITraduccion> _traduccion = new List<ITraduccion>();
+        //    Acceso Acceso = new Acceso();
+        //    DataTable dt = new DataTable();
+        //    string Consulta = "select e.id, e.clave, t.valor from Etiqueta e join Traducciones t on e.id = t.fk_etiqueta where t.fk_idioma = "+ idioma.Id;
+        //    dt = Acceso.Leer(Consulta);
+
+        //    foreach (DataRow fila in dt.Rows)
+        //    {
+        //        _traduccion.Add(
+        //        new Traduccion()
+        //        {
+        //            Valor = fila[2].ToString(),
+        //            Etiqueta = new Etiqueta()
+        //            {
+        //            Id = int.Parse(fila[0].ToString()),
+        //            Clave = fila[1].ToString()
+        //            }
+        //        });
+        //    }
+        //    return _traduccion;
+        //}
+
+        public static List<TraduccionDTO> ObtenerReferenciasDTO(IIdioma idioma)
+        {
+            List<TraduccionDTO> _traduccion = new List<TraduccionDTO>();
+            Acceso Acceso = new Acceso();
+            DataTable dt = new DataTable();
+            string Consulta = "select e.clave, t.valor from Etiqueta e join Traducciones t on e.id = t.fk_etiqueta where t.fk_idioma = " + idioma.Id;
+            dt = Acceso.Leer(Consulta);
+
+            foreach (DataRow fila in dt.Rows)
+            {
+                _traduccion.Add(
+                new TraduccionDTO()
+                {
+                    Valor = fila[1].ToString(),
+                    Clave = fila[0].ToString()
+                });
+            }
+            return _traduccion;
         }
     }
 }

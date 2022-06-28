@@ -17,15 +17,12 @@ namespace DAL
         {
             con = new Conexion();
             tabla = new DataTable();
-
         }
 
 
         public void AltaUsuario(BE.Usuario usuario, string sp)
         {
             SqlCommand cmd = new SqlCommand(sp,con.Conectar());
-            //cmd.Connection = con.conectar();
-            //cmd.CommandText = sp;
             cmd.CommandType=CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@nombre",usuario.Nombre);
             cmd.Parameters.AddWithValue("@apellido",usuario.Apellido);
@@ -79,6 +76,28 @@ namespace DAL
         {
             SqlCommand cmd = new SqlCommand(query, con.Conectar());
             cmd.ExecuteNonQuery();
+            con.Desconectar();
+        }
+
+        public void AltaIdioma(BE.Idioma idioma, string sp)
+        {
+            SqlCommand cmd = new SqlCommand(sp, con.Conectar());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@nombre", idioma.Nombre);
+            cmd.ExecuteNonQuery();
+            cmd.Parameters.Clear();
+            con.Desconectar();
+        }
+
+        public void AltaTraduccion(BE.Idioma idioma,BE.Traduccion traduccion, string sp)
+        {
+            SqlCommand cmd = new SqlCommand(sp, con.Conectar());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idIdioma", idioma.Id);
+            cmd.Parameters.AddWithValue("@claveEtiqueta", traduccion.Etiqueta.Clave);
+            cmd.Parameters.AddWithValue("@valor", traduccion.Valor);
+            cmd.ExecuteNonQuery();
+            cmd.Parameters.Clear();
             con.Desconectar();
         }
 

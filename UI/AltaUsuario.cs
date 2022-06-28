@@ -71,23 +71,45 @@ namespace UI
         {
             var traducciones = Traductor.ObtenerTraducciones(idioma);
 
-            if (lblTitulo.Tag != null && traducciones.ContainsKey(lblTitulo.Tag.ToString()))
-                lblTitulo.Text = traducciones[lblTitulo.Tag.ToString()].Valor;
+            //if (lblTitulo.Tag != null && traducciones.ContainsKey(lblTitulo.Tag.ToString()))
+            //    lblTitulo.Text = traducciones[lblTitulo.Tag.ToString()].Valor;
 
-            if (gb.Tag != null && traducciones.ContainsKey(gb.Tag.ToString()))
-                gb.Text = traducciones[gb.Tag.ToString()].Valor;
+            //if (gb.Tag != null && traducciones.ContainsKey(gb.Tag.ToString()))
+            //    gb.Text = traducciones[gb.Tag.ToString()].Valor;
 
-            if (lblNombre.Tag != null && traducciones.ContainsKey(lblNombre.Tag.ToString()))
-                lblNombre.Text = traducciones[lblNombre.Tag.ToString()].Valor;
+            //if (lblNombre.Tag != null && traducciones.ContainsKey(lblNombre.Tag.ToString()))
+            //    lblNombre.Text = traducciones[lblNombre.Tag.ToString()].Valor;
 
-            if (lblApellido.Tag != null && traducciones.ContainsKey(lblApellido.Tag.ToString()))
-                lblApellido.Text = traducciones[lblApellido.Tag.ToString()].Valor;
+            //if (lblApellido.Tag != null && traducciones.ContainsKey(lblApellido.Tag.ToString()))
+            //    lblApellido.Text = traducciones[lblApellido.Tag.ToString()].Valor;
 
-            if (lblEmail.Tag != null && traducciones.ContainsKey(lblEmail.Tag.ToString()))
-                lblEmail.Text = traducciones[lblEmail.Tag.ToString()].Valor;
+            //if (lblEmail.Tag != null && traducciones.ContainsKey(lblEmail.Tag.ToString()))
+            //    lblEmail.Text = traducciones[lblEmail.Tag.ToString()].Valor;
 
-            if (btnAltaUsuario.Tag != null && traducciones.ContainsKey(btnAltaUsuario.Tag.ToString()))
-                btnAltaUsuario.Text = traducciones[btnAltaUsuario.Tag.ToString()].Valor;
+            //if (btnAltaUsuario.Tag != null && traducciones.ContainsKey(btnAltaUsuario.Tag.ToString()))
+            //    btnAltaUsuario.Text = traducciones[btnAltaUsuario.Tag.ToString()].Valor;
+
+            foreach (Control mnuitOpcion in this.gb.Controls)
+
+            {
+
+                if (mnuitOpcion.Tag != null && traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
+                    mnuitOpcion.Text = traducciones[mnuitOpcion.Tag.ToString()].Valor;
+                else if (mnuitOpcion.Tag != null && !traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
+                    mnuitOpcion.Text = $"{mnuitOpcion.Tag}NO_TRADUCCION";
+
+            }
+
+            foreach (Control mnuitOpcion in this.Controls)
+
+            {
+
+                if (mnuitOpcion.Tag != null && traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
+                    mnuitOpcion.Text = traducciones[mnuitOpcion.Tag.ToString()].Valor;
+                else if (mnuitOpcion.Tag != null && !traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
+                    mnuitOpcion.Text = $"{mnuitOpcion.Tag}NO_TRADUCCION";
+
+            }
 
         }
     }

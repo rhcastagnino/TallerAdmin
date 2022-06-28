@@ -83,6 +83,10 @@ namespace Servicios
         public static void CambiarIdioma(IIdioma idioma) // Cambio de idioma.
         {
             Notificar(idioma);
+            if ( _session != null)
+            {
+                _session.Usuario.Idioma = idioma;   
+            }
         }
 
         private Session()
