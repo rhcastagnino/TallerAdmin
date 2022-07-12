@@ -183,6 +183,7 @@
             this.Load += new System.EventHandler(this.NuevaTraduccion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgwReferencias)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgwIdioma)).EndInit();
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.NuevaTraduccion_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

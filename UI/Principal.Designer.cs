@@ -77,6 +77,9 @@
             this.imIdiomaNuevo = new System.Windows.Forms.ToolStripMenuItem();
             this.P_miNuevoIdioma = new System.Windows.Forms.ToolStripMenuItem();
             this.miTraduccion = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuPermisos = new System.Windows.Forms.ToolStripMenuItem();
+            this.miGestionPatentesFamilias = new System.Windows.Forms.ToolStripMenuItem();
+            this.miGestionPermisosUsuario = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSession = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemCerrarSession = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
@@ -96,6 +99,7 @@
             this.menuSolicitudes,
             this.menuReportes,
             this.menuIdioma,
+            this.menuPermisos,
             this.menuSession});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -481,6 +485,32 @@
             this.miTraduccion.Text = "Traducciones";
             this.miTraduccion.Click += new System.EventHandler(this.miTraduccion_Click);
             // 
+            // menuPermisos
+            // 
+            this.menuPermisos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.miGestionPatentesFamilias,
+            this.miGestionPermisosUsuario});
+            this.menuPermisos.Name = "menuPermisos";
+            this.menuPermisos.Size = new System.Drawing.Size(67, 20);
+            this.menuPermisos.Tag = "P_menuPermisos";
+            this.menuPermisos.Text = "Permisos";
+            // 
+            // miGestionPatentesFamilias
+            // 
+            this.miGestionPatentesFamilias.Name = "miGestionPatentesFamilias";
+            this.miGestionPatentesFamilias.Size = new System.Drawing.Size(210, 22);
+            this.miGestionPatentesFamilias.Tag = "P_miGestionPatentesFamilias";
+            this.miGestionPatentesFamilias.Text = "Gestion Patentes-Familias";
+            this.miGestionPatentesFamilias.Click += new System.EventHandler(this.miGestionPatentesFamilias_Click);
+            // 
+            // miGestionPermisosUsuario
+            // 
+            this.miGestionPermisosUsuario.Name = "miGestionPermisosUsuario";
+            this.miGestionPermisosUsuario.Size = new System.Drawing.Size(210, 22);
+            this.miGestionPermisosUsuario.Tag = "P_miGestionPermisosUsuario";
+            this.miGestionPermisosUsuario.Text = "Gestion Permisos-Usuario";
+            this.miGestionPermisosUsuario.Click += new System.EventHandler(this.miGestionPermisosUsuario_Click);
+            // 
             // menuSession
             // 
             this.menuSession.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -524,6 +554,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TallerAdmin";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Principal_FormClosed);
+            this.Load += new System.EventHandler(this.Principal_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -584,5 +615,8 @@
         private System.Windows.Forms.ToolStripMenuItem imIdiomaNuevo;
         private System.Windows.Forms.ToolStripMenuItem P_miNuevoIdioma;
         private System.Windows.Forms.ToolStripMenuItem miTraduccion;
+        private System.Windows.Forms.ToolStripMenuItem menuPermisos;
+        private System.Windows.Forms.ToolStripMenuItem miGestionPatentesFamilias;
+        private System.Windows.Forms.ToolStripMenuItem miGestionPermisosUsuario;
     }
 }

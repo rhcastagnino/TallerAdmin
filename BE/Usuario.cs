@@ -17,6 +17,15 @@ namespace BE
         public string Email { get; set; }
         public IIdioma Idioma { get; set; }
 
+        List<Componente> _permisos;
+
+        public List<Componente> Permisos
+        {
+            get
+            {
+                return _permisos;
+            }
+        }
 
     }
 }

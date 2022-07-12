@@ -21,7 +21,7 @@ namespace UI
             InitializeComponent();
             UpdateLanguage(Session.GetInstance.Usuario.Idioma);
             Session.SuscribirObservador(this);
-            MostrarIdiomasDisponibles();
+            //MostrarIdiomasDisponibles();
         }
 
         private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -56,7 +56,7 @@ namespace UI
                 if (mnuitOpcion.Tag != null && traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
                     mnuitOpcion.Text = traducciones[mnuitOpcion.Tag.ToString()].Valor;
                 else if (mnuitOpcion.Tag != null && !traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
-                    mnuitOpcion.Text = $"{mnuitOpcion.Tag}NO_TRADUCCION";
+                    mnuitOpcion.Text = $"{mnuitOpcion.Tag}_NT";
 
                 if (mnuitOpcion.DropDownItems.Count > 0)
                 {
@@ -65,7 +65,8 @@ namespace UI
                         if (miitem.Tag != null && traducciones.ContainsKey(miitem.Tag.ToString()))
                             miitem.Text = traducciones[miitem.Tag.ToString()].Valor;
                         else if (miitem.Tag != null && !traducciones.ContainsKey(miitem.Tag.ToString()))
-                            miitem.Text = $"{miitem.Tag}NO_TRADUCCION";
+                            if (miitem.Tag.ToString() != "BE.Idioma")
+                                miitem.Text = $"{miitem.Tag}_NT";
 
                         if (miitem.DropDownItems.Count > 0)
                         {
@@ -74,7 +75,7 @@ namespace UI
                                 if (otroitem.Tag != null && traducciones.ContainsKey(otroitem.Tag.ToString()))
                                     otroitem.Text = traducciones[otroitem.Tag.ToString()].Valor;
                                 else if (otroitem.Tag != null && !traducciones.ContainsKey(otroitem.Tag.ToString()))
-                                    otroitem.Text = $"{otroitem.Tag}NO_TRADUCCION";
+                                    otroitem.Text = $"{otroitem.Tag}_NT";
                         }
                     } 
                 }
@@ -108,12 +109,34 @@ namespace UI
         {
             NuevoIdioma formNuevoIdioma = new NuevoIdioma();
             formNuevoIdioma.Show();
+            this.Hide();
         }
 
         private void miTraduccion_Click(object sender, EventArgs e)
         {
             NuevaTraduccion formNuevaTraduccion = new NuevaTraduccion();
             formNuevaTraduccion.Show();
+            this.Hide();
+        }
+
+        private void Principal_Load(object sender, EventArgs e)
+        {
+            UpdateLanguage(Session.GetInstance.Usuario.Idioma);
+            MostrarIdiomasDisponibles();
+        }
+
+        private void miGestionPermisosUsuario_Click(object sender, EventArgs e)
+        {
+            PermisosUsuario formPermisosUsuario = new PermisosUsuario();   
+            formPermisosUsuario.Show();
+            this.Hide();
+        }
+
+        private void miGestionPatentesFamilias_Click(object sender, EventArgs e)
+        {
+            FamiliaPatente formFamiliaPatente = new FamiliaPatente();
+            formFamiliaPatente.Show();
+            this.Hide();
         }
     }
 }

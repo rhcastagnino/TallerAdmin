@@ -100,6 +100,78 @@ namespace DAL
             cmd.Parameters.Clear();
             con.Desconectar();
         }
+        public void GuardarPatente(BE.Componente p, bool esfamilia)
+        {
+            SqlCommand cmd = new SqlCommand("guardarPatente", con.Conectar());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@nombre", p.Nombre);
+            if (esfamilia)
+                cmd.Parameters.AddWithValue("@permiso", DBNull.Value);
+
+            else
+                cmd.Parameters.AddWithValue("@permiso", p.Permiso.ToString());
+            cmd.ExecuteNonQuery();
+            cmd.Parameters.Clear();
+            con.Desconectar();
+        }
+
+
+            public List<BE.Patente> TraerPatentes()
+        {
+            SqlCommand cmd = new SqlCommand("TraerPatentes", con.Conectar());
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(tabla);
+            var lista = new List<BE.Patente>();
+            BE.Patente c = new BE.Patente();
+            foreach (DataRow fila in tabla.Rows)
+            {
+                c.Nombre = fila[1].ToString();
+                c.Permiso = (BE.TipoPermiso)Enum.Parse(typeof(BE.TipoPermiso), fila[2].ToString());
+                c.Id = int.Parse(fila[0].ToString());
+                lista.Add(c);
+            }
+            return lista;
+        }
+
+        public List<BE.Familia> TraerFamilias()
+        {
+            SqlCommand cmd = new SqlCommand("TraerFamilias", con.Conectar());
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(tabla);
+            var lista = new List<BE.Familia>();
+            BE.Familia c = new BE.Familia();
+            foreach (DataRow fila in tabla.Rows)
+            {
+                c.Nombre = fila[1].ToString();
+                c.Id = int.Parse(fila[0].ToString());
+                lista.Add(c);
+            }
+            return lista;
+        }
+
+        public DataTable TraerTodo(int idFamilia)
+        {
+            SqlCommand cmd = new SqlCommand("TraerTodo", con.Conectar());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idPermisoP", idFamilia);
+            SqlDataReader lector = cmd.ExecuteReader();
+            tabla.Load(lector);
+            con.Desconectar();
+            return tabla;
+        }
+
+        public DataTable LlenarComponenteUsuario(int usr)
+        {
+            SqlCommand cmd = new SqlCommand("LlenarComponenteUsuario", con.Conectar());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idUsuario", usr);
+            SqlDataReader lector = cmd.ExecuteReader();
+            tabla.Load(lector);
+            con.Desconectar();
+            return tabla;
+        }
 
     }
 }

@@ -116,7 +116,7 @@ namespace UI
                 if (mnuitOpcion.Tag != null && traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
                     mnuitOpcion.Text = traducciones[mnuitOpcion.Tag.ToString()].Valor;
                 else if (mnuitOpcion.Tag != null && !traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
-                    mnuitOpcion.Text = $"{mnuitOpcion.Tag}NO_TRADUCCION";
+                    mnuitOpcion.Text = $"{mnuitOpcion.Tag}_NT";
             }
 
             foreach (ToolStripMenuItem mnuitOpcion in this.menuStrip1.Items)
@@ -124,7 +124,7 @@ namespace UI
                 if (mnuitOpcion.Tag != null && traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
                     mnuitOpcion.Text = traducciones[mnuitOpcion.Tag.ToString()].Valor;
                 else if (mnuitOpcion.Tag != null && !traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
-                    mnuitOpcion.Text = $"{mnuitOpcion.Tag}NO_TRADUCCION";
+                    mnuitOpcion.Text = $"{mnuitOpcion.Tag}_NT";
             }
 
             foreach (Control mnuitOpcion in this.gbIngreso.Controls)
@@ -132,7 +132,7 @@ namespace UI
                 if (mnuitOpcion.Tag != null && traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
                     mnuitOpcion.Text = traducciones[mnuitOpcion.Tag.ToString()].Valor;
                 else if (mnuitOpcion.Tag != null && !traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
-                    mnuitOpcion.Text = $"{mnuitOpcion.Tag}NO_TRADUCCION";
+                    mnuitOpcion.Text = $"{mnuitOpcion.Tag}_NT";
             }
         }
 

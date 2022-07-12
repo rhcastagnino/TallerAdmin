@@ -37,7 +37,7 @@ namespace UI
                 if (mnuitOpcion.Tag != null && traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
                     mnuitOpcion.Text = traducciones[mnuitOpcion.Tag.ToString()].Valor;
                 else if (mnuitOpcion.Tag != null && !traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
-                    mnuitOpcion.Text = $"{mnuitOpcion.Tag}NO_TRADUCCION";
+                    mnuitOpcion.Text = $"{mnuitOpcion.Tag}_NT";
                
             }   
         }
@@ -98,6 +98,12 @@ namespace UI
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void NuevoIdioma_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Principal formPrincipal = new Principal();
+            formPrincipal.Show();
         }
 
     }

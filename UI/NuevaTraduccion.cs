@@ -63,7 +63,7 @@ namespace UI
                     }
                     else if (mnuitOpcion.Tag != null && !traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
                     {
-                            mnuitOpcion.Text = "NO_TRADUCCION";
+                            mnuitOpcion.Text = $"{mnuitOpcion.Tag}_NT";
                     }
                 }
             }
@@ -165,6 +165,13 @@ namespace UI
         private void cbEtiquetas_SelectedIndexChanged(object sender, EventArgs e)
         {
             cbEtiquetas.SelectedItem.ToString();
+        }
+
+        private void NuevaTraduccion_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Principal formPrincipal = new Principal();
+            formPrincipal.Show();
+
         }
 
 

@@ -9,12 +9,10 @@ namespace DAL
     public class IdiomaDAL
     {
         private Acceso acceso;
-        private BE.Usuario usuario;
 
         public IdiomaDAL()
         {
             acceso = new Acceso();
-            usuario = new BE.Usuario();
         }
 
         public void AltaIdioma(BE.Idioma idioma)

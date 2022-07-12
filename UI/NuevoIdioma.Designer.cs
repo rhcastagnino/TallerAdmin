@@ -120,6 +120,7 @@
             this.Text = "TallerAdmin";
             this.Load += new System.EventHandler(this.NuevoIdioma_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataIdiomas)).EndInit();
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.NuevoIdioma_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
