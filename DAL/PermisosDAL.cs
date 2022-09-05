@@ -59,13 +59,51 @@ namespace DAL
         public IList<Patente> TraerPatentes()
         {
             var lista = new List<Patente>();
-            lista = acceso.TraerPatentes();
+            DataTable tabla = new DataTable();
+            tabla = acceso.TraerPatentes();
+            foreach (DataRow fila in tabla.Rows)
+            {
+                BE.Patente p = new BE.Patente();
+                p.Id = int.Parse(fila[0].ToString());
+                p.Nombre = fila[1].ToString();
+                p.Permiso = (BE.TipoPermiso)Enum.Parse(typeof(BE.TipoPermiso), fila[2].ToString());
+
+                lista.Add(p);
+            }
             return lista;
         }
+
+        public bool existeComponente(Componente componente, int id)
+        {
+            bool existeComp = false;
+            if (componente.Id.Equals(id))
+            {
+                existeComp = true;
+            }
+            else
+            {
+                foreach (var item in componente.Hijos)
+                {
+                    existeComp = existeComponente(item, id);
+                    if (existeComp) return true;
+                }
+            }
+            return existeComp;
+        }
+
         public IList<Familia> TraerFamilias()
         {
             var lista = new List<Familia>();
-            lista = acceso.TraerFamilias();
+            DataTable tabla = new DataTable();
+            tabla = acceso.TraerFamilias();
+            foreach (DataRow fila in tabla.Rows)
+            {
+                BE.Familia f = new BE.Familia();
+                f.Nombre = fila[1].ToString();
+                f.Id = int.Parse(fila[0].ToString());
+                lista.Add(f);
+            }
+
             return lista;
         }
         public IList<Componente> TraerTodo(int idFamilia)
@@ -83,7 +121,7 @@ namespace DAL
                         idpadre = int.Parse(rows["idPermisoPadre"].ToString());
                     }
 
-                    var id = int.Parse(rows["idPermiso"].ToString());
+                    var id = int.Parse(rows["id"].ToString());
                     var nombre = (rows["Nombre"].ToString());
                     var permiso = string.Empty;
                     if (rows["Permiso"] != DBNull.Value) permiso = rows["Permiso"].ToString();

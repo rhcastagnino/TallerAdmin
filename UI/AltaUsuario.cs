@@ -70,6 +70,7 @@ namespace UI
         private void Traducir(IIdioma idioma)
         {
             var traducciones = Traductor.ObtenerTraducciones(idioma);
+            var tradDefault = Traductor.ObtenerTraducciones(Traductor.ObtenerIdiomaDefault());
 
             //if (lblTitulo.Tag != null && traducciones.ContainsKey(lblTitulo.Tag.ToString()))
             //    lblTitulo.Text = traducciones[lblTitulo.Tag.ToString()].Valor;
@@ -96,7 +97,8 @@ namespace UI
                 if (mnuitOpcion.Tag != null && traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
                     mnuitOpcion.Text = traducciones[mnuitOpcion.Tag.ToString()].Valor;
                 else if (mnuitOpcion.Tag != null && !traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
-                    mnuitOpcion.Text = $"{mnuitOpcion.Tag}_NT";
+                    //mnuitOpcion.Text = $"{mnuitOpcion.Tag}_NT";
+                    mnuitOpcion.Text = tradDefault[mnuitOpcion.Tag.ToString()].Valor;
 
             }
 
@@ -107,7 +109,8 @@ namespace UI
                 if (mnuitOpcion.Tag != null && traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
                     mnuitOpcion.Text = traducciones[mnuitOpcion.Tag.ToString()].Valor;
                 else if (mnuitOpcion.Tag != null && !traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
-                    mnuitOpcion.Text = $"{mnuitOpcion.Tag}_NT";
+                    //mnuitOpcion.Text = $"{mnuitOpcion.Tag}_NT";
+                    mnuitOpcion.Text = tradDefault[mnuitOpcion.Tag.ToString()].Valor;
 
             }
 

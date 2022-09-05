@@ -50,13 +50,15 @@ namespace UI
         private void Traducir(IIdioma idioma)
         {
             var traducciones = Traductor.ObtenerTraducciones(idioma);
+            var tradDefault = Traductor.ObtenerTraducciones(Traductor.ObtenerIdiomaDefault());
 
             foreach (ToolStripMenuItem mnuitOpcion in this.menuStrip1.Items)
             {
                 if (mnuitOpcion.Tag != null && traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
                     mnuitOpcion.Text = traducciones[mnuitOpcion.Tag.ToString()].Valor;
                 else if (mnuitOpcion.Tag != null && !traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
-                    mnuitOpcion.Text = $"{mnuitOpcion.Tag}_NT";
+                    mnuitOpcion.Text = tradDefault[mnuitOpcion.Tag.ToString()].Valor;
+                    // mnuitOpcion.Text = $"{mnuitOpcion.Tag}_NT";
 
                 if (mnuitOpcion.DropDownItems.Count > 0)
                 {
@@ -66,7 +68,8 @@ namespace UI
                             miitem.Text = traducciones[miitem.Tag.ToString()].Valor;
                         else if (miitem.Tag != null && !traducciones.ContainsKey(miitem.Tag.ToString()))
                             if (miitem.Tag.ToString() != "BE.Idioma")
-                                miitem.Text = $"{miitem.Tag}_NT";
+                                miitem.Text = tradDefault[miitem.Tag.ToString()].Valor;
+                                //miitem.Text = $"{miitem.Tag}_NT";
 
                         if (miitem.DropDownItems.Count > 0)
                         {
@@ -75,7 +78,8 @@ namespace UI
                                 if (otroitem.Tag != null && traducciones.ContainsKey(otroitem.Tag.ToString()))
                                     otroitem.Text = traducciones[otroitem.Tag.ToString()].Valor;
                                 else if (otroitem.Tag != null && !traducciones.ContainsKey(otroitem.Tag.ToString()))
-                                    otroitem.Text = $"{otroitem.Tag}_NT";
+                                    otroitem.Text = tradDefault[otroitem.Tag.ToString()].Valor;
+                                    //otroitem.Text = $"{otroitem.Tag}_NT";
                         }
                     } 
                 }

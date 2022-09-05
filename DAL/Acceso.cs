@@ -50,6 +50,7 @@ namespace DAL
                 usr.Contador = int.Parse(fila[4].ToString());
             }
             cmd.Parameters.Clear();
+            con.Desconectar();
             return usr;
         }
 
@@ -63,8 +64,10 @@ namespace DAL
             con.Desconectar();
         }
 
+
         public DataTable Leer(string consulta)
         {
+            tabla.Clear();
             SqlCommand cmd = new SqlCommand(consulta, con.Conectar());
             SqlDataReader lector = cmd.ExecuteReader();
             tabla.Load(lector);
@@ -116,39 +119,26 @@ namespace DAL
         }
 
 
-            public List<BE.Patente> TraerPatentes()
+        public DataTable TraerPatentes()
         {
+            tabla.Clear();
             SqlCommand cmd = new SqlCommand("TraerPatentes", con.Conectar());
             cmd.CommandType = CommandType.StoredProcedure;
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(tabla);
-            var lista = new List<BE.Patente>();
-            BE.Patente c = new BE.Patente();
-            foreach (DataRow fila in tabla.Rows)
-            {
-                c.Nombre = fila[1].ToString();
-                c.Permiso = (BE.TipoPermiso)Enum.Parse(typeof(BE.TipoPermiso), fila[2].ToString());
-                c.Id = int.Parse(fila[0].ToString());
-                lista.Add(c);
-            }
-            return lista;
+            SqlDataReader lector = cmd.ExecuteReader();
+            tabla.Load(lector);
+            con.Desconectar();
+            return tabla;
         }
 
-        public List<BE.Familia> TraerFamilias()
+        public DataTable TraerFamilias()
         {
+            tabla.Clear ();
             SqlCommand cmd = new SqlCommand("TraerFamilias", con.Conectar());
             cmd.CommandType = CommandType.StoredProcedure;
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(tabla);
-            var lista = new List<BE.Familia>();
-            BE.Familia c = new BE.Familia();
-            foreach (DataRow fila in tabla.Rows)
-            {
-                c.Nombre = fila[1].ToString();
-                c.Id = int.Parse(fila[0].ToString());
-                lista.Add(c);
-            }
-            return lista;
+            SqlDataReader lector = cmd.ExecuteReader();
+            tabla.Load(lector);
+            con.Desconectar();
+            return tabla;
         }
 
         public DataTable TraerTodo(int idFamilia)

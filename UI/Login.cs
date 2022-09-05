@@ -89,6 +89,7 @@ namespace UI
         private void Traducir(IIdioma idioma)
         {
             var traducciones = Traductor.ObtenerTraducciones(idioma);
+            var tradDefault = Traductor.ObtenerTraducciones(Traductor.ObtenerIdiomaDefault());
 
             //if (menuIdioma.Tag != null && traducciones.ContainsKey(menuIdioma.Tag.ToString()))
             //    menuIdioma.Text = traducciones[menuIdioma.Tag.ToString()].Valor;
@@ -116,7 +117,8 @@ namespace UI
                 if (mnuitOpcion.Tag != null && traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
                     mnuitOpcion.Text = traducciones[mnuitOpcion.Tag.ToString()].Valor;
                 else if (mnuitOpcion.Tag != null && !traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
-                    mnuitOpcion.Text = $"{mnuitOpcion.Tag}_NT";
+                    mnuitOpcion.Text = tradDefault[mnuitOpcion.Tag.ToString()].Valor;
+                    //mnuitOpcion.Text = $"{mnuitOpcion.Tag}_NT";
             }
 
             foreach (ToolStripMenuItem mnuitOpcion in this.menuStrip1.Items)
@@ -124,7 +126,8 @@ namespace UI
                 if (mnuitOpcion.Tag != null && traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
                     mnuitOpcion.Text = traducciones[mnuitOpcion.Tag.ToString()].Valor;
                 else if (mnuitOpcion.Tag != null && !traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
-                    mnuitOpcion.Text = $"{mnuitOpcion.Tag}_NT";
+                    mnuitOpcion.Text = tradDefault[mnuitOpcion.Tag.ToString()].Valor;
+                    //mnuitOpcion.Text = $"{mnuitOpcion.Tag}_NT";
             }
 
             foreach (Control mnuitOpcion in this.gbIngreso.Controls)
@@ -132,7 +135,8 @@ namespace UI
                 if (mnuitOpcion.Tag != null && traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
                     mnuitOpcion.Text = traducciones[mnuitOpcion.Tag.ToString()].Valor;
                 else if (mnuitOpcion.Tag != null && !traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
-                    mnuitOpcion.Text = $"{mnuitOpcion.Tag}_NT";
+                    //mnuitOpcion.Text = $"{mnuitOpcion.Tag}_NT";
+                    mnuitOpcion.Text = tradDefault[mnuitOpcion.Tag.ToString()].Valor;
             }
         }
 

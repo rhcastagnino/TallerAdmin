@@ -172,9 +172,10 @@
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.lblTitulo);
             this.Name = "PermisosUsuario";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TallerAdmin";
-            this.Load += new System.EventHandler(this.PermisosUsuario_Load);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PermisosUsuario_FormClosed);
+            this.Load += new System.EventHandler(this.PermisosUsuario_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

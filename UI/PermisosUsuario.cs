@@ -33,13 +33,15 @@ namespace UI
         private void Traducir(IIdioma idioma)
         {
             var traducciones = Traductor.ObtenerTraducciones(idioma);
+            var tradDefault = Traductor.ObtenerTraducciones(Traductor.ObtenerIdiomaDefault());
 
             foreach (Control mnuitOpcion in this.Controls)
             {
                 if (mnuitOpcion.Tag != null && traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
                     mnuitOpcion.Text = traducciones[mnuitOpcion.Tag.ToString()].Valor;
                 else if (mnuitOpcion.Tag != null && !traducciones.ContainsKey(mnuitOpcion.Tag.ToString()))
-                    mnuitOpcion.Text = $"{mnuitOpcion.Tag}_NT";
+                    mnuitOpcion.Text = tradDefault[mnuitOpcion.Tag.ToString()].Valor;
+                    //mnuitOpcion.Text = $"{mnuitOpcion.Tag}_NT";
 
             }
         }

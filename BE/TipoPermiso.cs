@@ -8,8 +8,6 @@ namespace BE
 {
     public enum TipoPermiso
     {
-        AsignarFamiliaPatente,
-        ManagerIdioma,
         EmpleadoABM,
         EmpleadoConsultar,
         OmnibusABM,
@@ -28,6 +26,7 @@ namespace BE
         StockConsultar,
         Solicitudes,
         CostosOmnibus,
-
+        AsignarFamiliaPatente,
+        ManagerIdioma,
     }
 }

@@ -75,5 +75,10 @@ namespace BLL
         {
             permisosDAL.LlenarFamiliaComponente(familia);
         }
+
+        public bool existeComponente(Componente componente, int id)
+        {
+            return permisosDAL.existeComponente(componente, id);
+        }
     }
 }
