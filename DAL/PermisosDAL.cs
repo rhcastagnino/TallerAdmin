@@ -73,22 +73,11 @@ namespace DAL
             return lista;
         }
 
-        public bool existeComponente(Componente componente, int id)
+        public bool existeComponente(int id1, int id2)
         {
-            bool existeComp = false;
-            if (componente.Id.Equals(id))
-            {
-                existeComp = true;
-            }
-            else
-            {
-                foreach (var item in componente.Hijos)
-                {
-                    existeComp = existeComponente(item, id);
-                    if (existeComp) return true;
-                }
-            }
-            return existeComp;
+            bool existe = false;
+            //para la recusividada
+            return existe;
         }
 
         public IList<Familia> TraerFamilias()

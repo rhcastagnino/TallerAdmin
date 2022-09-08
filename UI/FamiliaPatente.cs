@@ -18,7 +18,7 @@ namespace UI
     {
         public static IIdioma idioma;
         PermisoBLL permisoBLL = new PermisoBLL();
-        Familia fam = new Familia();
+        Familia fam;
 
         public FamiliaPatente()
         {
@@ -62,7 +62,7 @@ namespace UI
         {
             if (fam == null) return;
 
-            IList<Componente> _familia = null;
+            IList<Componente> _familia;
             if (familia)
             {
                 _familia = permisoBLL.TraerTodo(fam.Id);
@@ -138,6 +138,7 @@ namespace UI
                 permisoBLL.GuardarPatente(patente, false);
                 MessageBox.Show($"Se guardo la Patente {patente.Nombre}");
                 Limpiar();
+                CargarCombos();
             }
             catch (Exception ex)
             {
@@ -161,10 +162,11 @@ namespace UI
                 var patente = (Patente)comboPatentes.SelectedItem;
                 if (patente != null)
                 {
-                    var existeComp = permisoBLL.existeComponente(fam, patente.Id);
+                    var existeComp = permisoBLL.Existe(fam, patente.Id);
                     if (existeComp)
                     {
                         MessageBox.Show($"Patente Agregada {patente.Nombre}");
+                        CargarTree(true);
                     }
                     else
                     {
@@ -186,6 +188,30 @@ namespace UI
             catch
             {
                 MessageBox.Show("Error al guardar");
+            }
+        }
+
+        private void btnAgregarFamilia_Click(object sender, EventArgs e)
+        {
+            if (fam != null)
+            {
+                var familia = (Familia)comboFamilias.SelectedItem;
+                if (familia != null)
+                {
+
+                    var esta = permisoBLL.Existe(fam, familia.Id);
+                    if (esta)
+                        MessageBox.Show("ya existe la familia indicada");
+                    else
+                    {
+
+                        permisoBLL.LlenarFamiliaComponente(familia);
+                        fam.AgregarHijo(familia);
+                        CargarTree(false);
+                    }
+
+
+                }
             }
         }
     }

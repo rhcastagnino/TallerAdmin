@@ -47,6 +47,7 @@
             this.btnConfFam = new System.Windows.Forms.Button();
             this.btnAgregarPatente = new System.Windows.Forms.Button();
             this.btnGuardaPermiso = new System.Windows.Forms.Button();
+            this.btnAgregarFamilia = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblTitulo
@@ -191,7 +192,7 @@
             // 
             // btnConfFam
             // 
-            this.btnConfFam.Location = new System.Drawing.Point(286, 203);
+            this.btnConfFam.Location = new System.Drawing.Point(239, 203);
             this.btnConfFam.Name = "btnConfFam";
             this.btnConfFam.Size = new System.Drawing.Size(75, 23);
             this.btnConfFam.TabIndex = 15;
@@ -222,11 +223,23 @@
             this.btnGuardaPermiso.UseVisualStyleBackColor = true;
             this.btnGuardaPermiso.Click += new System.EventHandler(this.btnGuardaPermiso_Click);
             // 
+            // btnAgregarFamilia
+            // 
+            this.btnAgregarFamilia.Location = new System.Drawing.Point(332, 203);
+            this.btnAgregarFamilia.Name = "btnAgregarFamilia";
+            this.btnAgregarFamilia.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregarFamilia.TabIndex = 18;
+            this.btnAgregarFamilia.Tag = "FP_btnAgregarFamilia";
+            this.btnAgregarFamilia.Text = "button6";
+            this.btnAgregarFamilia.UseVisualStyleBackColor = true;
+            this.btnAgregarFamilia.Click += new System.EventHandler(this.btnAgregarFamilia_Click);
+            // 
             // FamiliaPatente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnAgregarFamilia);
             this.Controls.Add(this.btnGuardaPermiso);
             this.Controls.Add(this.btnAgregarPatente);
             this.Controls.Add(this.btnConfFam);
@@ -276,5 +289,6 @@
         private System.Windows.Forms.Button btnConfFam;
         private System.Windows.Forms.Button btnAgregarPatente;
         private System.Windows.Forms.Button btnGuardaPermiso;
+        private System.Windows.Forms.Button btnAgregarFamilia;
     }
 }

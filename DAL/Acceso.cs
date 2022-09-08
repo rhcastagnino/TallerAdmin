@@ -143,6 +143,7 @@ namespace DAL
 
         public DataTable TraerTodo(int idFamilia)
         {
+            tabla.Clear();
             SqlCommand cmd = new SqlCommand("TraerTodo", con.Conectar());
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@idPermisoP", idFamilia);
