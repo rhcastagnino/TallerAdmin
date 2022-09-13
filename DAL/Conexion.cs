@@ -10,7 +10,8 @@ namespace DAL
     public class Conexion
     {
         private static Conexion instacia = null;
-        private readonly SqlConnection conexion = new SqlConnection("Data Source=(local);Initial Catalog=TallerAdminDB;Integrated Security=True");
+        //private readonly SqlConnection conexion = new SqlConnection("Data Source=(local);Initial Catalog=TallerAdminDB;Integrated Security=True");
+        private readonly SqlConnection conexion = new SqlConnection("Data Source=PCFN1463\\SQLEXPRESS;Initial Catalog=TallerAdminDB;Integrated Security=True");
 
         public static Conexion GetInstancia()
         {

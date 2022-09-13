@@ -65,10 +65,10 @@ namespace DAL
         }
 
 
-        public DataTable Leer(string consulta)
+        public DataTable Leer(string query)
         {
             tabla.Clear();
-            SqlCommand cmd = new SqlCommand(consulta, con.Conectar());
+            SqlCommand cmd = new SqlCommand(query, con.Conectar());
             SqlDataReader lector = cmd.ExecuteReader();
             tabla.Load(lector);
             con.Desconectar();
