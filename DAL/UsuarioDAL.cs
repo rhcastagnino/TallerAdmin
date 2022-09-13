@@ -72,5 +72,36 @@ namespace DAL
                 throw new Exception($"Error en la base al restablecer intentos de inicio del usuario {usuario.Apellido} {usuario.Nombre}");
             }
         }
+
+        //public void GuardarPermisos(BE.Usuario u)
+        //{
+
+        //    try
+        //    {
+
+
+        //        cmd.CommandText = $@"delete from usuarios_permisos where id_usuario=@id;";
+        //        cmd.Parameters.Add(new SqlParameter("id", u.Id));
+        //        cmd.ExecuteNonQuery();
+
+        //        foreach (var item in u.Permisos)
+        //        {
+        //            cmd = new SqlCommand();
+        //            cmd.Connection = cnn;
+
+        //            cmd.CommandText = $@"insert into usuarios_permisos (id_usuario,id_permiso) values (@id_usuario,@id_permiso) "; ;
+        //            cmd.Parameters.Add(new SqlParameter("id_usuario", u.Id));
+        //            cmd.Parameters.Add(new SqlParameter("id_permiso", item.Id));
+
+        //            cmd.ExecuteNonQuery();
+        //        }
+
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //        throw;
+        //    }
+        //}
     }
 }

@@ -76,9 +76,45 @@ namespace BLL
             permisosDAL.LlenarFamiliaComponente(familia);
         }
 
-        public bool existeComponente(int id1, int id2)
+        public bool ExisteRecusividad(Componente cPadre, Componente cHijo)
         {
-            return permisosDAL.existeComponente(id1, id2);
+            bool existeRecusividad = false;
+            Componente familiaHija = permisosDAL.TraerHijos(cHijo);
+            foreach (var item in familiaHija.Hijos)
+            {
+                bool existe = Existe(item, cPadre.Id);
+                if (existe)
+                {
+                    existeRecusividad = true;
+                    return existeRecusividad;
+                }
+                foreach (var i in item.Hijos)
+                {
+                    bool existeEnHijo = Existe(i, cPadre.Id);
+                    if (existeEnHijo)
+                    {
+                        existeRecusividad = true;
+                        return existeRecusividad;
+                    }
+                    foreach (var phi in cPadre.Hijos)
+                    {
+                        bool existeEnHijo2 = Existe(phi, item.Id);
+                        if (existeEnHijo2)
+                        {
+                            existeRecusividad = true;
+                            return existeRecusividad;
+                        }
+                        bool existeEnHijo3 = Existe(phi, i.Id);
+                        if (existeEnHijo3)
+                        {
+                            existeRecusividad = true;
+                            return existeRecusividad;
+                        }
+                    }
+
+                }
+            }
+            return existeRecusividad;
         }
     }
 }
