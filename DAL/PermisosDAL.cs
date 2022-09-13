@@ -73,12 +73,13 @@ namespace DAL
             return lista;
         }
 
-        public bool existeComponente(int id1, int id2)
-        {
-            bool existe = false;
-            //para la recusividada
-            return existe;
-        }
+        //public bool ExisteRecusividad(int id1, int id2)
+        //{
+        //    bool existe = false;
+        //    //para la recusividada
+ 
+        //    return existe;
+        //}
 
         public IList<Familia> TraerFamilias()
         {
@@ -196,6 +197,16 @@ namespace DAL
             {
                 familia.AgregarHijo(item);
             }
+        }
+
+        public Componente TraerHijos(Componente Familia)
+        {
+            foreach (var item in TraerTodo(Familia.Id))
+            {
+                Familia.AgregarHijo(item);
+            }
+
+            return Familia;
         }
     }
 }

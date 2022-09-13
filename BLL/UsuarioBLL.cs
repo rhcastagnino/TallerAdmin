@@ -229,5 +229,10 @@ namespace BLL
             }
 
         }
+
+        public void GuardarPermisos(Usuario u)
+        {
+            UsuarioDAL.GuardarPermisos(u);
+        }
     }
 }
