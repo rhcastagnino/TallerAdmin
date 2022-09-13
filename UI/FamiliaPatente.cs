@@ -198,7 +198,7 @@ namespace UI
                 var familia = (Familia)comboFamilias.SelectedItem;
                 if (familia != null)
                 {
-                    var recusividad = permisoBLL.ExisteRecusividad(fam, familia);
+                    var recusividad = permisoBLL.ExisteRecursividad(fam, familia);
                     if (recusividad)
                     {
                         MessageBox.Show($"Existe conflicto de familias, no puede agregar la familia {familia.ToString()} en la familia {fam.ToString()} ya que la contiene previamente una familia dentro del mismo");

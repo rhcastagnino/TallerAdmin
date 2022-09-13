@@ -10,6 +10,9 @@ using BE;
 using Servicios;
 using System.IO;
 using Interfaces;
+using DAL;
+using System.Collections;
+using System.Data;
 
 namespace BLL
 {
@@ -230,9 +233,33 @@ namespace BLL
 
         }
 
-        public void GuardarPermisos(Usuario u)
+        public void GuardarPermisos(Usuario usr)
         {
-            UsuarioDAL.GuardarPermisos(u);
+            try
+            {
+                UsuarioDAL.GuardarPermisos(usr);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public IList<Usuario> TraerUsuarios()
+        {
+
+                IList<Usuario> listaUsuarios = UsuarioDAL.TraerUsuarios();
+                List<Usuario> listaUsuariosFinal = new List<Usuario>();
+                foreach (var lu in listaUsuarios)
+                {
+                    BE.Usuario usr = new BE.Usuario();
+                    usr.Email = encriptador.Desencriptar(lu.Email);
+                    usr.Nombre = lu.Nombre;
+                    usr.Apellido = lu.Apellido;
+                    usr.Id = lu.Id;
+                    listaUsuariosFinal.Add(usr);
+                }
+                return listaUsuariosFinal;
         }
     }
 }

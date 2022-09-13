@@ -76,7 +76,7 @@ namespace BLL
             permisosDAL.LlenarFamiliaComponente(familia);
         }
 
-        public bool ExisteRecusividad(Componente cPadre, Componente cHijo)
+        public bool ExisteRecursividad(Componente cPadre, Componente cHijo)
         {
             bool existeRecusividad = false;
             Componente familiaHija = permisosDAL.TraerHijos(cHijo);

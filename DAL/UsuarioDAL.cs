@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using BE;
 
 namespace DAL
 {
@@ -73,35 +74,56 @@ namespace DAL
             }
         }
 
-        //public void GuardarPermisos(BE.Usuario u)
-        //{
+        public void GuardarPermisos(BE.Usuario usr)
+        {
 
-        //    try
-        //    {
+            try
+            {
+                string query = $"delete from Usuario_Permiso where idUsuario={usr.Id};";
+                acceso.Ejecutar(query);
+
+                foreach (var item in usr.Permisos)
+                {
+                    string sql = $"insert into Usuario_Permiso (idUsuario,idPermiso) values ({usr.Id},{item.Id}) ";
+                    acceso.Ejecutar(sql);
+                }
+            }
+            catch
+            {
+                throw new Exception($"Error en la base al guardar los permisos del usuario {usr.Apellido} {usr.Nombre}");
+            }
+        }
+
+        public IList<Usuario> TraerUsuarios()
+        {
+            var lista = new List<Usuario>();
+            DataTable tabla = new DataTable();
+            tabla = acceso.TraerUsuarios();
+            foreach (DataRow fila in tabla.Rows)
+            {
+                BE.Usuario usr = new BE.Usuario();
+                usr.Email = fila[5].ToString();
+                usr.Nombre = fila[1].ToString();
+                usr.Apellido = fila[2].ToString();
+                usr.Id = int.Parse(fila[0].ToString());
+                lista.Add(usr);
+            }
+
+            return lista;
+        }
+
+        //create procedure TraerUsuarios
+        //as
+        //select* from Usuario
+        //go
 
 
-        //        cmd.CommandText = $@"delete from usuarios_permisos where id_usuario=@id;";
-        //        cmd.Parameters.Add(new SqlParameter("id", u.Id));
-        //        cmd.ExecuteNonQuery();
-
-        //        foreach (var item in u.Permisos)
-        //        {
-        //            cmd = new SqlCommand();
-        //            cmd.Connection = cnn;
-
-        //            cmd.CommandText = $@"insert into usuarios_permisos (id_usuario,id_permiso) values (@id_usuario,@id_permiso) "; ;
-        //            cmd.Parameters.Add(new SqlParameter("id_usuario", u.Id));
-        //            cmd.Parameters.Add(new SqlParameter("id_permiso", item.Id));
-
-        //            cmd.ExecuteNonQuery();
-        //        }
-
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //        throw;
-        //    }
-        //}
+        //create procedure LlenarComponenteUsuario
+        //@idUsr int
+        //as
+        //select p.* from Usuario_Permiso up
+        //inner join Permiso p on p.id = up.idPermiso
+        //where p.id = @idUsr
+        //go
     }
 }

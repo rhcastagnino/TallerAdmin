@@ -17,20 +17,22 @@ namespace UI
 {
     public partial class PermisosUsuario : Form, IIdiomaObserver
     {
-        PermisoBLL permisoBLL;
-        UsuarioBLL usuarioBLL;
-        Usuario usuario;
-        Usuario usr;
+        PermisoBLL permisoBLL = new PermisoBLL();
+        UsuarioBLL usuarioBLL = new UsuarioBLL();
+        Usuario usr = new Usuario();
 
         public static IIdioma idioma;
         public PermisosUsuario()
         {
             InitializeComponent();
+            CargarCombos();
+
         }
 
         private void PermisosUsuario_Load(object sender, EventArgs e)
         {
             UpdateLanguage(Session.GetInstance.Usuario.Idioma);
+            CargarCombos();
         }
 
         public void UpdateLanguage(IIdioma idioma)
@@ -54,31 +56,39 @@ namespace UI
             }
         }
 
+        private void CargarCombos()
+        {
+            comboFamilia.DataSource = permisoBLL.TraerFamilias();
+            comboUsr.DataSource = usuarioBLL.TraerUsuarios();
+            comboUsr.DisplayMember = "Email";
+            comboPermisos.DataSource = permisoBLL.TraerPatentes();
+        }
+
         private void PermisosUsuario_FormClosed(object sender, FormClosedEventArgs e)
         {
             Principal formPrincipal = new Principal();
             formPrincipal.Show();
         }
 
-        void LlenarTreeView(TreeNode padre, Componente c)
+        void LlenarTreeView(TreeNode padre, Componente componente)
         {
-            TreeNode hijo = new TreeNode(c.Nombre);
-            hijo.Tag = c;
+            TreeNode hijo = new TreeNode(componente.Nombre);
+            hijo.Tag = componente;
             padre.Nodes.Add(hijo);
 
-            foreach (var item in c.Hijos)
+            foreach (var item in componente.Hijos)
             {
                 LlenarTreeView(hijo, item);
             }
 
         }
 
-        void MostrarPermisos(Usuario u)
+        void MostrarPermisos(Usuario usr)
         {
             this.treeView1.Nodes.Clear();
-            TreeNode root = new TreeNode(u.Nombre);
+            TreeNode root = new TreeNode(usr.Nombre);
 
-            foreach (var item in u.Permisos)
+            foreach (var item in usr.Permisos)
             {
                 LlenarTreeView(root, item);
             }
@@ -89,13 +99,13 @@ namespace UI
 
         private void btnUsr_Click(object sender, EventArgs e)
         {
-            usuario = (Usuario)this.comboUsr.SelectedItem;
-            usr = new Usuario();
-            usr.Id = usuario.Id;
-            usr.Nombre = usuario.Nombre;
-            permisoBLL.LlenarComponenteUsuario(usr);
+            usr = (Usuario)this.comboUsr.SelectedItem;
+            Usuario user = new Usuario();
+            user.Id = usr.Id;
+            user.Nombre = usr.Nombre;
+            permisoBLL.LlenarComponenteUsuario(user);
 
-            MostrarPermisos(usr);
+            MostrarPermisos(user);
         }
 
         private void btnPatente_Click(object sender, EventArgs e)
@@ -138,7 +148,6 @@ namespace UI
                 if (flia != null)
                 {
                     var esta = false;
-                    //verifico que ya no tenga el permiso. TODO: Esto debe ser parte de otra capa.
                     foreach (var item in usr.Permisos)
                     {
                         if (permisoBLL.Existe(item, flia.Id))
@@ -153,7 +162,6 @@ namespace UI
                     {
                         {
                             permisoBLL.LlenarFamiliaComponente(flia);
-
                             usr.Permisos.Add(flia);
                             MostrarPermisos(usr);
                         }

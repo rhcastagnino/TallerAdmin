@@ -149,6 +149,7 @@
             // 
             // PU_btnGuardar
             // 
+            this.PU_btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.PU_btnGuardar.Location = new System.Drawing.Point(352, 346);
             this.PU_btnGuardar.Name = "PU_btnGuardar";
             this.PU_btnGuardar.Size = new System.Drawing.Size(265, 23);

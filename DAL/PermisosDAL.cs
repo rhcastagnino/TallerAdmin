@@ -73,13 +73,6 @@ namespace DAL
             return lista;
         }
 
-        //public bool ExisteRecusividad(int id1, int id2)
-        //{
-        //    bool existe = false;
-        //    //para la recusividada
- 
-        //    return existe;
-        //}
 
         public IList<Familia> TraerFamilias()
         {
@@ -98,7 +91,8 @@ namespace DAL
         }
         public IList<Componente> TraerTodo(int idFamilia)
         {
-            DataTable dt = acceso.TraerTodo(idFamilia);
+            DataTable dt = new DataTable();
+            dt = acceso.TraerTodo(idFamilia);
 
             var lista = new List<Componente>();
             if (dt.Rows.Count > 0)
@@ -153,16 +147,17 @@ namespace DAL
         public void LlenarComponenteUsuario(Usuario usr)
         {
 
-            DataTable dt = acceso.LlenarComponenteUsuario(usr.Id);
+            DataTable dt = new DataTable();
+            dt = acceso.LlenarComponenteUsuario(usr.Id);
 
             if (dt.Rows.Count > 0)
             {
                 foreach (DataRow rows in dt.Rows)
                 {
-                    int id = int.Parse(rows["idPermiso"].ToString());
-                    string nombre = rows["Nombre"].ToString();
+                    int id = int.Parse(rows["id"].ToString());
+                    string nombre = rows["nombre"].ToString();
                     string permiso = String.Empty;
-                    if (rows["Permiso"].ToString() != String.Empty) permiso = rows["Permiso"].ToString();
+                    if (rows["permiso"].ToString() != String.Empty) permiso = rows["permiso"].ToString();
 
                     Componente componente;
                     if (!String.IsNullOrEmpty(permiso))
@@ -180,9 +175,9 @@ namespace DAL
                         componente.Nombre = nombre;
 
                         var familia = TraerTodo(id);
-                        foreach (var f in familia)
+                        foreach (var fam in familia)
                         {
-                            componente.AgregarHijo(f);
+                            componente.AgregarHijo(fam);
                         }
                         usr.Permisos.Add(componente);
                     }

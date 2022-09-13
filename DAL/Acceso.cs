@@ -22,22 +22,22 @@ namespace DAL
 
         public void AltaUsuario(BE.Usuario usuario, string sp)
         {
-            SqlCommand cmd = new SqlCommand(sp,con.Conectar());
-            cmd.CommandType=CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@nombre",usuario.Nombre);
-            cmd.Parameters.AddWithValue("@apellido",usuario.Apellido);
+            SqlCommand cmd = new SqlCommand(sp, con.Conectar());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@nombre", usuario.Nombre);
+            cmd.Parameters.AddWithValue("@apellido", usuario.Apellido);
             cmd.Parameters.AddWithValue("@email", usuario.Email);
-            cmd.Parameters.AddWithValue("@pass",usuario.Password);
+            cmd.Parameters.AddWithValue("@pass", usuario.Password);
             cmd.ExecuteNonQuery();
             cmd.Parameters.Clear();
             con.Desconectar();
         }
 
-        public BE.Usuario GetUsuario(string email,string sp)
+        public BE.Usuario GetUsuario(string email, string sp)
         {
             SqlCommand cmd = new SqlCommand(sp, con.Conectar());
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@email",email);
+            cmd.Parameters.AddWithValue("@email", email);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(tabla);
             BE.Usuario usr = new BE.Usuario();
@@ -92,7 +92,7 @@ namespace DAL
             con.Desconectar();
         }
 
-        public void AltaTraduccion(BE.Idioma idioma,BE.Traduccion traduccion, string sp)
+        public void AltaTraduccion(BE.Idioma idioma, BE.Traduccion traduccion, string sp)
         {
             SqlCommand cmd = new SqlCommand(sp, con.Conectar());
             cmd.CommandType = CommandType.StoredProcedure;
@@ -132,7 +132,7 @@ namespace DAL
 
         public DataTable TraerFamilias()
         {
-            tabla.Clear ();
+            tabla.Clear();
             SqlCommand cmd = new SqlCommand("TraerFamilias", con.Conectar());
             cmd.CommandType = CommandType.StoredProcedure;
             SqlDataReader lector = cmd.ExecuteReader();
@@ -155,9 +155,21 @@ namespace DAL
 
         public DataTable LlenarComponenteUsuario(int usr)
         {
+            tabla.Clear();
             SqlCommand cmd = new SqlCommand("LlenarComponenteUsuario", con.Conectar());
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idUsuario", usr);
+            cmd.Parameters.AddWithValue("@idUsr", usr);
+            SqlDataReader lector = cmd.ExecuteReader();
+            tabla.Load(lector);
+            con.Desconectar();
+            return tabla;
+        }
+
+        public DataTable TraerUsuarios()
+        {
+            tabla.Clear();
+            SqlCommand cmd = new SqlCommand("TraerUsuarios", con.Conectar());
+            cmd.CommandType = CommandType.StoredProcedure;
             SqlDataReader lector = cmd.ExecuteReader();
             tabla.Load(lector);
             con.Desconectar();
