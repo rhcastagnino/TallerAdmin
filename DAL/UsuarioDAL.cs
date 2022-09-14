@@ -112,18 +112,6 @@ namespace DAL
             return lista;
         }
 
-        //create procedure TraerUsuarios
-        //as
-        //select* from Usuario
-        //go
 
-
-        //create procedure LlenarComponenteUsuario
-        //@idUsr int
-        //as
-        //select p.* from Usuario_Permiso up
-        //inner join Permiso p on p.id = up.idPermiso
-        //where p.id = @idUsr
-        //go
     }
 }

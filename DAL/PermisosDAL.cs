@@ -146,18 +146,23 @@ namespace DAL
 
         public void LlenarComponenteUsuario(Usuario usr)
         {
-
-            DataTable dt = new DataTable();
+            DataTable dt = new();
+            dt.Clear();
             dt = acceso.LlenarComponenteUsuario(usr.Id);
+
+            Usuario usuario = new Usuario();
+            usuario.Id = usr.Id;
+            usuario.Email = usr.Email;
 
             if (dt.Rows.Count > 0)
             {
-                foreach (DataRow rows in dt.Rows)
+                foreach (DataRow row in dt.Rows)
                 {
-                    int id = int.Parse(rows["id"].ToString());
-                    string nombre = rows["nombre"].ToString();
+                    int id = 0;
+                    id = int.Parse(row["id"].ToString());
+                    string nombre = row["nombre"].ToString();
                     string permiso = String.Empty;
-                    if (rows["permiso"].ToString() != String.Empty) permiso = rows["permiso"].ToString();
+                    if (row["permiso"].ToString() != String.Empty) permiso = row["permiso"].ToString();
 
                     Componente componente;
                     if (!String.IsNullOrEmpty(permiso))
@@ -166,7 +171,7 @@ namespace DAL
                         componente.Id = id;
                         componente.Nombre = nombre;
                         componente.Permiso = (TipoPermiso)Enum.Parse(typeof(TipoPermiso), permiso);
-                        usr.Permisos.Add(componente);
+                        usuario.Permisos.Add(componente);
                     }
                     else
                     {
@@ -174,12 +179,12 @@ namespace DAL
                         componente.Id = id;
                         componente.Nombre = nombre;
 
-                        var familia = TraerTodo(id);
+                        var familia = TraerTodo(componente.Id);
                         foreach (var fam in familia)
                         {
                             componente.AgregarHijo(fam);
                         }
-                        usr.Permisos.Add(componente);
+                        usuario.Permisos.Add(componente);
                     }
                 }
             }

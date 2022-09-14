@@ -25,8 +25,6 @@ namespace UI
         public PermisosUsuario()
         {
             InitializeComponent();
-            CargarCombos();
-
         }
 
         private void PermisosUsuario_Load(object sender, EventArgs e)
@@ -70,41 +68,13 @@ namespace UI
             formPrincipal.Show();
         }
 
-        void LlenarTreeView(TreeNode padre, Componente componente)
-        {
-            TreeNode hijo = new TreeNode(componente.Nombre);
-            hijo.Tag = componente;
-            padre.Nodes.Add(hijo);
-
-            foreach (var item in componente.Hijos)
-            {
-                LlenarTreeView(hijo, item);
-            }
-
-        }
-
-        void MostrarPermisos(Usuario usr)
-        {
-            this.treeView1.Nodes.Clear();
-            TreeNode root = new TreeNode(usr.Nombre);
-
-            foreach (var item in usr.Permisos)
-            {
-                LlenarTreeView(root, item);
-            }
-
-            this.treeView1.Nodes.Add(root);
-            this.treeView1.ExpandAll();
-        }
-
         private void btnUsr_Click(object sender, EventArgs e)
         {
             usr = (Usuario)this.comboUsr.SelectedItem;
             Usuario user = new Usuario();
             user.Id = usr.Id;
-            user.Nombre = usr.Nombre;
+            user.Email = usr.Email;
             permisoBLL.LlenarComponenteUsuario(user);
-
             MostrarPermisos(user);
         }
 
@@ -184,6 +154,32 @@ namespace UI
 
                 MessageBox.Show("Error al guardar el usuario");
             }
+        }
+
+        private void LlenarTreeView(TreeNode padre, Componente componente)
+        {
+            TreeNode hijo = new TreeNode(componente.Nombre);
+            hijo.Tag = componente;
+            padre.Nodes.Add(hijo);
+
+            foreach (var item in componente.Hijos)
+            {
+                LlenarTreeView(hijo, item);
+            }
+        }
+
+        private void MostrarPermisos(Usuario usr)
+        {
+            this.treeView1.Nodes.Clear();
+            TreeNode root = new TreeNode(usr.Nombre);
+
+            foreach (var item in usr.Permisos)
+            {
+                LlenarTreeView(root, item);
+            }
+
+            this.treeView1.Nodes.Add(root);
+            this.treeView1.ExpandAll();
         }
     }
 }
