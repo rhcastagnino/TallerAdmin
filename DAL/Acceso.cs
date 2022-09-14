@@ -16,7 +16,7 @@ namespace DAL
         public Acceso()
         {
             con = new Conexion();
-            tabla = new DataTable();
+            //tabla = new DataTable();
         }
 
 
@@ -35,6 +35,7 @@ namespace DAL
 
         public BE.Usuario GetUsuario(string email, string sp)
         {
+            tabla = new DataTable();
             SqlCommand cmd = new SqlCommand(sp, con.Conectar());
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@email", email);
@@ -67,6 +68,7 @@ namespace DAL
 
         public DataTable Leer(string query)
         {
+            tabla = new DataTable();
             tabla.Clear();
             SqlCommand cmd = new SqlCommand(query, con.Conectar());
             SqlDataReader lector = cmd.ExecuteReader();
@@ -121,6 +123,7 @@ namespace DAL
 
         public DataTable TraerPatentes()
         {
+            tabla = new DataTable();
             tabla.Clear();
             SqlCommand cmd = new SqlCommand("TraerPatentes", con.Conectar());
             cmd.CommandType = CommandType.StoredProcedure;
@@ -132,6 +135,7 @@ namespace DAL
 
         public DataTable TraerFamilias()
         {
+            tabla = new DataTable();
             tabla.Clear();
             SqlCommand cmd = new SqlCommand("TraerFamilias", con.Conectar());
             cmd.CommandType = CommandType.StoredProcedure;
@@ -143,6 +147,7 @@ namespace DAL
 
         public DataTable TraerTodo(int idFamilia)
         {
+            tabla = new DataTable();
             tabla.Clear();
             SqlCommand cmd = new SqlCommand("TraerTodo", con.Conectar());
             cmd.CommandType = CommandType.StoredProcedure;
@@ -155,6 +160,7 @@ namespace DAL
 
         public DataTable LlenarComponenteUsuario(int usr)
         {
+            tabla = new DataTable();
             tabla.Clear();
             SqlCommand cmd = new SqlCommand("LlenarComponenteUsuario", con.Conectar());
             cmd.CommandType = CommandType.StoredProcedure;
@@ -167,6 +173,7 @@ namespace DAL
 
         public DataTable TraerUsuarios()
         {
+            tabla = new DataTable();
             tabla.Clear();
             SqlCommand cmd = new SqlCommand("TraerUsuarios", con.Conectar());
             cmd.CommandType = CommandType.StoredProcedure;

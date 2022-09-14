@@ -32,5 +32,10 @@ namespace BE
             return Email;
         }
 
+        public Usuario()
+        {
+            _permisos = new List<Componente>();
+        }
+
     }
 }

@@ -91,13 +91,14 @@ namespace DAL
         }
         public IList<Componente> TraerTodo(int idFamilia)
         {
-            DataTable dt = new DataTable();
-            dt = acceso.TraerTodo(idFamilia);
+            DataTable dtt = new DataTable();
+            dtt.Clear();
+            dtt = acceso.TraerTodo(idFamilia);
 
             var lista = new List<Componente>();
-            if (dt.Rows.Count > 0)
+            if (dtt.Rows.Count > 0)
             {
-                foreach (DataRow rows in dt.Rows)
+                foreach (DataRow rows in dtt.Rows)
                 {
                     int idpadre = 0;
                     if (rows["idPermisoPadre"] != DBNull.Value)
@@ -146,13 +147,9 @@ namespace DAL
 
         public void LlenarComponenteUsuario(Usuario usr)
         {
-            DataTable dt = new();
+            DataTable dt = new DataTable();
             dt.Clear();
             dt = acceso.LlenarComponenteUsuario(usr.Id);
-
-            Usuario usuario = new Usuario();
-            usuario.Id = usr.Id;
-            usuario.Email = usr.Email;
 
             if (dt.Rows.Count > 0)
             {
@@ -171,7 +168,7 @@ namespace DAL
                         componente.Id = id;
                         componente.Nombre = nombre;
                         componente.Permiso = (TipoPermiso)Enum.Parse(typeof(TipoPermiso), permiso);
-                        usuario.Permisos.Add(componente);
+                        usr.Permisos.Add(componente);
                     }
                     else
                     {
@@ -184,7 +181,7 @@ namespace DAL
                         {
                             componente.AgregarHijo(fam);
                         }
-                        usuario.Permisos.Add(componente);
+                        usr.Permisos.Add(componente);
                     }
                 }
             }

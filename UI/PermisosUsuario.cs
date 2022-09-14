@@ -171,7 +171,7 @@ namespace UI
         private void MostrarPermisos(Usuario usr)
         {
             this.treeView1.Nodes.Clear();
-            TreeNode root = new TreeNode(usr.Nombre);
+            TreeNode root = new TreeNode(usr.Email);
 
             foreach (var item in usr.Permisos)
             {
