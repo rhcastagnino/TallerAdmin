@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class TraduccionDAL
+    public class TraduccionDAL : Acceso
     {
-        private Acceso acceso;
+        //private Acceso acceso;
         private BE.Traduccion traduccion;
 
         public TraduccionDAL()
         {
-            acceso = new Acceso();
+            //acceso = new Acceso();
             traduccion = new BE.Traduccion();
         }
 
@@ -22,7 +22,12 @@ namespace DAL
             try
             {
                 string sp = "altaTraduccion";
-                acceso.AltaTraduccion(idioma,traduccion,sp);
+                //acceso.AltaTraduccion(idioma,traduccion,sp);
+                xParameters.Parameters.Clear();
+                xParameters.Parameters.AddWithValue("@idIdioma", idioma.Id);
+                xParameters.Parameters.AddWithValue("@claveEtiqueta", traduccion.Etiqueta.Clave);
+                xParameters.Parameters.AddWithValue("@valor", traduccion.Valor);
+                StoredProcedureConsulta(sp);
             }
             catch
             {
