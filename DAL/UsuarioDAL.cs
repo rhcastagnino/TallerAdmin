@@ -8,14 +8,15 @@ using BE;
 
 namespace DAL
 {
-    public class UsuarioDAL
+    public class UsuarioDAL : Acceso
     {
-        private Acceso acceso;
+        //private Acceso acceso;
         private BE.Usuario usuario;
+        private DataTable dt;
 
         public UsuarioDAL()
         {
-            acceso = new Acceso();
+            //acceso = new Acceso();
             usuario = new BE.Usuario();
         }
 
@@ -24,9 +25,13 @@ namespace DAL
             try
             {
 
-                string sp = "altaUsuario"; //  '"+usuario.nombre+"','"+usuario.apellido+"','"+usuario.email+"', '"+usuario.password+"'";
-                //acceso.ejecutar(query);
-                acceso.AltaUsuario(usuario, sp);
+                string sp = "altaUsuario";
+                xParameters.Parameters.Clear();
+                xParameters.Parameters.AddWithValue("@nombre", usuario.Nombre);
+                xParameters.Parameters.AddWithValue("@apellido", usuario.Apellido);
+                xParameters.Parameters.AddWithValue("@email", usuario.Email);
+                xParameters.Parameters.AddWithValue("@pass", usuario.Password);
+                StoredProcedureConsulta(sp);
             }
             catch 
             {
@@ -39,7 +44,18 @@ namespace DAL
             try
             {     
                 string sp = "getUsuario";
-                usuario = acceso.GetUsuario(email, sp);
+                dt = new DataTable();
+                xParameters.Parameters.Clear();
+                xParameters.Parameters.AddWithValue("@email", email);
+                dt = StoredProcedure(sp);
+                foreach (DataRow fila in dt.Rows)
+                {
+                    usuario.Email = fila[5].ToString();
+                    usuario.Password = fila[3].ToString();
+                    usuario.Nombre = fila[1].ToString();
+                    usuario.Apellido = fila[2].ToString();
+                    usuario.Contador = int.Parse(fila[4].ToString());
+                }
                 return usuario;
             }
             catch 
@@ -52,8 +68,10 @@ namespace DAL
         {
             try
             {
-                string sp = "incrementarContador"; 
-                acceso.Contador(usuario, sp);
+                string sp = "incrementarContador";
+                xParameters.Parameters.Clear();
+                xParameters.Parameters.AddWithValue("@email", usuario.Email);
+                StoredProcedureConsulta(sp);
             }
             catch 
             {
@@ -66,7 +84,9 @@ namespace DAL
             try
             {
                 string sp = "restablecerContador";
-                acceso.Contador(usuario, sp);
+                xParameters.Parameters.Clear();
+                xParameters.Parameters.AddWithValue("@email", usuario.Email);
+                StoredProcedureConsulta(sp);
             }
             catch
             {
@@ -79,13 +99,18 @@ namespace DAL
 
             try
             {
-                string query = $"delete from Usuario_Permiso where idUsuario={usr.Id};";
-                acceso.Ejecutar(query);
+                xCommandText = "delete from Usuario_Permiso where idUsuario=@idUsuario;";
+                xParameters.Parameters.Clear();
+                xParameters.Parameters.AddWithValue("@idUsuario", usr.Id);
+                executeNonQuery();
 
                 foreach (var item in usr.Permisos)
                 {
-                    string sql = $"insert into Usuario_Permiso (idUsuario,idPermiso) values ({usr.Id},{item.Id}) ";
-                    acceso.Ejecutar(sql);
+                    xCommandText = "insert into Usuario_Permiso (idUsuario,idPermiso) values (@idUsuario,@idItem); ";
+                    xParameters.Parameters.Clear();
+                    xParameters.Parameters.AddWithValue("@idUsuario", usr.Id);
+                    xParameters.Parameters.AddWithValue("@idItem", item.Id);
+                    executeNonQuery();
                 }
             }
             catch
@@ -96,17 +121,18 @@ namespace DAL
 
         public IList<Usuario> TraerUsuarios()
         {
+            string sp = "TraerUsuarios";
+            dt = new DataTable();
             var lista = new List<Usuario>();
-            DataTable tabla = new DataTable();
-            tabla = acceso.TraerUsuarios();
-            foreach (DataRow fila in tabla.Rows)
+            xParameters.Parameters.Clear();
+            dt = StoredProcedure(sp);
+            foreach (DataRow fila in dt.Rows)
             {
-                BE.Usuario usr = new BE.Usuario();
-                usr.Email = fila[5].ToString();
-                usr.Nombre = fila[1].ToString();
-                usr.Apellido = fila[2].ToString();
-                usr.Id = int.Parse(fila[0].ToString());
-                lista.Add(usr);
+                usuario.Email = fila[5].ToString();
+                usuario.Nombre = fila[1].ToString();
+                usuario.Apellido = fila[2].ToString();
+                usuario.Id = int.Parse(fila[0].ToString());
+                lista.Add(usuario);
             }
 
             return lista;

@@ -16,6 +16,7 @@ namespace UI
     public partial class Principal : Form, IIdiomaObserver
     {
         public static IIdioma idioma;
+        private PermisoBLL permisoBLL;
         public Principal()
         {
             InitializeComponent();
@@ -127,6 +128,7 @@ namespace UI
         {
             UpdateLanguage(Session.GetInstance.Usuario.Idioma);
             MostrarIdiomasDisponibles();
+            CargarMenuPermisos();
         }
 
         private void miGestionPermisosUsuario_Click(object sender, EventArgs e)
@@ -141,6 +143,46 @@ namespace UI
             FamiliaPatente formFamiliaPatente = new FamiliaPatente();
             formFamiliaPatente.Show();
             this.Hide();
+        }
+
+        private void CargarMenuPermisos()
+        {
+            IList<BE.Patente> lista = new List<BE.Patente>();
+            lista = permisoBLL.CargarMenuPermisos(Session.GetInstance.Usuario.Id);
+
+            foreach (var p in lista)
+            {
+                //if (menuStrip1.Items[ToolStripDropDownItem.Equals(p)] ) 
+                //if (p.Permiso == "EmpleadoConsultar")
+                //if (p.Permiso == "OmnibusABM")
+                //if (p.Permiso == "OmnibusConsultar")
+                //if (p.Permiso == "OmnibusStatus")
+                //if (p.Permiso == "OmnibusEvaluar")
+                //if (p.Permiso == "ReparacionABM")
+                //if (p.Permiso == "ReparacionConsultar")
+                //if (p.Permiso == "ReparacionAsignar")
+                //if (p.Permiso == "ReparacionSoliRepu")
+                //if (p.Permiso == "ReparacionSupervisar")
+                //if (p.Permiso == "RepuestoABM")
+                //if (p.Permiso == "RepuestoConsultar")
+                //if (p.Permiso == "StockIngresos")
+                //if (p.Permiso == "StockInventario")
+                //if (p.Permiso == "StockConsultar")
+                //if (p.Permiso == "Solicitudes")
+                //if (p.Permiso == "CostosOmnibus")
+                //if (p.Permiso == "AsignarFamiliaPatente")
+                //if (p.Permiso == "ManagerIdioma")
+
+//create procedure TraerPermisosUsuario
+//@idUsuario int
+//as
+//begin
+//WITH RECURSIVO AS(SELECT fp.idPermisoPadre, fp.idPermisoHijo FROM Familia_Patente fp WHERE fp.idPermisoPadre = (select idPermiso from Usuario_Permiso where idUsuario = @idUsuario )
+//UNION ALL SELECT fp2.idPermisoPadre, fp2.idPermisoHijo FROM Familia_Patente fp2 INNER JOIN RECURSIVO r on r.idPermisoHijo = fp2.idPermisoPadre)
+//SELECT p.Permiso FROM RECURSIVO r INNER JOIN Permiso p on r.idPermisoHijo = p.id where p.permiso is not null;
+//end
+            }
+
         }
     }
 }

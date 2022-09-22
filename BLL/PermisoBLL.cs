@@ -116,5 +116,11 @@ namespace BLL
             }
             return existeRecusividad;
         }
+
+        public IList<Patente> CargarMenuPermisos(int idUsuario)
+        {
+            return permisosDAL.CargarMenuPermisos(idUsuario);
+
+        }
     }
 }

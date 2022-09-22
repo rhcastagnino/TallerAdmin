@@ -19,12 +19,11 @@ namespace Servicios
 
         public static IList<IIdioma> ObtenerIdiomas() 
         {
+            Acceso acceso = new Acceso();
             IList<IIdioma> _idiomas = new List<IIdioma>();
-
-            Acceso Acceso = new Acceso();
             DataTable dt = new DataTable();
             string Consulta = "select * from Idioma";
-            dt = Acceso.Leer(Consulta);
+            dt = acceso.Leer(Consulta);
 
             foreach (DataRow fila in dt.Rows)
             {
@@ -46,16 +45,16 @@ namespace Servicios
             {
                 idioma = ObtenerIdiomaDefault();
             }
-            Acceso Acceso = new Acceso();
+            Acceso acceso = new Acceso();
             DataTable dt = new DataTable();
-
+            
             IDictionary<string, ITraduccion> _traducciones = new Dictionary<string, ITraduccion>(); // Traigo las traducciones del idioma seleccionado.
             try
             {
                 //Obtengo las traducciones del idioma que tengo seleccionado
-                string Consulta = @"SELECT t.fk_idioma, t.valor as traduccion_traduccion, e.id, e.clave as nombre_etiqueta FROM Traducciones t" +
+                string Consulta = "SELECT t.fk_idioma, t.valor as traduccion_traduccion, e.id, e.clave as nombre_etiqueta FROM Traducciones t" +
                                     " INNER JOIN Etiqueta e on t.fk_etiqueta = e.id WHERE t.fk_idioma = " + idioma.Id;
-                dt = Acceso.Leer(Consulta);
+                dt = acceso.Leer(Consulta);
 
                 foreach (DataRow fila in dt.Rows)
                 {
@@ -83,10 +82,10 @@ namespace Servicios
         {
             IList<IEtiqueta> _etiqueta = new List<IEtiqueta>();
 
-            Acceso Acceso = new Acceso();
+            Acceso acceso = new Acceso();
             DataTable dt = new DataTable();
             string Consulta = "select * from Etiqueta";
-            dt = Acceso.Leer(Consulta);
+            dt = acceso.Leer(Consulta);
 
             foreach (DataRow fila in dt.Rows)
             {
@@ -100,37 +99,13 @@ namespace Servicios
             return _etiqueta;
         }
 
-        //public static IList<ITraduccion> ObtenerReferencias(IIdioma idioma)
-        //{
-        //    IList<ITraduccion> _traduccion = new List<ITraduccion>();
-        //    Acceso Acceso = new Acceso();
-        //    DataTable dt = new DataTable();
-        //    string Consulta = "select e.id, e.clave, t.valor from Etiqueta e join Traducciones t on e.id = t.fk_etiqueta where t.fk_idioma = "+ idioma.Id;
-        //    dt = Acceso.Leer(Consulta);
-
-        //    foreach (DataRow fila in dt.Rows)
-        //    {
-        //        _traduccion.Add(
-        //        new Traduccion()
-        //        {
-        //            Valor = fila[2].ToString(),
-        //            Etiqueta = new Etiqueta()
-        //            {
-        //            Id = int.Parse(fila[0].ToString()),
-        //            Clave = fila[1].ToString()
-        //            }
-        //        });
-        //    }
-        //    return _traduccion;
-        //}
-
         public static List<TraduccionDTO> ObtenerReferenciasDTO(IIdioma idioma)
         {
             List<TraduccionDTO> _traduccion = new List<TraduccionDTO>();
-            Acceso Acceso = new Acceso();
+            Acceso acceso = new Acceso();
             DataTable dt = new DataTable();
             string Consulta = "select e.clave, t.valor from Etiqueta e join Traducciones t on e.id = t.fk_etiqueta where t.fk_idioma = " + idioma.Id;
-            dt = Acceso.Leer(Consulta);
+            dt = acceso.Leer(Consulta);
 
             foreach (DataRow fila in dt.Rows)
             {

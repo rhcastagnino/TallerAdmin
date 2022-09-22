@@ -10,18 +10,14 @@ namespace DAL
 {
     public class Acceso : Conexion
     {
-        private Conexion conexion;// = new Conexion();
-        //private SqlConnection con;// = new SqlConnection();
+        private Conexion conexion = new Conexion();
         private DataTable tabla;// = new DataTable();
         private string xTextCommand;
-        private SqlCommand parameters;// = new SqlCommand();
+        private SqlCommand parameters = new SqlCommand();
 
         public Acceso()
         {
-            //con = new SqlConnection();
-            conexion = new Conexion();
             tabla = new DataTable();
-            parameters = new SqlCommand();
         }
 
         protected string xCommandText
@@ -38,11 +34,8 @@ namespace DAL
 
         public void executeNonQuery()
         {
-
-            conexion.Conectar();
-
-            SqlTransaction TR = con.BeginTransaction();
-            SqlCommand command = new SqlCommand(xCommandText, con, TR);
+            SqlTransaction TR = conexion.Conectar().BeginTransaction();
+            SqlCommand command = new SqlCommand(xCommandText, conexion.Conectar(), TR);
             command.CommandType = CommandType.Text;
             command.Parameters.Clear();
 
@@ -76,12 +69,10 @@ namespace DAL
 
         public DataTable ExecuteReader()
         {
-
-            conexion.Conectar();
             SqlDataReader dr;
             DataTable dt = new DataTable();
-            SqlTransaction TR = con.BeginTransaction();
-            SqlCommand comando = new SqlCommand(xCommandText, con, TR);
+            SqlTransaction TR = conexion.Conectar().BeginTransaction();
+            SqlCommand comando = new SqlCommand(xCommandText, conexion.Conectar(), TR);
             comando.CommandType = CommandType.Text;
             comando.Parameters.Clear();
 
@@ -118,9 +109,8 @@ namespace DAL
 
         public virtual int ExecuteNonEscalar()
         {
-            conexion.Conectar();
-            SqlTransaction transaction = con.BeginTransaction();
-            SqlCommand command = new SqlCommand(xCommandText, con, transaction);
+            SqlTransaction transaction = conexion.Conectar().BeginTransaction();
+            SqlCommand command = new SqlCommand(xCommandText, conexion.Conectar(), transaction);
             command.CommandType = CommandType.Text;
             command.Parameters.Clear();
 
@@ -198,7 +188,7 @@ namespace DAL
             //conexion.Conectar();
             SqlDataReader dr;
             DataTable dt = new DataTable();
-            SqlTransaction TR = con.BeginTransaction();
+            SqlTransaction TR = conexion.Conectar().BeginTransaction();
             SqlCommand comando = new SqlCommand(sp, conexion.Conectar(), TR);
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.Clear();
@@ -233,55 +223,8 @@ namespace DAL
             }
         }
 
-        public void AltaUsuario(BE.Usuario usuario, string sp)
-        {
-            SqlCommand cmd = new SqlCommand(sp, conexion.Conectar());
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@nombre", usuario.Nombre);
-            cmd.Parameters.AddWithValue("@apellido", usuario.Apellido);
-            cmd.Parameters.AddWithValue("@email", usuario.Email);
-            cmd.Parameters.AddWithValue("@pass", usuario.Password);
-            cmd.ExecuteNonQuery();
-            cmd.Parameters.Clear();
-            conexion.Desconectar();
-        }
-
-        public BE.Usuario GetUsuario(string email, string sp)
-        {
-            tabla = new DataTable();
-            SqlCommand cmd = new SqlCommand(sp, conexion.Conectar());
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@email", email);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(tabla);
-            BE.Usuario usr = new BE.Usuario();
-            foreach (DataRow fila in tabla.Rows)
-            {
-                usr.Email = fila[5].ToString();
-                usr.Password = fila[3].ToString();
-                usr.Nombre = fila[1].ToString();
-                usr.Apellido = fila[2].ToString();
-                usr.Contador = int.Parse(fila[4].ToString());
-            }
-            cmd.Parameters.Clear();
-            conexion.Desconectar();
-            return usr;
-        }
-
-        public void Contador(BE.Usuario usuario, string sp)
-        {
-            SqlCommand cmd = new SqlCommand(sp, conexion.Conectar());
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@email", usuario.Email);
-            cmd.ExecuteNonQuery();
-            cmd.Parameters.Clear();
-            conexion.Desconectar();
-        }
-
-
         public DataTable Leer(string query)
         {
-            tabla = new DataTable();
             tabla.Clear();
             SqlCommand cmd = new SqlCommand(query, conexion.Conectar());
             SqlDataReader lector = cmd.ExecuteReader();
@@ -290,12 +233,57 @@ namespace DAL
             return tabla;
         }
 
-        public void Ejecutar(string query)
-        {
-            SqlCommand cmd = new SqlCommand(query, conexion.Conectar());
-            cmd.ExecuteNonQuery();
-            conexion.Desconectar();
-        }
+        //public void AltaUsuario(BE.Usuario usuario, string sp)
+        //{
+        //    SqlCommand cmd = new SqlCommand(sp, conexion.Conectar());
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    cmd.Parameters.AddWithValue("@nombre", usuario.Nombre);
+        //    cmd.Parameters.AddWithValue("@apellido", usuario.Apellido);
+        //    cmd.Parameters.AddWithValue("@email", usuario.Email);
+        //    cmd.Parameters.AddWithValue("@pass", usuario.Password);
+        //    cmd.ExecuteNonQuery();
+        //    cmd.Parameters.Clear();
+        //    conexion.Desconectar();
+        //}
+
+        //public BE.Usuario GetUsuario(string email, string sp)
+        //{
+        //    tabla = new DataTable();
+        //    SqlCommand cmd = new SqlCommand(sp, conexion.Conectar());
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    cmd.Parameters.AddWithValue("@email", email);
+        //    SqlDataAdapter da = new SqlDataAdapter(cmd);
+        //    da.Fill(tabla);
+        //    BE.Usuario usr = new BE.Usuario();
+        //    foreach (DataRow fila in tabla.Rows)
+        //    {
+        //        usr.Email = fila[5].ToString();
+        //        usr.Password = fila[3].ToString();
+        //        usr.Nombre = fila[1].ToString();
+        //        usr.Apellido = fila[2].ToString();
+        //        usr.Contador = int.Parse(fila[4].ToString());
+        //    }
+        //    cmd.Parameters.Clear();
+        //    conexion.Desconectar();
+        //    return usr;
+        //}
+
+        //public void Contador(BE.Usuario usuario, string sp)
+        //{
+        //    SqlCommand cmd = new SqlCommand(sp, conexion.Conectar());
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    cmd.Parameters.AddWithValue("@email", usuario.Email);
+        //    cmd.ExecuteNonQuery();
+        //    cmd.Parameters.Clear();
+        //    conexion.Desconectar();
+        //}
+
+        //public void Ejecutar(string query)
+        //{
+        //    SqlCommand cmd = new SqlCommand(query, conexion.Conectar());
+        //    cmd.ExecuteNonQuery();
+        //    conexion.Desconectar();
+        //}
 
         //public void AltaIdioma(BE.Idioma idioma, string sp)
         //{
@@ -318,83 +306,83 @@ namespace DAL
         //    cmd.Parameters.Clear();
         //    con.Desconectar();
         //}
-        public void GuardarPatente(BE.Componente p, bool esfamilia)
-        {
-            SqlCommand cmd = new SqlCommand("guardarPatente", conexion.Conectar());
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@nombre", p.Nombre);
-            if (esfamilia)
-                cmd.Parameters.AddWithValue("@permiso", DBNull.Value);
+        //public void GuardarPatente(BE.Componente p, bool esfamilia)
+        //{
+        //    SqlCommand cmd = new SqlCommand("guardarPatente", conexion.Conectar());
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    cmd.Parameters.AddWithValue("@nombre", p.Nombre);
+        //    if (esfamilia)
+        //        cmd.Parameters.AddWithValue("@permiso", DBNull.Value);
 
-            else
-                cmd.Parameters.AddWithValue("@permiso", p.Permiso.ToString());
-            cmd.ExecuteNonQuery();
-            cmd.Parameters.Clear();
-            conexion.Desconectar();
-        }
+        //    else
+        //        cmd.Parameters.AddWithValue("@permiso", p.Permiso.ToString());
+        //    cmd.ExecuteNonQuery();
+        //    cmd.Parameters.Clear();
+        //    conexion.Desconectar();
+        //}
 
 
-        public DataTable TraerPatentes()
-        {
-            tabla = new DataTable();
-            tabla.Clear();
-            SqlCommand cmd = new SqlCommand("TraerPatentes", conexion.Conectar());
-            cmd.CommandType = CommandType.StoredProcedure;
-            SqlDataReader lector = cmd.ExecuteReader();
-            tabla.Load(lector);
-            conexion.Desconectar();
-            return tabla;
-        }
+        //public DataTable TraerPatentes()
+        //{
+        //    tabla = new DataTable();
+        //    tabla.Clear();
+        //    SqlCommand cmd = new SqlCommand("TraerPatentes", conexion.Conectar());
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    SqlDataReader lector = cmd.ExecuteReader();
+        //    tabla.Load(lector);
+        //    conexion.Desconectar();
+        //    return tabla;
+        //}
 
-        public DataTable TraerFamilias()
-        {
-            tabla = new DataTable();
-            tabla.Clear();
-            SqlCommand cmd = new SqlCommand("TraerFamilias", conexion.Conectar());
-            cmd.CommandType = CommandType.StoredProcedure;
-            SqlDataReader lector = cmd.ExecuteReader();
-            tabla.Load(lector);
-            conexion.Desconectar();
-            return tabla;
-        }
+        //public DataTable TraerFamilias()
+        //{
+        //    tabla = new DataTable();
+        //    tabla.Clear();
+        //    SqlCommand cmd = new SqlCommand("TraerFamilias", conexion.Conectar());
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    SqlDataReader lector = cmd.ExecuteReader();
+        //    tabla.Load(lector);
+        //    conexion.Desconectar();
+        //    return tabla;
+        //}
 
-        public DataTable TraerTodo(int idFamilia)
-        {
-            tabla = new DataTable();
-            tabla.Clear();
-            SqlCommand cmd = new SqlCommand("TraerTodo", conexion.Conectar());
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idPermisoP", idFamilia);
-            SqlDataReader lector = cmd.ExecuteReader();
-            tabla.Load(lector);
-            conexion.Desconectar();
-            return tabla;
-        }
+        //public DataTable TraerTodo(int idFamilia)
+        //{
+        //    tabla = new DataTable();
+        //    tabla.Clear();
+        //    SqlCommand cmd = new SqlCommand("TraerTodo", conexion.Conectar());
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    cmd.Parameters.AddWithValue("@idPermisoP", idFamilia);
+        //    SqlDataReader lector = cmd.ExecuteReader();
+        //    tabla.Load(lector);
+        //    conexion.Desconectar();
+        //    return tabla;
+        //}
 
-        public DataTable LlenarComponenteUsuario(int usr)
-        {
-            tabla = new DataTable();
-            tabla.Clear();
-            SqlCommand cmd = new SqlCommand("LlenarComponenteUsuario", conexion.Conectar());
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@idUsr", usr);
-            SqlDataReader lector = cmd.ExecuteReader();
-            tabla.Load(lector);
-            conexion.Desconectar();
-            return tabla;
-        }
+        //public DataTable LlenarComponenteUsuario(int usr)
+        //{
+        //    tabla = new DataTable();
+        //    tabla.Clear();
+        //    SqlCommand cmd = new SqlCommand("LlenarComponenteUsuario", conexion.Conectar());
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    cmd.Parameters.AddWithValue("@idUsr", usr);
+        //    SqlDataReader lector = cmd.ExecuteReader();
+        //    tabla.Load(lector);
+        //    conexion.Desconectar();
+        //    return tabla;
+        //}
 
-        public DataTable TraerUsuarios()
-        {
-            tabla = new DataTable();
-            tabla.Clear();
-            SqlCommand cmd = new SqlCommand("TraerUsuarios", conexion.Conectar());
-            cmd.CommandType = CommandType.StoredProcedure;
-            SqlDataReader lector = cmd.ExecuteReader();
-            tabla.Load(lector);
-            conexion.Desconectar();
-            return tabla;
-        }
+        //public DataTable TraerUsuarios()
+        //{
+        //    tabla = new DataTable();
+        //    tabla.Clear();
+        //    SqlCommand cmd = new SqlCommand("TraerUsuarios", conexion.Conectar());
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    SqlDataReader lector = cmd.ExecuteReader();
+        //    tabla.Load(lector);
+        //    conexion.Desconectar();
+        //    return tabla;
+        //}
 
     }
 }

@@ -7,15 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL
+namespace DAL 
 {
-    public class PermisosDAL
+    public class PermisosDAL : Acceso
     {
-        private Acceso acceso;
+        //private Acceso acceso;
+        private DataTable dt;
 
         public PermisosDAL()
         {
-            acceso = new Acceso();
+            //acceso = new Acceso();
+            dt = new DataTable();
         }
 
         public Array TraerPermisos()
@@ -28,7 +30,15 @@ namespace DAL
         {
             try
             {
-                acceso.GuardarPatente(c, esfamilia);
+                string sp = "guardarPatente";
+                xParameters.Parameters.Clear();
+                xParameters.Parameters.AddWithValue("@nombre", c.Nombre);
+                if (esfamilia)
+                    xParameters.Parameters.AddWithValue("@permiso", DBNull.Value);
+
+                else
+                    xParameters.Parameters.AddWithValue("@permiso", c.Permiso.ToString());
+                StoredProcedure(sp);
             }
             catch 
             {
@@ -41,13 +51,18 @@ namespace DAL
         {
             try
             {
-                string query = "delete from Familia_Patente where idPermisoPadre=" + f.Id+";";
-                acceso.Ejecutar(query);
+                xCommandText = "delete from Familia_Patente where idPermisoPadre=@idPermisoPadre;";
+                xParameters.Parameters.Clear();
+                xParameters.Parameters.AddWithValue("@idPermisoPadre", f.Id);
+                executeNonQuery();
 
                 foreach (var item in f.Hijos)
                 {
-                    string sql = "insert into Familia_Patente (idPermisoPadre,idPermisoHijo) values ("+ f.Id + ","+ item.Id + ") ";
-                    acceso.Ejecutar(sql);
+                    xCommandText = "insert into Familia_Patente (idPermisoPadre,idPermisoHijo) values (@idPermisoPadre,@idItem);";
+                    xParameters.Parameters.Clear();
+                    xParameters.Parameters.AddWithValue("@idPermisoPadre", f.Id);
+                    xParameters.Parameters.AddWithValue("@idItem", item.Id);
+                    executeNonQuery();
                 }
             }
             catch 
@@ -59,9 +74,10 @@ namespace DAL
         public IList<Patente> TraerPatentes()
         {
             var lista = new List<Patente>();
-            DataTable tabla = new DataTable();
-            tabla = acceso.TraerPatentes();
-            foreach (DataRow fila in tabla.Rows)
+            dt.Clear();
+            string sp = "TraerPatentes";
+            dt = StoredProcedure(sp);
+            foreach (DataRow fila in dt.Rows)
             {
                 BE.Patente p = new BE.Patente();
                 p.Id = int.Parse(fila[0].ToString());
@@ -77,9 +93,10 @@ namespace DAL
         public IList<Familia> TraerFamilias()
         {
             var lista = new List<Familia>();
-            DataTable tabla = new DataTable();
-            tabla = acceso.TraerFamilias();
-            foreach (DataRow fila in tabla.Rows)
+            dt.Clear();
+            string sp = "TraerFamilias";
+            dt = StoredProcedure(sp);
+            foreach (DataRow fila in dt.Rows)
             {
                 BE.Familia f = new BE.Familia();
                 f.Nombre = fila[1].ToString();
@@ -91,14 +108,16 @@ namespace DAL
         }
         public IList<Componente> TraerTodo(int idFamilia)
         {
-            DataTable dtt = new DataTable();
-            dtt.Clear();
-            dtt = acceso.TraerTodo(idFamilia);
+            dt.Clear();
+            string sp = "TraerTodo";
+            xParameters.Parameters.Clear();
+            xParameters.Parameters.AddWithValue("@idPermisoP", idFamilia);
+            dt = StoredProcedure(sp);
 
             var lista = new List<Componente>();
-            if (dtt.Rows.Count > 0)
+            if (dt.Rows.Count > 0)
             {
-                foreach (DataRow rows in dtt.Rows)
+                foreach (DataRow rows in dt.Rows)
                 {
                     int idpadre = 0;
                     if (rows["idPermisoPadre"] != DBNull.Value)
@@ -147,63 +166,111 @@ namespace DAL
 
         public void LlenarComponenteUsuario(Usuario usr)
         {
-            DataTable dt = new DataTable();
-            dt.Clear();
-            dt = acceso.LlenarComponenteUsuario(usr.Id);
-
-            if (dt.Rows.Count > 0)
+            try
             {
-                foreach (DataRow row in dt.Rows)
+                dt.Clear();
+                string sp = "LlenarComponenteUsuario";
+                xParameters.Parameters.Clear();
+                xParameters.Parameters.AddWithValue("@idUsr", usr);
+                dt = StoredProcedure(sp);
+
+                if (dt.Rows.Count > 0)
                 {
-                    int id = 0;
-                    id = int.Parse(row["id"].ToString());
-                    string nombre = row["nombre"].ToString();
-                    string permiso = String.Empty;
-                    if (row["permiso"].ToString() != String.Empty) permiso = row["permiso"].ToString();
-
-                    Componente componente;
-                    if (!String.IsNullOrEmpty(permiso))
+                    foreach (DataRow row in dt.Rows)
                     {
-                        componente = new Patente();
-                        componente.Id = id;
-                        componente.Nombre = nombre;
-                        componente.Permiso = (TipoPermiso)Enum.Parse(typeof(TipoPermiso), permiso);
-                        usr.Permisos.Add(componente);
-                    }
-                    else
-                    {
-                        componente = new Familia();
-                        componente.Id = id;
-                        componente.Nombre = nombre;
+                        int id = 0;
+                        id = int.Parse(row["id"].ToString());
+                        string nombre = row["nombre"].ToString();
+                        string permiso = String.Empty;
+                        if (row["permiso"].ToString() != String.Empty) permiso = row["permiso"].ToString();
 
-                        var familia = TraerTodo(componente.Id);
-                        foreach (var fam in familia)
+                        Componente componente;
+                        if (!String.IsNullOrEmpty(permiso))
                         {
-                            componente.AgregarHijo(fam);
+                            componente = new Patente();
+                            componente.Id = id;
+                            componente.Nombre = nombre;
+                            componente.Permiso = (TipoPermiso)Enum.Parse(typeof(TipoPermiso), permiso);
+                            usr.Permisos.Add(componente);
                         }
-                        usr.Permisos.Add(componente);
+                        else
+                        {
+                            componente = new Familia();
+                            componente.Id = id;
+                            componente.Nombre = nombre;
+
+                            var familia = TraerTodo(componente.Id);
+                            foreach (var fam in familia)
+                            {
+                                componente.AgregarHijo(fam);
+                            }
+                            usr.Permisos.Add(componente);
+                        }
                     }
                 }
+            }
+            catch
+            {
+                throw new Exception($"Error al llenar el componente del usuario {usr.Email}");
             }
 
         }
         public void LlenarFamiliaComponente(Familia familia)
         {
-            familia.VaciarHijos();
-            foreach (var item in TraerTodo(familia.Id))
+            try
             {
-                familia.AgregarHijo(item);
+                familia.VaciarHijos();
+                foreach (var item in TraerTodo(familia.Id))
+                {
+                    familia.AgregarHijo(item);
+                }
+            }
+            catch 
+            {
+                throw new Exception($"Error al llenar componentes de la familia {familia.Nombre}");
             }
         }
 
         public Componente TraerHijos(Componente Familia)
         {
-            foreach (var item in TraerTodo(Familia.Id))
+            try
             {
-                Familia.AgregarHijo(item);
+                foreach (var item in TraerTodo(Familia.Id))
+                {
+                    Familia.AgregarHijo(item);
+                }
+
+                return Familia;
+            }
+            catch
+            {
+                throw new Exception($"Error al traer los hijos de la familia {Familia.Nombre}");
+            }
+        }
+
+        public IList<Patente> CargarMenuPermisos(int idUsuario)
+        {
+            try
+            {
+                var lista = new List<Patente>();
+                dt.Clear();
+                string sp = "TraerPermisosUsuario";
+                xParameters.Parameters.Clear();
+                xParameters.Parameters.AddWithValue("@idUsuario", idUsuario);
+                dt = StoredProcedure(sp);
+                foreach (DataRow fila in dt.Rows)
+                {
+                    BE.Patente p = new BE.Patente();
+                    p.Permiso = (BE.TipoPermiso)Enum.Parse(typeof(BE.TipoPermiso), fila[0].ToString());
+                    lista.Add(p);
+                }
+                return lista;
+            }
+            catch
+            {
+                throw new Exception("Error validar los permisos para el menu");
             }
 
-            return Familia;
         }
     }
 }
