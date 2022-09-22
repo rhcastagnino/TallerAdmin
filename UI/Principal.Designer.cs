@@ -60,7 +60,7 @@
             this.miSolicitarRepu = new System.Windows.Forms.ToolStripMenuItem();
             this.miSupervisar = new System.Windows.Forms.ToolStripMenuItem();
             this.menuRepuesto = new System.Windows.Forms.ToolStripMenuItem();
-            this.registrarToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.miRegistrarRepuesto = new System.Windows.Forms.ToolStripMenuItem();
             this.altaToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.bajaToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
@@ -123,6 +123,7 @@
             this.miAltaEmple,
             this.miBajaEmple,
             this.miModiEmple});
+            this.miRegistrarEmple.Enabled = false;
             this.miRegistrarEmple.Name = "miRegistrarEmple";
             this.miRegistrarEmple.Size = new System.Drawing.Size(125, 22);
             this.miRegistrarEmple.Tag = "P_miRegistrarEmple";
@@ -151,6 +152,7 @@
             // 
             // miConsultarEmple
             // 
+            this.miConsultarEmple.Enabled = false;
             this.miConsultarEmple.Name = "miConsultarEmple";
             this.miConsultarEmple.Size = new System.Drawing.Size(125, 22);
             this.miConsultarEmple.Tag = "P_miConsultarEmple";
@@ -174,6 +176,7 @@
             this.miAltaOmni,
             this.miBajaOmni,
             this.miModiOmni});
+            this.miRegistrarOmnibus.Enabled = false;
             this.miRegistrarOmnibus.Name = "miRegistrarOmnibus";
             this.miRegistrarOmnibus.Size = new System.Drawing.Size(125, 22);
             this.miRegistrarOmnibus.Tag = "P_miRegistrarOmnibus";
@@ -202,6 +205,7 @@
             // 
             // miConsultarOmni
             // 
+            this.miConsultarOmni.Enabled = false;
             this.miConsultarOmni.Name = "miConsultarOmni";
             this.miConsultarOmni.Size = new System.Drawing.Size(125, 22);
             this.miConsultarOmni.Tag = "P_miConsultarOmni";
@@ -209,6 +213,7 @@
             // 
             // miEstatus
             // 
+            this.miEstatus.Enabled = false;
             this.miEstatus.Name = "miEstatus";
             this.miEstatus.Size = new System.Drawing.Size(125, 22);
             this.miEstatus.Tag = "P_miEstatus";
@@ -216,6 +221,7 @@
             // 
             // miEvaluarOmni
             // 
+            this.miEvaluarOmni.Enabled = false;
             this.miEvaluarOmni.Name = "miEvaluarOmni";
             this.miEvaluarOmni.Size = new System.Drawing.Size(125, 22);
             this.miEvaluarOmni.Tag = "P_miEvaluarOmni";
@@ -238,6 +244,7 @@
             this.altaToolStripMenuItem2,
             this.bajaToolStripMenuItem2,
             this.modificarToolStripMenuItem2});
+            this.registrarToolStripMenuItem2.Enabled = false;
             this.registrarToolStripMenuItem2.Name = "registrarToolStripMenuItem2";
             this.registrarToolStripMenuItem2.Size = new System.Drawing.Size(125, 22);
             this.registrarToolStripMenuItem2.Text = "Registrar";
@@ -262,6 +269,7 @@
             // 
             // consultarToolStripMenuItem2
             // 
+            this.consultarToolStripMenuItem2.Enabled = false;
             this.consultarToolStripMenuItem2.Name = "consultarToolStripMenuItem2";
             this.consultarToolStripMenuItem2.Size = new System.Drawing.Size(125, 22);
             this.consultarToolStripMenuItem2.Text = "Consultar";
@@ -285,6 +293,7 @@
             this.miAltaRepa,
             this.miBajaRepa,
             this.miModiRepa});
+            this.miRegistrarRepa.Enabled = false;
             this.miRegistrarRepa.Name = "miRegistrarRepa";
             this.miRegistrarRepa.Size = new System.Drawing.Size(173, 22);
             this.miRegistrarRepa.Tag = "P_miRegistrarRepa";
@@ -313,6 +322,7 @@
             // 
             // miConsultarRepa
             // 
+            this.miConsultarRepa.Enabled = false;
             this.miConsultarRepa.Name = "miConsultarRepa";
             this.miConsultarRepa.Size = new System.Drawing.Size(173, 22);
             this.miConsultarRepa.Tag = "P_miConsultarRepa";
@@ -320,6 +330,7 @@
             // 
             // miAsignarRepa
             // 
+            this.miAsignarRepa.Enabled = false;
             this.miAsignarRepa.Name = "miAsignarRepa";
             this.miAsignarRepa.Size = new System.Drawing.Size(173, 22);
             this.miAsignarRepa.Tag = "P_miAsignarRepa";
@@ -327,6 +338,7 @@
             // 
             // miSolicitarRepu
             // 
+            this.miSolicitarRepu.Enabled = false;
             this.miSolicitarRepu.Name = "miSolicitarRepu";
             this.miSolicitarRepu.Size = new System.Drawing.Size(173, 22);
             this.miSolicitarRepu.Tag = "P_miSolicitarRepu";
@@ -334,6 +346,7 @@
             // 
             // miSupervisar
             // 
+            this.miSupervisar.Enabled = false;
             this.miSupervisar.Name = "miSupervisar";
             this.miSupervisar.Size = new System.Drawing.Size(173, 22);
             this.miSupervisar.Tag = "P_miSupervisar";
@@ -342,47 +355,49 @@
             // menuRepuesto
             // 
             this.menuRepuesto.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.registrarToolStripMenuItem4,
+            this.miRegistrarRepuesto,
             this.miConsultarRespuesto});
             this.menuRepuesto.Name = "menuRepuesto";
             this.menuRepuesto.Size = new System.Drawing.Size(68, 20);
             this.menuRepuesto.Tag = "P_MenuRepuesto";
             this.menuRepuesto.Text = "Repuesto";
             // 
-            // registrarToolStripMenuItem4
+            // miRegistrarRepuesto
             // 
-            this.registrarToolStripMenuItem4.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.miRegistrarRepuesto.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.altaToolStripMenuItem4,
             this.bajaToolStripMenuItem4,
             this.modificarToolStripMenuItem4});
-            this.registrarToolStripMenuItem4.Enabled = false;
-            this.registrarToolStripMenuItem4.Name = "registrarToolStripMenuItem4";
-            this.registrarToolStripMenuItem4.Size = new System.Drawing.Size(125, 22);
-            this.registrarToolStripMenuItem4.Text = "Registrar";
-            this.registrarToolStripMenuItem4.Visible = false;
+            this.miRegistrarRepuesto.Enabled = false;
+            this.miRegistrarRepuesto.Name = "miRegistrarRepuesto";
+            this.miRegistrarRepuesto.Size = new System.Drawing.Size(180, 22);
+            this.miRegistrarRepuesto.Tag = "P_miRegistrarRepuesto";
+            this.miRegistrarRepuesto.Text = "Registrar";
+            this.miRegistrarRepuesto.Visible = false;
             // 
             // altaToolStripMenuItem4
             // 
             this.altaToolStripMenuItem4.Name = "altaToolStripMenuItem4";
-            this.altaToolStripMenuItem4.Size = new System.Drawing.Size(125, 22);
+            this.altaToolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
             this.altaToolStripMenuItem4.Text = "Alta";
             // 
             // bajaToolStripMenuItem4
             // 
             this.bajaToolStripMenuItem4.Name = "bajaToolStripMenuItem4";
-            this.bajaToolStripMenuItem4.Size = new System.Drawing.Size(125, 22);
+            this.bajaToolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
             this.bajaToolStripMenuItem4.Text = "Baja";
             // 
             // modificarToolStripMenuItem4
             // 
             this.modificarToolStripMenuItem4.Name = "modificarToolStripMenuItem4";
-            this.modificarToolStripMenuItem4.Size = new System.Drawing.Size(125, 22);
+            this.modificarToolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
             this.modificarToolStripMenuItem4.Text = "Modificar";
             // 
             // miConsultarRespuesto
             // 
+            this.miConsultarRespuesto.Enabled = false;
             this.miConsultarRespuesto.Name = "miConsultarRespuesto";
-            this.miConsultarRespuesto.Size = new System.Drawing.Size(125, 22);
+            this.miConsultarRespuesto.Size = new System.Drawing.Size(180, 22);
             this.miConsultarRespuesto.Tag = "P_miConsultarRespuesto";
             this.miConsultarRespuesto.Text = "Consultar";
             // 
@@ -399,6 +414,7 @@
             // 
             // miIngresos
             // 
+            this.miIngresos.Enabled = false;
             this.miIngresos.Name = "miIngresos";
             this.miIngresos.Size = new System.Drawing.Size(127, 22);
             this.miIngresos.Tag = "P_miIngresos";
@@ -406,6 +422,7 @@
             // 
             // miConsultar
             // 
+            this.miConsultar.Enabled = false;
             this.miConsultar.Name = "miConsultar";
             this.miConsultar.Size = new System.Drawing.Size(127, 22);
             this.miConsultar.Tag = "P_miConsultar";
@@ -413,6 +430,7 @@
             // 
             // miInventario
             // 
+            this.miInventario.Enabled = false;
             this.miInventario.Name = "miInventario";
             this.miInventario.Size = new System.Drawing.Size(127, 22);
             this.miInventario.Tag = "P_miInventario";
@@ -422,6 +440,7 @@
             // 
             this.menuSolicitudes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.miSolicitudes});
+            this.menuSolicitudes.Enabled = false;
             this.menuSolicitudes.Name = "menuSolicitudes";
             this.menuSolicitudes.Size = new System.Drawing.Size(133, 20);
             this.menuSolicitudes.Tag = "P_MenuSolicitudes";
@@ -438,6 +457,7 @@
             // 
             this.menuReportes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.miRepoCostoxO});
+            this.menuReportes.Enabled = false;
             this.menuReportes.Name = "menuReportes";
             this.menuReportes.Size = new System.Drawing.Size(65, 20);
             this.menuReportes.Tag = "P_MenuReportes";
@@ -454,6 +474,7 @@
             // 
             this.menuIdioma.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.imIdiomaNuevo});
+            this.menuIdioma.Enabled = false;
             this.menuIdioma.Name = "menuIdioma";
             this.menuIdioma.Size = new System.Drawing.Size(56, 20);
             this.menuIdioma.Tag = "P_menuIdioma";
@@ -490,6 +511,7 @@
             this.menuPermisos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.miGestionPatentesFamilias,
             this.miGestionPermisosUsuario});
+            this.menuPermisos.Enabled = false;
             this.menuPermisos.Name = "menuPermisos";
             this.menuPermisos.Size = new System.Drawing.Size(67, 20);
             this.menuPermisos.Tag = "P_menuPermisos";
@@ -598,7 +620,7 @@
         private System.Windows.Forms.ToolStripMenuItem miSolicitarRepu;
         private System.Windows.Forms.ToolStripMenuItem miSupervisar;
         private System.Windows.Forms.ToolStripMenuItem menuRepuesto;
-        private System.Windows.Forms.ToolStripMenuItem registrarToolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem miRegistrarRepuesto;
         private System.Windows.Forms.ToolStripMenuItem altaToolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem bajaToolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem modificarToolStripMenuItem4;
