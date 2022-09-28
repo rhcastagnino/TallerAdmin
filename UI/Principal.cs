@@ -24,6 +24,7 @@ namespace UI
             UpdateLanguage(Session.GetInstance.Usuario.Idioma);
             Session.SuscribirObservador(this);
             //MostrarIdiomasDisponibles();
+            //CargarMenuPermisos();
         }
 
         private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -148,62 +149,56 @@ namespace UI
 
         private void CargarMenuPermisos()
         {
-            IList<BE.Patente> lista = new List<BE.Patente>();
-            lista = permisoBLL.CargarMenuPermisos(Session.GetInstance.Usuario.Id);
-
-            foreach (var p in lista)
+            try
             {
-                foreach (ToolStripMenuItem mnuitOpcion in this.menuStrip1.Items)
-                {
-                    foreach (ToolStripMenuItem miitem in mnuitOpcion.DropDownItems)
-                    {
-                        if (p.Permiso.Equals("EmpleadoABM"))
-                            if (miitem.Tag.Equals("P_miRegistrarEmple")) miitem.Enabled = true;
-                        if (p.Permiso.Equals("EmpleadoConsultar"))
-                            if (miitem.Tag.Equals("P_miConsultarEmple")) miitem.Enabled = true;
-                        if (p.Permiso.Equals("OmnibusABM"))
-                            if (miitem.Tag.Equals("P_miRegistrarOmnibus")) miitem.Enabled = true;
-                        if (p.Permiso.Equals("OmnibusConsultar"))
-                            if (miitem.Tag.Equals("P_miConsultarOmni")) miitem.Enabled = true;
-                        if (p.Permiso.Equals("OmnibusStatus"))
-                            if (miitem.Tag.Equals("P_miEstatus")) miitem.Enabled = true;
-                        if (p.Permiso.Equals("OmnibusEvaluar"))
-                            if (miitem.Tag.Equals("P_miEvaluarOmni")) miitem.Enabled = true;
-                        if (p.Permiso.Equals("ReparacionABM"))
-                            if (miitem.Tag.Equals("P_miRegistrarRepa")) miitem.Enabled = true;
-                        if (p.Permiso.Equals("ReparacionConsultar"))
-                            if (miitem.Tag.Equals("P_miConsultarRepa")) miitem.Enabled = true;
-                        if (p.Permiso.Equals("ReparacionAsignar"))
-                            if (miitem.Tag.Equals("P_miAsignarRepa")) miitem.Enabled = true;
-                        if (p.Permiso.Equals("ReparacionSoliRepu"))
-                            if (miitem.Tag.Equals("P_miSolicitarRepu")) miitem.Enabled = true;
-                        if (p.Permiso.Equals("ReparacionSupervisar"))
-                            if (miitem.Tag.Equals("P_miSupervisar")) miitem.Enabled = true;
-                        //if (p.Permiso.Equals("RepuestoABM"))
-                        //    if (miitem.Tag.Equals("P_miRegistrarRepuesto")) miitem.Enabled = true;
-                        if (p.Permiso.Equals("RepuestoConsultar"))
-                            if (miitem.Tag.Equals("P_miConsultarRespuesto")) miitem.Enabled = true;
-                        if (p.Permiso.Equals("StockIngresos"))
-                            if (miitem.Tag.Equals("P_miIngresos")) miitem.Enabled = true;
-                        if (p.Permiso.Equals("StockInventario"))
-                            if (miitem.Tag.Equals("P_miConsultar")) miitem.Enabled = true;
-                        if (p.Permiso.Equals("StockConsultar"))
-                            if (miitem.Tag.Equals("P_miInventario")) miitem.Enabled = true;
+                var lista = new List<Patente>();
+                permisoBLL = new PermisoBLL();
+                int idUsr = Session.GetInstance.Usuario.Id;
+                lista = (List<Patente>)permisoBLL.CargarMenuPermisos(idUsr);
 
+                foreach (var p in lista)
+                {
+                    foreach (ToolStripMenuItem mnuitOpcion in this.menuStrip1.Items)
+                    {
+                        foreach (ToolStripMenuItem miitem in mnuitOpcion.DropDownItems)
+                        {
+                            if (miitem.Tag != null)
+                            {
+                                if (p.Permiso.ToString() == "EmpleadoABM" && miitem.Tag.Equals("P_miRegistrarEmple")) miitem.Visible = true;
+                                if (p.Permiso.ToString() == "EmpleadoConsultar" && miitem.Tag.Equals("P_miConsultarEmple")) miitem.Visible = true;
+                                if (p.Permiso.ToString() == "OmnibusABM" && miitem.Tag.Equals("P_miRegistrarOmnibus")) miitem.Visible = true;
+                                if (p.Permiso.ToString() == "OmnibusConsultar" && miitem.Tag.Equals("P_miConsultarOmni")) miitem.Visible = true;
+                                if (p.Permiso.ToString() == "OmnibusStatus" && miitem.Tag.Equals("P_miEstatus")) miitem.Visible = true;
+                                if (p.Permiso.ToString() == "OmnibusEvaluar" && miitem.Tag.Equals("P_miEvaluarOmni")) miitem.Visible = true;
+                                if (p.Permiso.ToString() == "ReparacionABM" && miitem.Tag.Equals("P_miRegistrarRepa")) miitem.Visible = true;
+                                if (p.Permiso.ToString() == "ReparacionConsultar" && miitem.Tag.Equals("P_miConsultarRepa")) miitem.Visible = true;
+                                if (p.Permiso.ToString() == "ReparacionAsignar" && miitem.Tag.Equals("P_miAsignarRepa")) miitem.Visible = true;
+                                if (p.Permiso.ToString() == "ReparacionSoliRepu" && miitem.Tag.Equals("P_miSolicitarRepu")) miitem.Visible = true;
+                                if (p.Permiso.ToString() == "ReparacionSupervisar" && miitem.Tag.Equals("P_miSupervisar")) miitem.Visible = true;
+                                //if (p.Permiso.ToString() =="RepuestoABM" && miitem.Tag.Equals("P_miRegistrarRepuesto")) miitem.Visible = true;
+                                if (p.Permiso.ToString() == "RepuestoConsultar" && miitem.Tag.Equals("P_miConsultarRespuesto")) miitem.Visible = true;
+                                if (p.Permiso.ToString() == "StockIngresos" && miitem.Tag.Equals("P_miIngresos")) miitem.Visible = true;
+                                if (p.Permiso.ToString() == "StockInventario" && miitem.Tag.Equals("P_miConsultar")) miitem.Visible = true;
+                                if (p.Permiso.ToString() == "StockConsultar" && miitem.Tag.Equals("P_miInventario")) miitem.Visible = true;
+                                if (p.Permiso.ToString() == "ManagerIdioma" && miitem.Tag.Equals("P_imIdiomaNuevo")) mnuitOpcion.Visible = true;
+                            }
+                        }
+
+                        if (mnuitOpcion.Tag != null)
+                        {
+                            if (p.Permiso.ToString() == "Solicitudes" && mnuitOpcion.Tag.Equals("P_MenuSolicitudes")) mnuitOpcion.Visible = true;
+                            if (p.Permiso.ToString() == "CostosOmnibus" && mnuitOpcion.Tag.Equals("P_MenuReportes")) mnuitOpcion.Visible = true;
+                            if (p.Permiso.ToString() == "AsignarFamiliaPatente" && mnuitOpcion.Tag.Equals("P_menuPermisos")) mnuitOpcion.Visible = true;
+                        }
                     }
 
-                    if (p.Permiso.Equals("Solicitudes"))
-                        if (mnuitOpcion.Tag.Equals("P_MenuSolicitudes")) mnuitOpcion.Enabled = true;
-                    if (p.Permiso.Equals("CostosOmnibus"))
-                        if (mnuitOpcion.Tag.Equals("P_MenuReportes")) mnuitOpcion.Enabled = true;
-                    if (p.Permiso.Equals("AsignarFamiliaPatente"))
-                        if (mnuitOpcion.Tag.Equals("P_menuPermisos")) mnuitOpcion.Enabled = true;
-                    if (p.Permiso.Equals("ManagerIdioma"))
-                        if (mnuitOpcion.Tag.Equals("P_menuIdioma")) mnuitOpcion.Enabled = true;
-
                 }
-
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
     }
 }

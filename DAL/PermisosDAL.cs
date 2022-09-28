@@ -73,6 +73,7 @@ namespace DAL
 
         public IList<Patente> TraerPatentes()
         {
+            dt = new DataTable();
             var lista = new List<Patente>();
             dt.Clear();
             string sp = "TraerPatentes";
@@ -92,6 +93,7 @@ namespace DAL
 
         public IList<Familia> TraerFamilias()
         {
+            dt = new DataTable();
             var lista = new List<Familia>();
             dt.Clear();
             string sp = "TraerFamilias";
@@ -108,6 +110,7 @@ namespace DAL
         }
         public IList<Componente> TraerTodo(int idFamilia)
         {
+            dt = new DataTable();
             dt.Clear();
             string sp = "TraerTodo";
             xParameters.Parameters.Clear();
@@ -168,10 +171,11 @@ namespace DAL
         {
             try
             {
+                dt = new DataTable();
                 dt.Clear();
                 string sp = "LlenarComponenteUsuario";
                 xParameters.Parameters.Clear();
-                xParameters.Parameters.AddWithValue("@idUsr", usr);
+                xParameters.Parameters.AddWithValue("@idUsr", usr.Id);
                 dt = StoredProcedure(sp);
 
                 if (dt.Rows.Count > 0)
@@ -252,7 +256,8 @@ namespace DAL
         {
             try
             {
-                var lista = new List<Patente>();
+                dt = new DataTable();
+                IList<Patente> lista = new List<Patente>();
                 dt.Clear();
                 string sp = "TraerPermisosUsuario";
                 xParameters.Parameters.Clear();

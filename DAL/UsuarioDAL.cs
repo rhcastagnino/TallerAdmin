@@ -55,6 +55,7 @@ namespace DAL
                     usuario.Nombre = fila[1].ToString();
                     usuario.Apellido = fila[2].ToString();
                     usuario.Contador = int.Parse(fila[4].ToString());
+                    usuario.Id = int.Parse(fila[0].ToString());
                 }
                 return usuario;
             }
@@ -124,10 +125,11 @@ namespace DAL
             string sp = "TraerUsuarios";
             dt = new DataTable();
             var lista = new List<Usuario>();
-            xParameters.Parameters.Clear();
+            dt.Clear();
             dt = StoredProcedure(sp);
             foreach (DataRow fila in dt.Rows)
             {
+                usuario = new Usuario();
                 usuario.Email = fila[5].ToString();
                 usuario.Nombre = fila[1].ToString();
                 usuario.Apellido = fila[2].ToString();

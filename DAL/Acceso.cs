@@ -11,13 +11,13 @@ namespace DAL
     public class Acceso : Conexion
     {
         private Conexion conexion = new Conexion();
-        private DataTable tabla;// = new DataTable();
+        private DataTable dt;// = new DataTable();
         private string xTextCommand;
         private SqlCommand parameters = new SqlCommand();
 
         public Acceso()
         {
-            tabla = new DataTable();
+            dt = new DataTable();
         }
 
         protected string xCommandText
@@ -187,7 +187,7 @@ namespace DAL
         {
             //conexion.Conectar();
             SqlDataReader dr;
-            DataTable dt = new DataTable();
+            dt = new DataTable();
             SqlTransaction TR = conexion.Conectar().BeginTransaction();
             SqlCommand comando = new SqlCommand(sp, conexion.Conectar(), TR);
             comando.CommandType = CommandType.StoredProcedure;
@@ -225,12 +225,13 @@ namespace DAL
 
         public DataTable Leer(string query)
         {
-            tabla.Clear();
+            dt = new DataTable();
+            dt.Clear();
             SqlCommand cmd = new SqlCommand(query, conexion.Conectar());
             SqlDataReader lector = cmd.ExecuteReader();
-            tabla.Load(lector);
+            dt.Load(lector);
             conexion.Desconectar();
-            return tabla;
+            return dt;
         }
 
         //public void AltaUsuario(BE.Usuario usuario, string sp)

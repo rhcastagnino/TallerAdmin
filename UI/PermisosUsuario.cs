@@ -17,9 +17,9 @@ namespace UI
 {
     public partial class PermisosUsuario : Form, IIdiomaObserver
     {
-        PermisoBLL permisoBLL = new PermisoBLL();
-        UsuarioBLL usuarioBLL = new UsuarioBLL();
-        Usuario usr = new Usuario();
+        private PermisoBLL permisoBLL = new PermisoBLL();
+        private UsuarioBLL usuarioBLL = new UsuarioBLL();
+        private Usuario usr = new Usuario();
 
         public static IIdioma idioma;
         public PermisosUsuario()
@@ -70,76 +70,96 @@ namespace UI
 
         private void btnUsr_Click(object sender, EventArgs e)
         {
-            usr = (Usuario)this.comboUsr.SelectedItem;
-            Usuario user = new Usuario();
-            user.Id = usr.Id;
-            user.Email = usr.Email;
-            permisoBLL.LlenarComponenteUsuario(user);
-            MostrarPermisos(user);
+            usr = new Usuario();
+            try
+            {
+                usr = (Usuario)this.comboUsr.SelectedItem;
+                permisoBLL.LlenarComponenteUsuario(usr);
+                MostrarPermisos(usr);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnPatente_Click(object sender, EventArgs e)
         {
-            if (usr != null)
+            try
             {
-                var patente = (Patente)comboPermisos.SelectedItem;
-                if (patente != null)
+                if (usr != null)
                 {
-                    var esta = false;
+                    var patente = (Patente)comboPermisos.SelectedItem;
+                    if (patente != null)
+                    {
+                        var esta = false;
 
-                    foreach (var item in usr.Permisos)
-                    {
-                        if (permisoBLL.Existe(item, patente.Id))
+                        foreach (var item in usr.Permisos)
                         {
-                            esta = true;
-                            break;
+                            if (permisoBLL.Existe(item, patente.Id))
+                            {
+                                esta = true;
+                                break;
+                            }
                         }
-                    }
-                    if (esta)
-                        MessageBox.Show("El usuario ya tiene la patente indicada");
-                    else
-                    {
+                        if (esta)
+                            throw new Exception("El usuario ya tiene la patente indicada");
+                        else
                         {
-                            usr.Permisos.Add(patente);
-                            MostrarPermisos(usr);
+                            {
+                                usr.Permisos.Add(patente);
+                                MostrarPermisos(usr);
+                            }
                         }
                     }
                 }
+                else
+                    throw new Exception("Seleccione un usuario");
             }
-            else
-                MessageBox.Show("Seleccione un usuario");
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnFamilia_Click(object sender, EventArgs e)
         {
-            if (usr != null)
+            try 
             {
-                var flia = (Familia)comboFamilia.SelectedItem;
-                if (flia != null)
+                if (usr != null)
                 {
-                    var esta = false;
-                    foreach (var item in usr.Permisos)
+                    var flia = (Familia)comboFamilia.SelectedItem;
+                    if (flia != null)
                     {
-                        if (permisoBLL.Existe(item, flia.Id))
+                        var esta = false;
+                        foreach (var item in usr.Permisos)
                         {
-                            esta = true;
+                            if (permisoBLL.Existe(item, flia.Id))
+                            {
+                                esta = true;
+                                break;
+                            }
                         }
-                    }
 
-                    if (esta)
-                        MessageBox.Show("El usuario ya tiene la familia indicada");
-                    else
-                    {
+                        if (esta)
+                            throw new Exception("El usuario ya tiene la familia indicada");
+                        else
                         {
-                            permisoBLL.LlenarFamiliaComponente(flia);
-                            usr.Permisos.Add(flia);
-                            MostrarPermisos(usr);
+                            {
+                                usr.Permisos.Add(flia);
+                                permisoBLL.LlenarFamiliaComponente(flia);
+                                MostrarPermisos(usr);
+                            }
                         }
                     }
                 }
+                else
+                    throw new Exception("Seleccione un usuario");
             }
-            else
-                MessageBox.Show("Seleccione un usuario");
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void PU_btnGuardar_Click(object sender, EventArgs e)

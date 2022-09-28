@@ -123,11 +123,11 @@
             this.miAltaEmple,
             this.miBajaEmple,
             this.miModiEmple});
-            this.miRegistrarEmple.Enabled = false;
             this.miRegistrarEmple.Name = "miRegistrarEmple";
-            this.miRegistrarEmple.Size = new System.Drawing.Size(125, 22);
+            this.miRegistrarEmple.Size = new System.Drawing.Size(180, 22);
             this.miRegistrarEmple.Tag = "P_miRegistrarEmple";
             this.miRegistrarEmple.Text = "Registrar";
+            this.miRegistrarEmple.Visible = false;
             // 
             // miAltaEmple
             // 
@@ -152,11 +152,11 @@
             // 
             // miConsultarEmple
             // 
-            this.miConsultarEmple.Enabled = false;
             this.miConsultarEmple.Name = "miConsultarEmple";
-            this.miConsultarEmple.Size = new System.Drawing.Size(125, 22);
+            this.miConsultarEmple.Size = new System.Drawing.Size(180, 22);
             this.miConsultarEmple.Tag = "P_miConsultarEmple";
             this.miConsultarEmple.Text = "Consultar";
+            this.miConsultarEmple.Visible = false;
             // 
             // menuOmnibus
             // 
@@ -176,56 +176,56 @@
             this.miAltaOmni,
             this.miBajaOmni,
             this.miModiOmni});
-            this.miRegistrarOmnibus.Enabled = false;
             this.miRegistrarOmnibus.Name = "miRegistrarOmnibus";
             this.miRegistrarOmnibus.Size = new System.Drawing.Size(125, 22);
             this.miRegistrarOmnibus.Tag = "P_miRegistrarOmnibus";
             this.miRegistrarOmnibus.Text = "Registrar";
+            this.miRegistrarOmnibus.Visible = false;
             // 
             // miAltaOmni
             // 
             this.miAltaOmni.Name = "miAltaOmni";
-            this.miAltaOmni.Size = new System.Drawing.Size(125, 22);
+            this.miAltaOmni.Size = new System.Drawing.Size(180, 22);
             this.miAltaOmni.Tag = "P_miAltaOmni";
             this.miAltaOmni.Text = "Alta";
             // 
             // miBajaOmni
             // 
             this.miBajaOmni.Name = "miBajaOmni";
-            this.miBajaOmni.Size = new System.Drawing.Size(125, 22);
+            this.miBajaOmni.Size = new System.Drawing.Size(180, 22);
             this.miBajaOmni.Tag = "P_miBajaOmni";
             this.miBajaOmni.Text = "Baja";
             // 
             // miModiOmni
             // 
             this.miModiOmni.Name = "miModiOmni";
-            this.miModiOmni.Size = new System.Drawing.Size(125, 22);
+            this.miModiOmni.Size = new System.Drawing.Size(180, 22);
             this.miModiOmni.Tag = "P_miModiOmni";
             this.miModiOmni.Text = "Modificar";
             // 
             // miConsultarOmni
             // 
-            this.miConsultarOmni.Enabled = false;
             this.miConsultarOmni.Name = "miConsultarOmni";
             this.miConsultarOmni.Size = new System.Drawing.Size(125, 22);
             this.miConsultarOmni.Tag = "P_miConsultarOmni";
             this.miConsultarOmni.Text = "Consultar";
+            this.miConsultarOmni.Visible = false;
             // 
             // miEstatus
             // 
-            this.miEstatus.Enabled = false;
             this.miEstatus.Name = "miEstatus";
             this.miEstatus.Size = new System.Drawing.Size(125, 22);
             this.miEstatus.Tag = "P_miEstatus";
             this.miEstatus.Text = "Status";
+            this.miEstatus.Visible = false;
             // 
             // miEvaluarOmni
             // 
-            this.miEvaluarOmni.Enabled = false;
             this.miEvaluarOmni.Name = "miEvaluarOmni";
             this.miEvaluarOmni.Size = new System.Drawing.Size(125, 22);
             this.miEvaluarOmni.Tag = "P_miEvaluarOmni";
             this.miEvaluarOmni.Text = "Evaluar";
+            this.miEvaluarOmni.Visible = false;
             // 
             // causaToolStripMenuItem
             // 
@@ -246,7 +246,7 @@
             this.modificarToolStripMenuItem2});
             this.registrarToolStripMenuItem2.Enabled = false;
             this.registrarToolStripMenuItem2.Name = "registrarToolStripMenuItem2";
-            this.registrarToolStripMenuItem2.Size = new System.Drawing.Size(125, 22);
+            this.registrarToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
             this.registrarToolStripMenuItem2.Text = "Registrar";
             // 
             // altaToolStripMenuItem2
@@ -271,7 +271,7 @@
             // 
             this.consultarToolStripMenuItem2.Enabled = false;
             this.consultarToolStripMenuItem2.Name = "consultarToolStripMenuItem2";
-            this.consultarToolStripMenuItem2.Size = new System.Drawing.Size(125, 22);
+            this.consultarToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
             this.consultarToolStripMenuItem2.Text = "Consultar";
             // 
             // menuReparacion
@@ -293,11 +293,11 @@
             this.miAltaRepa,
             this.miBajaRepa,
             this.miModiRepa});
-            this.miRegistrarRepa.Enabled = false;
             this.miRegistrarRepa.Name = "miRegistrarRepa";
-            this.miRegistrarRepa.Size = new System.Drawing.Size(173, 22);
+            this.miRegistrarRepa.Size = new System.Drawing.Size(180, 22);
             this.miRegistrarRepa.Tag = "P_miRegistrarRepa";
             this.miRegistrarRepa.Text = "Registrar";
+            this.miRegistrarRepa.Visible = false;
             // 
             // miAltaRepa
             // 
@@ -322,35 +322,35 @@
             // 
             // miConsultarRepa
             // 
-            this.miConsultarRepa.Enabled = false;
             this.miConsultarRepa.Name = "miConsultarRepa";
-            this.miConsultarRepa.Size = new System.Drawing.Size(173, 22);
+            this.miConsultarRepa.Size = new System.Drawing.Size(180, 22);
             this.miConsultarRepa.Tag = "P_miConsultarRepa";
             this.miConsultarRepa.Text = "Consultar";
+            this.miConsultarRepa.Visible = false;
             // 
             // miAsignarRepa
             // 
-            this.miAsignarRepa.Enabled = false;
             this.miAsignarRepa.Name = "miAsignarRepa";
-            this.miAsignarRepa.Size = new System.Drawing.Size(173, 22);
+            this.miAsignarRepa.Size = new System.Drawing.Size(180, 22);
             this.miAsignarRepa.Tag = "P_miAsignarRepa";
             this.miAsignarRepa.Text = "Asignar";
+            this.miAsignarRepa.Visible = false;
             // 
             // miSolicitarRepu
             // 
-            this.miSolicitarRepu.Enabled = false;
             this.miSolicitarRepu.Name = "miSolicitarRepu";
-            this.miSolicitarRepu.Size = new System.Drawing.Size(173, 22);
+            this.miSolicitarRepu.Size = new System.Drawing.Size(180, 22);
             this.miSolicitarRepu.Tag = "P_miSolicitarRepu";
             this.miSolicitarRepu.Text = "Solicitar Respuesto";
+            this.miSolicitarRepu.Visible = false;
             // 
             // miSupervisar
             // 
-            this.miSupervisar.Enabled = false;
             this.miSupervisar.Name = "miSupervisar";
-            this.miSupervisar.Size = new System.Drawing.Size(173, 22);
+            this.miSupervisar.Size = new System.Drawing.Size(180, 22);
             this.miSupervisar.Tag = "P_miSupervisar";
             this.miSupervisar.Text = "Supervisar";
+            this.miSupervisar.Visible = false;
             // 
             // menuRepuesto
             // 
@@ -368,9 +368,8 @@
             this.altaToolStripMenuItem4,
             this.bajaToolStripMenuItem4,
             this.modificarToolStripMenuItem4});
-            this.miRegistrarRepuesto.Enabled = false;
             this.miRegistrarRepuesto.Name = "miRegistrarRepuesto";
-            this.miRegistrarRepuesto.Size = new System.Drawing.Size(180, 22);
+            this.miRegistrarRepuesto.Size = new System.Drawing.Size(125, 22);
             this.miRegistrarRepuesto.Tag = "P_miRegistrarRepuesto";
             this.miRegistrarRepuesto.Text = "Registrar";
             this.miRegistrarRepuesto.Visible = false;
@@ -378,28 +377,28 @@
             // altaToolStripMenuItem4
             // 
             this.altaToolStripMenuItem4.Name = "altaToolStripMenuItem4";
-            this.altaToolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.altaToolStripMenuItem4.Size = new System.Drawing.Size(125, 22);
             this.altaToolStripMenuItem4.Text = "Alta";
             // 
             // bajaToolStripMenuItem4
             // 
             this.bajaToolStripMenuItem4.Name = "bajaToolStripMenuItem4";
-            this.bajaToolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.bajaToolStripMenuItem4.Size = new System.Drawing.Size(125, 22);
             this.bajaToolStripMenuItem4.Text = "Baja";
             // 
             // modificarToolStripMenuItem4
             // 
             this.modificarToolStripMenuItem4.Name = "modificarToolStripMenuItem4";
-            this.modificarToolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.modificarToolStripMenuItem4.Size = new System.Drawing.Size(125, 22);
             this.modificarToolStripMenuItem4.Text = "Modificar";
             // 
             // miConsultarRespuesto
             // 
-            this.miConsultarRespuesto.Enabled = false;
             this.miConsultarRespuesto.Name = "miConsultarRespuesto";
-            this.miConsultarRespuesto.Size = new System.Drawing.Size(180, 22);
+            this.miConsultarRespuesto.Size = new System.Drawing.Size(125, 22);
             this.miConsultarRespuesto.Tag = "P_miConsultarRespuesto";
             this.miConsultarRespuesto.Text = "Consultar";
+            this.miConsultarRespuesto.Visible = false;
             // 
             // menuStock
             // 
@@ -414,11 +413,11 @@
             // 
             // miIngresos
             // 
-            this.miIngresos.Enabled = false;
             this.miIngresos.Name = "miIngresos";
             this.miIngresos.Size = new System.Drawing.Size(127, 22);
             this.miIngresos.Tag = "P_miIngresos";
             this.miIngresos.Text = "Ingresos";
+            this.miIngresos.Visible = false;
             // 
             // miConsultar
             // 
@@ -440,11 +439,11 @@
             // 
             this.menuSolicitudes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.miSolicitudes});
-            this.menuSolicitudes.Enabled = false;
             this.menuSolicitudes.Name = "menuSolicitudes";
             this.menuSolicitudes.Size = new System.Drawing.Size(133, 20);
             this.menuSolicitudes.Tag = "P_MenuSolicitudes";
             this.menuSolicitudes.Text = "Solicitudes Repuestos";
+            this.menuSolicitudes.Visible = false;
             // 
             // miSolicitudes
             // 
@@ -457,11 +456,11 @@
             // 
             this.menuReportes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.miRepoCostoxO});
-            this.menuReportes.Enabled = false;
             this.menuReportes.Name = "menuReportes";
             this.menuReportes.Size = new System.Drawing.Size(65, 20);
             this.menuReportes.Tag = "P_MenuReportes";
             this.menuReportes.Text = "Reportes";
+            this.menuReportes.Visible = false;
             // 
             // miRepoCostoxO
             // 
@@ -474,7 +473,6 @@
             // 
             this.menuIdioma.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.imIdiomaNuevo});
-            this.menuIdioma.Enabled = false;
             this.menuIdioma.Name = "menuIdioma";
             this.menuIdioma.Size = new System.Drawing.Size(56, 20);
             this.menuIdioma.Tag = "P_menuIdioma";
@@ -486,14 +484,15 @@
             this.P_miNuevoIdioma,
             this.miTraduccion});
             this.imIdiomaNuevo.Name = "imIdiomaNuevo";
-            this.imIdiomaNuevo.Size = new System.Drawing.Size(116, 22);
+            this.imIdiomaNuevo.Size = new System.Drawing.Size(180, 22);
             this.imIdiomaNuevo.Tag = "P_imIdiomaNuevo";
             this.imIdiomaNuevo.Text = "Agregar";
+            this.imIdiomaNuevo.Visible = false;
             // 
             // P_miNuevoIdioma
             // 
             this.P_miNuevoIdioma.Name = "P_miNuevoIdioma";
-            this.P_miNuevoIdioma.Size = new System.Drawing.Size(149, 22);
+            this.P_miNuevoIdioma.Size = new System.Drawing.Size(180, 22);
             this.P_miNuevoIdioma.Tag = "P_miNuevoIdioma";
             this.P_miNuevoIdioma.Text = "Nuevo Idioma";
             this.P_miNuevoIdioma.Click += new System.EventHandler(this.P_miNuevoIdioma_Click);
@@ -501,7 +500,7 @@
             // miTraduccion
             // 
             this.miTraduccion.Name = "miTraduccion";
-            this.miTraduccion.Size = new System.Drawing.Size(149, 22);
+            this.miTraduccion.Size = new System.Drawing.Size(180, 22);
             this.miTraduccion.Tag = "P_miTraduccion";
             this.miTraduccion.Text = "Traducciones";
             this.miTraduccion.Click += new System.EventHandler(this.miTraduccion_Click);
@@ -511,11 +510,11 @@
             this.menuPermisos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.miGestionPatentesFamilias,
             this.miGestionPermisosUsuario});
-            this.menuPermisos.Enabled = false;
             this.menuPermisos.Name = "menuPermisos";
             this.menuPermisos.Size = new System.Drawing.Size(67, 20);
             this.menuPermisos.Tag = "P_menuPermisos";
             this.menuPermisos.Text = "Permisos";
+            this.menuPermisos.Visible = false;
             // 
             // miGestionPatentesFamilias
             // 
@@ -556,7 +555,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label1.Location = new System.Drawing.Point(472, 36);
+            this.label1.Location = new System.Drawing.Point(418, 36);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(302, 65);
             this.label1.TabIndex = 1;
