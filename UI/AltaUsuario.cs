@@ -18,6 +18,7 @@ namespace UI
         {
             InitializeComponent();
             UpdateLanguage(idioma);
+            Session.SuscribirObservador(this);
         }
 
         private void btnAltaUsuario_Click(object sender, EventArgs e)
@@ -54,6 +55,7 @@ namespace UI
         {
             Login formLogin = new Login();
             formLogin.Show();
+            Session.DesuscribirObservador(this);
         }
 
         private void Limpiar()

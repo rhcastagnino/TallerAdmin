@@ -106,6 +106,7 @@ namespace UI
         {
             Principal formPrincipal = new Principal();
             formPrincipal.Show();
+            Session.DesuscribirObservador(this);
         }
 
     }

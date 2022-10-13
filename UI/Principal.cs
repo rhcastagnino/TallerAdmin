@@ -44,6 +44,7 @@ namespace UI
             usuarioBLL.Logout();
             Login formLogin = new Login();
             formLogin.Show();
+            Session.DesuscribirObservador(this);
         }
 
         public void UpdateLanguage(IIdioma idioma)
@@ -180,7 +181,7 @@ namespace UI
                                 if (p.Permiso.ToString() == "StockIngresos" && miitem.Tag.Equals("P_miIngresos")) miitem.Visible = true;
                                 if (p.Permiso.ToString() == "StockInventario" && miitem.Tag.Equals("P_miConsultar")) miitem.Visible = true;
                                 if (p.Permiso.ToString() == "StockConsultar" && miitem.Tag.Equals("P_miInventario")) miitem.Visible = true;
-                                if (p.Permiso.ToString() == "ManagerIdioma" && miitem.Tag.Equals("P_imIdiomaNuevo")) mnuitOpcion.Visible = true;
+                                if (p.Permiso.ToString() == "ManagerIdioma" && miitem.Tag.Equals("P_imIdiomaNuevo")) miitem.Visible = true;
                             }
                         }
 
@@ -200,5 +201,14 @@ namespace UI
             }
 
         }
+
+        private void backupRestoreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BackupRestore form_BR = new BackupRestore();
+            form_BR.Show();
+            this.Hide();
+        }
+
+
     }
 }

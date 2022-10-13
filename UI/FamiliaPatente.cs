@@ -23,6 +23,7 @@ namespace UI
         public FamiliaPatente()
         {
             InitializeComponent();
+            Session.SuscribirObservador(this);
         }
 
         public void UpdateLanguage(IIdioma idioma)
@@ -102,6 +103,7 @@ namespace UI
         {
             Principal formPrincipal = new Principal();
             formPrincipal.Show();
+            Session.DesuscribirObservador(this);
         }
 
         private void btnGuardarFamilia_Click(object sender, EventArgs e)

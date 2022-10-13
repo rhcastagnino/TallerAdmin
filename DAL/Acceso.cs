@@ -234,6 +234,13 @@ namespace DAL
             return dt;
         }
 
+        public void Ejecutar(string query)
+        {
+            SqlCommand cmd = new SqlCommand(query, conexion.Conectar());
+            cmd.ExecuteNonQuery();
+            conexion.Desconectar();
+        }
+
         //public void AltaUsuario(BE.Usuario usuario, string sp)
         //{
         //    SqlCommand cmd = new SqlCommand(sp, conexion.Conectar());
@@ -279,12 +286,6 @@ namespace DAL
         //    conexion.Desconectar();
         //}
 
-        //public void Ejecutar(string query)
-        //{
-        //    SqlCommand cmd = new SqlCommand(query, conexion.Conectar());
-        //    cmd.ExecuteNonQuery();
-        //    conexion.Desconectar();
-        //}
 
         //public void AltaIdioma(BE.Idioma idioma, string sp)
         //{

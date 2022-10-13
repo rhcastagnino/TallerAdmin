@@ -18,15 +18,17 @@ namespace BLL
 {
     public class UsuarioBLL : IUsuario
     {
-        private BE.Usuario Usuario;
-        private DAL.UsuarioDAL UsuarioDAL;
+        private Usuario Usuario;
+        private UsuarioDAL UsuarioDAL;
         private Encriptador encriptador;
+        private BitacoraBLL bitacoraBLL;
 
         public UsuarioBLL()
         {
-            Usuario = new BE.Usuario();
-            UsuarioDAL = new DAL.UsuarioDAL();
+            Usuario = new Usuario();
+            UsuarioDAL = new UsuarioDAL();
             encriptador = new Encriptador();
+            bitacoraBLL = new BitacoraBLL();
         }
 
         private bool ValidarEmail(string email)
@@ -63,7 +65,7 @@ namespace BLL
             }
         }
 
-        public void AltaUsario(BE.Usuario usuario)
+        public void AltaUsario(Usuario usuario)
         {
             try
             {
@@ -88,6 +90,7 @@ namespace BLL
                 usuario.Password = encriptador.Hash(usuario.Password);
                 UsuarioDAL.AltaUsaurio(usuario);
                 GenerarArchivoContrasenia(usuario.Apellido,passtxt);
+                bitacoraBLL.RegistrarBitacora($"Se dio de alta al usuario {encriptador.Desencriptar(usuario.Email)} {usuario.Apellido} {usuario.Nombre}","Alta",Usuario);
             }
             catch (Exception ex)
             {
@@ -123,7 +126,8 @@ namespace BLL
         {
             try
             {
-                StreamWriter sw = new StreamWriter("C:\\Users\\Casta\\Desktop\\" + apellido+".txt");
+                
+                StreamWriter sw = new StreamWriter("C:\\Users\\Public\\Desktop\\"+apellido+".txt");
                 sw.WriteLine("Bienvenido a TallerAdmin, para ingresar al sistema ingrese la siguiente contraseña");
                 sw.WriteLine(password);
                 sw.Close();
@@ -135,7 +139,7 @@ namespace BLL
 
         }
 
-        public BE.Usuario GetUsuario(string email)
+        public Usuario GetUsuario(string email)
         {
             try
             {
@@ -160,9 +164,9 @@ namespace BLL
                     Usuario = usuarioBLL.GetUsuario(email);
                     if (encriptador.Encriptar(email) == Usuario.Email)
                     {
-                        if (encriptador.Hash(pass) == Usuario.Password)
+                        if (Usuario.Contador <= 3)
                         {
-                            if (Usuario.Contador <= 3)
+                            if (encriptador.Hash(pass) == Usuario.Password)
                             {
                                 if (Session.GetInstance == null)
                                 {
@@ -175,14 +179,16 @@ namespace BLL
                             }
                             else
                             {
-                                throw new Exception($"Su usuario {encriptador.Desencriptar(Usuario.Email)} se encuentra Bloqueado. Contacte al admnistrador.");
+                                usuarioBLL.IncrementarContador(Usuario);
+                                bitacoraBLL.RegistrarBitacora($"Se ingreso incorrectamente la password del usuario {email}", "Baja", Usuario);
+                                throw new Exception("Contraseña incorrecta");
                             }
 
                         }
                         else
                         {
-                            usuarioBLL.IncrementarContador(Usuario);
-                            throw new Exception("Contraseña incorrecta");
+                            bitacoraBLL.RegistrarBitacora($"Se bloquea el usuario {email}", "Alta", Usuario);
+                            throw new Exception($"Su usuario {encriptador.Desencriptar(Usuario.Email)} se encuentra Bloqueado. Contacte al admnistrador.");
                         }
                     }
                     else
@@ -207,7 +213,7 @@ namespace BLL
             Session.CerrarSession();
         }
 
-        public void IncrementarContador(BE.Usuario usuario)
+        public void IncrementarContador(Usuario usuario)
         {
             try
             {
@@ -220,7 +226,7 @@ namespace BLL
 
         }
 
-        public void RestablecerContador(BE.Usuario usuario)
+        public void RestablecerContador(Usuario usuario)
         {
             try
             {
@@ -252,7 +258,7 @@ namespace BLL
                 List<Usuario> listaUsuariosFinal = new List<Usuario>();
                 foreach (var lu in listaUsuarios)
                 {
-                    BE.Usuario usr = new BE.Usuario();
+                Usuario usr = new Usuario();
                     usr.Email = encriptador.Desencriptar(lu.Email);
                     usr.Nombre = lu.Nombre;
                     usr.Apellido = lu.Apellido;

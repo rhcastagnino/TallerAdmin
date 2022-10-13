@@ -25,6 +25,7 @@ namespace UI
         public PermisosUsuario()
         {
             InitializeComponent();
+            Session.SuscribirObservador(this);
         }
 
         private void PermisosUsuario_Load(object sender, EventArgs e)
@@ -66,6 +67,7 @@ namespace UI
         {
             Principal formPrincipal = new Principal();
             formPrincipal.Show();
+            Session.DesuscribirObservador(this);
         }
 
         private void btnUsr_Click(object sender, EventArgs e)

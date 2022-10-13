@@ -59,6 +59,7 @@ namespace UI
 
         private void Login_FormClosed(object sender, FormClosedEventArgs e)
         {
+            Session.DesuscribirObservador(this);
             System.Environment.Exit(0);
         }
 

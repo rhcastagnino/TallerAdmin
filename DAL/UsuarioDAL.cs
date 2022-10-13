@@ -11,16 +11,16 @@ namespace DAL
     public class UsuarioDAL : Acceso
     {
         //private Acceso acceso;
-        private BE.Usuario usuario;
+        private Usuario usuario;
         private DataTable dt;
 
         public UsuarioDAL()
         {
             //acceso = new Acceso();
-            usuario = new BE.Usuario();
+            usuario = new Usuario();
         }
 
-        public void AltaUsaurio(BE.Usuario usuario) 
+        public void AltaUsaurio(Usuario usuario) 
         {
             try
             {
@@ -39,7 +39,7 @@ namespace DAL
             }
         }
 
-        public BE.Usuario GetUsaurio(string email)
+        public Usuario GetUsaurio(string email)
         {
             try
             {     
@@ -65,7 +65,7 @@ namespace DAL
             }
         }
 
-        public void IncrementarContador(BE.Usuario usuario)
+        public void IncrementarContador(Usuario usuario)
         {
             try
             {
@@ -80,7 +80,7 @@ namespace DAL
             }
         }
 
-        public void RestablecerContador(BE.Usuario usuario)
+        public void RestablecerContador(Usuario usuario)
         {
             try
             {
@@ -95,7 +95,7 @@ namespace DAL
             }
         }
 
-        public void GuardarPermisos(BE.Usuario usr)
+        public void GuardarPermisos(Usuario usr)
         {
 
             try
